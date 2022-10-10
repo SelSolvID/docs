@@ -99,13 +99,15 @@ die mensen claimen te hebben ook echt zijn.
 
 ## 2.4 Alternatieve oplossingen
 
+### 2.4.1 Huidige situatie
+
 Een mogelijke alternatieve oplossing zou zijn om verder te gaan volgens de
 status quo, want hoewel er mogelijke verbeteringspunten zijn, is de ID kaart wel
 tried en true en wordt deze al meerdere decennia gebruikt. Hierdoor is het
 gebruik van de gewone ID kaart bekend bij iedereen en is iedereen niks anders
 gewend.
 
-### 2.4.1
+### 2.4.2 Centrale database
 
 Een andere alternatieve oplossing zou zijn om wel gebruik te gaan maken van een
 online ID kaart, maar om dit te doen via een centrale database van de overheid.
@@ -113,7 +115,7 @@ Deze oplossing zou wel nieuwe problemen met zich mee brengen zoals het probleem
 van de beveiliging van de servers met data, en de kosten om deze servers
 constant aan te hebben om de gegevens te verspreiden.
 
-### 2.4.2
+### 2.4.3 Andere landen afkijken
 
 Wat ook een alternatieve oplossing zou kunnen zijn is meekijken met andere
 landen naar wat zij gebruiken of aan het ontwikkelen zijn. Dit zou namelijk
