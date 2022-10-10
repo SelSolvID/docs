@@ -51,16 +51,11 @@ basis van waaruit deze uitwerking gestalte krijgt.
 ## 2.1 De huidige situatie
 
 Mensen gebruiken tegenwoordig hun ID kaart, rijbewijs of paspoort om zichzelf te
-identificeren. Deze methode werkt maar heeft een aantal verbeterpunten. Wanneer
-mensen hun ID laten zien ziet de persoon die het controleert vaak veel meer
-gegevens dan nodig, op een ID kaart staan bijvoorbeeld naam, geboorteplaats,
-etc. Mensen moeten ook vaak andere documenten aanleveren naast hun ID kaart.
-Deze informatie moet vaak refereren naar gegevens op de ID kaart (vaak naam) en
-ondertekend zijn voor een validiteitscontrole. Een voorbeeld van een extra
-document kan zijn een loonstrook om aan te tonen hoeveel salaris iemand
-verdient. Ook moeten mensen tegenwoordig altijd hun ID bij zich hebben, als
-iemand hun ID vergeet mee te nemen is dat snel een probleem. Het huidige systeem
-werkt dus, maar er zijn wel duidelijke verbeterpunten te identificeren.
+identificeren. Mensen moeten ook vaak andere documenten aanleveren naast hun ID
+kaart. Deze informatie moet vaak refereren naar gegevens op de ID kaart (vaak
+naam) en ondertekend zijn voor een validiteitscontrole. Een voorbeeld van een
+extra document kan zijn een loonstrook om aan te tonen hoeveel salaris iemand
+verdient. Ook moeten mensen tegenwoordig altijd hun ID bij zich hebben.
 
 ## 2.2 Probleemstelling
 
@@ -94,6 +89,10 @@ ID bewijs op de telefoon. Specifiek op een self-governing manier. Dit houdt in
 dat mensen hun gegevens alleen opslaan op hun eigen telefoon. Op deze manier
 kunnen mensen altijd zelf bepalen wanneer en met wie hun gegevens worden
 gedeeld.  
+Verder wordt het ID systeem uitgebreid met mogelijkheden om meer verschillende
+soorten gegevens te kunnen bewijzen. Deze gegevens kunnen bijvoorbeeld zijn loon
+informatie of accreditering van scholen.
+
 Om dit systeem werkend te krijgen moet een infrastructuur worden opgezet die
 door middel van cryptografie en "trusted parties" garantie biedt dat de gegevens
 die mensen claimen te hebben ook echt zijn.
