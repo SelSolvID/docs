@@ -62,7 +62,7 @@ verdient. Ook moeten mensen tegenwoordig altijd hun ID bij zich hebben, als
 iemand hun ID vergeet mee te nemen is dat snel een probleem. Het huidige systeem
 werkt dus, maar er zijn wel duidelijke verbeterpunten te identificeren.
 
-## 2.2
+## 2.2 Probleemstelling
 
 De belangrijkste twee problemen met het huidige systeem zijn dat het niet
 optimale privacy biedt en dat het niet makkelijk uit te breiden is. Het probleem
