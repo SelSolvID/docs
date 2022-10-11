@@ -1,132 +1,80 @@
-# Acceptatie Plan SSI
+# Acceptatieplan SSI
 
-### HBO-ICT SE Jaar 4 Groep 5
+### Versie 2
 
+## Auteurs
 
-
-## 1 Inleiding
-Dit Acceptatie Plan verschaft een meetbare basis voor de te accepteren werkproducten. Het bevat een lijst met meetbare acceptatiecriteria die invulling geven aan niet-functionele en Use Case overstijgende eisen. 
-
-
-
-## 2 Acceptatiecriteria
-???
-### 2.1 Performance
-|                                       | 1 | 2 |
-| ------------------------------------- | --- | --- |
-| **Omschrijving**                      | sdfggfdsgfdsgdfs| gfsdgdfgsgdfs |
-| **Eigenaar**                          |  |  |
-| **Doel, streefwaarde en toleranties** |  |  |
-| **Meetmethode**                       |  |  |
-| **Planning**                          |  |  |
-| **Corrigerende acties**               |  |  |
-
-### 2.2 Beheerbaarheid
-#### 2.2.1 onderhoudbaarheid van de code
-- unittests moeten worden uitgevoerd door een teststraat
-- de documentatie moet zodanig duidelijk zijn dat dit te begrijpen is voor iemand die geen/weinig technische kennis heeft
-#### 2.2.2 logging
-???
-#### 2.2.3 instelmogelijkheden
-???
-#### 2.2.4 oppakken va parameters en contentwijzigingen
-???
-
-### 2.3 Betrouwbaarheid
-#### 2.3.1 transactie- en rollbackmechanismen
-???
-#### 2.3.2 herstartbaarheid
-???
-#### 2.3.3 herstelmogelijkheden
-???
-#### 2.3.4 het omgaan met database locking
-???
-#### 2.3.5 validatiemechanismen
-- Een verifier moet kunnen controleren:
-  * zijn alle vereiste VC's aanwezig
-  * wie is is de uitgever van de VC, is dit een betrouwbare uitgever en is het gegarandeerd deze uitgever
-  * is het gegarandeerd dat de VC betrekking heeft op de houder en niet iemand anders
-  * is het gegarandeerd dat de VC niet is aangepast sinds het is uitgegeven
-  * is de VC nog geldig
-- Een gebruiker moet de status (in behandeling, gevalideerd) van zijn aanvragen bij een uitgever kunnen zien in zijn wallet
-
-### 2.4 Beveiliging
-- p2p berichtenverkeer moet beveiligd zijn wat betreft:
-  * privacy
-  * integriteit
-  * authenticiteit
-- De wallet bevat een DID, een private sleutel en een publieke sleutel. De wallet bevat verder de VC's die eigendom zijn van de houder
-- Om de wallet te kunnen gebruiker moet de gebruiker eerst inloggen met een gebruikersnaam en wachtwoord
-- De gebruiker kan met zijn wallet op basis van de private sleutel een publieke sleutel en ID genereren
-- Wanneer de private key in de wallet wordt opgeslagen, dan moet de key worden beveiligd met encryptie
-- De private key moet worden beschermd met een 'seed recovery phrase' conform BIP39, een 'nep-zin' opgebouwd uit gewone woorden
-- De wallet moet een veilige mogelijkheid voor backup en recovery bevatten
-### 2.5 Funcitonaliteit
-**[!!!voorbeeld van rupopmaat!!!]** De functionaliteit zal worden beoordeeld op basis van goedgekeurde Use Case Specifications en een goedgekeurde Navigation Map.
-
-### 2.6 Gebruikersvriendelijkheid
-- De mobiele web aplicatie moet schaalbaar zijn voor alle 'moderne' telefoons
-- De gebruiker moet makkelijk kunnen wisselen van rol als holder en verifier
-- De gebruiker kan verder met zijn wallet:
-  * beveiligde p2p verbindingen opzetten met andere partijen
-  * een VC aanvragen bij een uitgever
-  * een verzoek voor een of meer VC's ontvangen van een verifier
-  * een bewijs (VC) tonen aan een verifier
-
-### 2.7 Standaards
-???
-
-### 2.8 Documentatie
-???
+Wouter de Boer  
+Daniel Hofman  
+Hylbren Rijnders  
+Mees van Dijk
 
 
 
------------------
+# Inhoudsopgave
+1. Inleiding  
+   1.1 Doel van dit document  
+   1.2 Referenties
+2. Verantwoordelijkheden  
+3. Acceptatiecriteria  
+   3.1 Performance  
+   3.2 Beheerbaarheid   
+   3.3 Betrouwbaarheid  
+   3.4 Beveiliging  
+   3.5 Funcitonaliteit  
+   3.6 Gebruiksvriendelijkheid  
+   3.7 Standaards   
+   3.8 Documentatie  
 
 
 
-**Dit zijn eisen waarvan ik niet zo goed weet onder welk kopje ik ze moet plaatsen**
+# 1 Inleiding
 
-- er wordt gebruik gemaakt van de volgende vier use cases:
-  * Het kopen van alcohol (drank) in de supermarkt. De supermarkt wil dat je je leeftijd aantoont
-    * uitgever: overheid (gemeente);
-    * houder: klant;
-    * verifier: kassière supermarkt.
-  * Het aanvragen van een hypotheek. De hypotheekverstrekker wil een verklaring van de overheid m.b.t. je identiteit en een werkgeversverklaring m.b.t. je inkomen
-    * uitgevers: overheid (gemeente), werkgever;
-    * houder: aanvrager;
-    * verifier: hypotheekverstrekker.
-  * Het tonen van ID en diploma's bij een sollicitatie. De (potentiële) werkgever wil een diploma van je middelbare school en van je hbo-opleiding zien
-    * uitgevers: middelbare school, hbo-instelling;
-    * houder: sollicitant;
-    * verifier: werkgever.
-  * het huren van een auto: de verhuurder wil een ID en een rijbewijs zien.
-    * uitgevers: overheid (gemeente), overheid (RDW);
-    * houder: huurder;
-    * verifier: verhuurbedrijf.
+## 1.1 Doel van dit document
+Dit Acceptatie Plan verschaft een meetbare basis voor de te accepteren werkproducten. Het bevat een lijst met meetbare acceptatiecriteria die invulling geven aan niet-functionele, Use Case overstijgende eisen en de procedure waarop we bepalen of het project geaccepteerd wordt. 
 
-- er moet een request/response protocol voor de drie partijen worden ontworpen
+## 1.2 Referenties
+| Titel       | Vindplaats               |
+| ----------- | ------------------------ |
+| RUP op maat | http://www.rupopmaat.nl/ |
 
-- alle berichten moeten gebaseerd zijn op het JSON-formaat
 
-- Er moet een datastructuur worden ontworpen gebaseerd op JSON. Deze structuur moet voor alle partijen:
-  * duidelijk maken welke VC's vereist worden
-  * hoe een VC kan worden aangevraagd
-  * hoe een VC kan worden uitgegeven
-  * hoe een VC kan worden gepresenteerd aan de verifier
 
-- een VC zal minimaal moeten bevatten:
-  * een uniek ID van de VC
-  * het type VC
-  * de ID van de uitgever
-  * de ID van de houder
-  * een datum 'einde geldigheid'
-  * een handtekening
+# 2 Verantwoordelijkheden
+| Naam             | Rol               |
+| ---------------- | ----------------- |
+| Wouter de Boer   | projectlid        |
+| Daniel Hofman    | projectlid        |
+| Hylbren Rijnders | projectlid        |
+| Mees van Dijk    | projectlid        |
+| Jacob de Boer    | projectbegeleider |
+| Reimer Wartena   | opdrachtgever     |
 
-- Uitgever, houder en verifier hebben elk een eigen applicatie. Voor de uitgever kan dit een webapplicatie op een desktop of laptop zijn, voor houder en uitgever wordt een mobiele web applicatie gevraagd
 
-- Met al deze applicaties moet het mogelijk zijn om unieke ID's (adressen) te genereren en om berichten te sturen naar - en te ontvangen van - de andere partijen.
 
-- Het presenteren van een VC aan de verifier moet via een QR-code plaatsvinden
+# 3 Acceptatiecriteria
 
-- Er moet een manier zijn voor gebruikers/houders om uitgevers te bereiken (adressen van service points)
+## 3.1 Performance
+Om de performance van de applicatie op niveau te krijgen zal de applicatie aan een aantal eisen moeten voldoen. Voor het werken op meerdere telefoons zal de applicatie schaalbaar moeten zijn. Gebruiker mag geen 'lag-spikes' merken bij het gebruiken van de applicatie en mag geen lange laadtijden tegenkomen.
+
+## 3.2 Beheerbaarheid
+Voor het beheer van de applicatie zal er een teststraat ontwikkeld worden die kan worden gebruikt voor unittests.
+Verder om de code zelf te beheren zal er goede documentatie moeten zijn. Deze documentatie moet te begrijpen zijn voor iedereen, ook mensen met weinig of geen technische kennis. Wanneer dit project is afgelopen, moet het duidelijk zijn in de documentatie hoe het project is verlopen, wat is er goed gegaan en wat ging slecht.
+
+## 3.3 Betrouwbaarheid
+Het is erg van belang dat het systeem altijd werkt in een project als dit. Dit project zorgt ervoor dat je niet meer al je pasjes bij je hoeft te hebben omdat deze altijd op je telefoon digitaal beschikbaar zijn. Het is hierom heel belangrijk dat het systeem werkt, anders heb je geen toegang tot je persoonlijke gegevens. Een voorbeeld kan zijn wanneer je wordt aangehouden en je moet je rijbewijs laten zien. Wanneer het systeem het niet doet en je niet je rijbewijs kan laten zien, kan dit problemen veroorzaken.
+
+## 3.4 Beveiliging
+Voor een applicatie als dit is beveiliging natuurlijk een van de meest belangrijke aspecten. Al je persoonlijke gegevens zijn hier opgeslagen en dat kan flink fout aflopen als die gehackt wordt. De applicatie moet hiervoor een inlogsysteem hebben met gebruikersnaam en wachtwoord. Voor alle data dat wordt rondgestuurd, zal gebruik worden gemaakt van cryptografie. Ook zal de wallet waar je al je persoonlijke gegevens in hebt een veilige optie moeten hebben om een backup te maken en mogelijk verloren data te recoveren. 
+
+## 3.5 Funcitonaliteit
+De functionaliteit zal worden beoordeeld op basis van goedgekeurde Use Case Specifications. (Dit is verder toegelicht in het 'Use Cases' document)
+
+## 3.6 Gebruiksvriendelijkheid
+Om de app gebruikersvriendelijk te maken, moet de app kunnen worden gebruikt door iedereen. De app moet zodanig duidelijk zijn dat mensen van elke leeftijd, ook ouderen en kleine kinderen, snappen hoe de app gebruikt moet worden. Sommige mensen kunnen ook moeite hebben met lezen. Hiervoor moet je lettergrootte ook veranderbaar zijn. Dit kan bijvoorbeeld wanneer je je eigen telefoon lettergrootte groot hebt staan, dat de app dit ook automatisch overneemt. De lay-out van de app moet overzichtelijk zijn, de icoontjes moeten snel inzicht geven over de functie van de mogelijke knoppen en wanneer instructies worden gegeven, moet dit ook te lezen zijn en duidelijk zijn voor elke gebruiker.
+
+## 3.7 Standaards
+Wanneer je praat over al je persoonlijke gegevens online hebben, komt al snel de wet aan bod. Gezien dit project een compleet nieuw concept is, zal de wetgeving hier zich ook op moeten aanpassen. Hier moet duidelijk zijn wanneer je welke informatie moet vrijgeven en wanneer je je recht behoud op privacy.
+
+## 3.8 Documentatie
+De documentatie van het project moet te begrijpen zijn voor iedereen, ook mensen met weinig of geen technische kennis. Wanneer het project is afgelopen, moet het duidelijk zijn in de documentatie hoe het project is verlopen, wat is er goed gegaan en wat ging slecht. Gezien het eindproduct een proof of concept is, is de documentatie extra relevant. Gezien het doel van dit project kennis opdoen is, gaat het minder om het uiteindelijke eindproduct, maar meer om het proces. In de documentatie moet duidelijk terug te lezen zijn waarom er gekozen is voor bepaalde architectuurkeuzes met een onderbouwing. 
