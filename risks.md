@@ -28,6 +28,10 @@ een andere taal. Een verkeerd opgezette teststraat komt daarna. Als de
 teststraat verkeerd is opgezet kan dit leiden tot niet stabiele/correct werkende
 basisfunctionaliteit.
 
+Om verkeerde architectuurkeuzes tegen te gaan wordt er vooraf research gedaan over deze architectuurkeuzes. Op deze manier kan er worden besloten of deze architectuurkeuze geschikt is of niet.
+
+In het geval dat er achteraf toch blijkt dat er verkeerde architectuurkeuzes zijn gemaakt, wordt er gekeken in hoeverre dit een limitatie is en of hier iets aan is te doen. Als er niks aan is te doen en het hindert het project zo dat we niet verder kunnen, zullen we moeten kieze voor een andere architectuur.
+
 ## Onrealistische planning
 
 Een onrealistische planning houdt in dat er een planning is gemaakt die niet
