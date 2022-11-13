@@ -29,9 +29,9 @@ uitgewerkt maar ondergebracht bij de hoofdstukken 3.3 en 5. -->
 
 ### 1.2 referenties
 
-| titel                                   | Auteur   | vindplaats  |
-| --------------------------------------- | -------- | ----------- |
-| Software architectuur document template | onbekend | RUP op maat |
+| titel                                   | Auteur      | vindplaats  |
+| --------------------------------------- | ----------- | ----------- |
+| Software architectuur document template | RUP op maat | RUP op maat |
 
 ## 2 Architecturale eisen
 
@@ -54,7 +54,23 @@ halen
 
 ### 2.2 Use case View
 
-DEZE MOET NOG INGEVULD WORDEN A.D.H.V. ge-updatte use cases.
+Het meest interessante, architecturaal gezien, aan de use-cases is dat er een
+synthetische vorm van vertrouwen moet worden gebouwd. Dit model is synthetisch
+omdat het niet alleen berust op menselijke afsrpaken, zoals vertrouwen normaal
+wordt geimplementeerd, maar ook op bewijsbare technische manieren. Dit wordt
+geimplementeerd met cryptografische certificaten. Deze werken op zo'n manier dat
+een offciele instantie een eigen certificaat heeft en daarmee nieuwe
+certificaten kan uitgeven aan vertrouwde partijen. Doordat mensen de "officiele
+instantie" vertrouwen kunnen ze er automatisch van uit gaan dat de certificaten
+die door deze instantie zijn uitgegeven ook te vertouwen zijn. Hier komt de
+cryptografie van pas om te bewijzen dat een certificaat is uitgegeven door de
+"officiele instantie". Deze instanties zijn in het geval van dit project van
+tevoren bepaald, namelijk:
+
+- Duo, voor diploma's
+- Gemeente's, voor identiteitsbewijzen
+- Werkgevers, voor inkomensverklaringen
+- RDW, voor rijbewijzen
 
 ## 3 Logical view
 
@@ -73,7 +89,7 @@ De applicatie vereist een aantal deelsystemen. In grote lijnen komen er een app,
 een webapp en een api voor de webapp en app.
 
 De app is bedoeld voor de gebruikers die willen verifyen en holden van
-verifiable credentials.
+verifiable credentials (VC's).
 
 De webapp is bedoeld voor issuers, die VC's willen uitgeven aan individueen.
 
@@ -94,3 +110,22 @@ models geschreven die ook door de webapp kan hergebruiken. De app zal, omdat
 deze niet dezelfde programmeertaal gebruikt, dit model zelf moeten dupliceren.
 
 ### 4.2 Invulling lagenstructuur
+
+[Beschrijf hier de technische invulling van de in de Logical View onderscheiden
+lagen. Benoem ook de regels voor een component om in een bepaalde laag opgenomen
+te worden.]
+
+### 4.3(Her)gebruik van componenten en frameworks
+
+[Beschrijf hier de bij de bouw te (her)gebruiken componenten en frameworks
+(intern en van derden). Dit voor zover ze niet bij de invulling van de
+lagenstructuur zijn behandeld. Indien er bij de eisen bepaalde frameworks zijn
+genoemd, dienen deze hier terug te komen.]
+
+### 5. Deployment View
+
+[Beschrijf hier de fysieke netwerk(hardware) configuraties waarop de software
+gaat draaien. Beschrijf minimaal de configuraties van de verschillende fysieke
+nodes (computers, CPUs), de interactie tussen (deel)systemen en de connecties
+tussen deze nodes (bus, LAN, point-to-point, messaging, SOAP, http, https). Maak
+gebruik van een deployment-diagram.]
