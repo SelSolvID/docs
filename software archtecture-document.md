@@ -79,9 +79,15 @@ tevoren bepaald, namelijk:
 De applicatie bestaat uit meerdere lagen. Voor het uitvoeren van acties met de
 applicatie moet er een presentatie/interactie laag zijn. Deze laag communiceert
 met een service laag om deze acties waar te maken. Deze service laag praat met
-een data laag, welke zich op elk device zelf zal bevinden.
+een data laag, welke zich op elk device zelf zal bevinden. Deze data laag bevat
+ondertekende verifiable credentials. Omdat deze VC's ondertekend zijn is er geen
+externe connectie nodig om te verifiëren dat ze valide zijn. Daarom is het
+voldoende om ze lokaal op te slaan.
 
-TODO: verbeter dit
+Een andere data laag is verantwoordelijk voor het behandelen van globale data.
+Deze globale data bestaat uit nog niet opgehaalde VC's en openstaande verzoeken
+tot ondertekening. Zodra deze verzoeken volledig afgehandeld zijn kunnen ze ook
+verwijderd worden uit deze data laag.
 
 ### 3.2 Deelsystemen
 
@@ -91,13 +97,20 @@ een webapp en een api voor de webapp en app.
 De app is bedoeld voor de gebruikers die willen verifyen en holden van
 verifiable credentials (VC's).
 
-De webapp is bedoeld voor issuers, die VC's willen uitgeven aan individueen.
+De webapp is bedoeld voor issuers, die VC's willen uitgeven aan individuen.
 
 De api is voor de webapp en de app, via de api krijgen de apps hun nieuwe VC's
 
 ### 3.3 Use case realizations
 
-TODO: schrijf dit a.d.h.v. use cases
+Alle use cases zullen gebouwd worden op een zelfde techniek. Bij het verifiëren
+van een VC wordt een peer-to-peer connectie opgezet tussen twee mobiele
+telefoons. De holder stuurt dan de relevante VC naar de verifier. De verifier
+kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC
+geldig is.  
+Om de peer-to-peer connectie op te zetten wordt Bluetooth gebruikt. Verder wordt
+er gebruik gemaakt van bekende cryptografie libraries om de certificaten aan te
+maken en te verifiëren.
 
 ## 4 implementation view
 
@@ -111,9 +124,43 @@ deze niet dezelfde programmeertaal gebruikt, dit model zelf moeten dupliceren.
 
 ### 4.2 Invulling lagenstructuur
 
-[Beschrijf hier de technische invulling van de in de Logical View onderscheiden
-lagen. Benoem ook de regels voor een component om in een bepaalde laag opgenomen
-te worden.]
+#### 4.2.1 Presentatie
+
+De presentatie wordt op twee verschillende plekken op verschillende manieren
+uitgevoerd. Dit komt omdat er twee verschillende applicaties worden gebouwd als
+onderdeel van het systeem.
+
+De twee plekken zijn: de app voor op mobiele telefoons en de website.  
+Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
+maken om een user interface te maken.
+
+Voor de website wordt het web framework Svelte gebruikt. Dit is een web
+framework dat zich focust op de presentatie-laag van websites. Dit framework
+maakt het gemakkelijker om interactieve web applicaties te bouwen.
+
+#### 4.2.2 Service laag
+
+De service laag is verantwoordelijk voor het uitvoeren van de business logic. In
+dit geval zal dat zijn het aanvragen, aanmaken, ophalen, delen en verifieren van
+VC's.
+
+Voor het aanvragen en ophalen van VC's wordt http gebruikt. Een holder kan via
+haar telefoon verbinden met een server om een VC op te halen, mits deze is
+goedgekeurd, en dus ondertekend, door de relevante instantie. De holder kan ook
+via haar telefoon een VC aanvragen. Deze moet dan worden goedgekeurd in de web
+applicatie.
+
+Om dit allemaal te realiseren moeten veel verschillende technieken gebruikt
+worden. Veel van deze acties hebben te maken met cryptografie, hier zullen
+standaard (ingebouwde) frameworks voor zijn. Deze worden ook gebruikt.
+
+Voor het communiceren met de server en andere telefoons worden ook standaard
+libraries gebruikt.
+
+#### 4.2.3 Data laag
+
+Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
+een SQL database gebruikt. De api laag is de enige die direct met deze
 
 ### 4.3(Her)gebruik van componenten en frameworks
 
