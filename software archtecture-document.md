@@ -56,15 +56,15 @@ halen
 
 Het meest interessante, architecturaal gezien, aan de use-cases is dat er een
 synthetische vorm van vertrouwen moet worden gebouwd. Dit model is synthetisch
-omdat het niet alleen berust op menselijke afsrpaken, zoals vertrouwen normaal
-wordt geimplementeerd, maar ook op bewijsbare technische manieren. Dit wordt
-geimplementeerd met cryptografische certificaten. Deze werken op zo'n manier dat
-een offciele instantie een eigen certificaat heeft en daarmee nieuwe
-certificaten kan uitgeven aan vertrouwde partijen. Doordat mensen de "officiele
+omdat het niet alleen berust op menselijke afspraken, zoals vertrouwen normaal
+wordt geïmplementeerd, maar ook op bewijsbare technische manieren. Dit wordt
+geïmplementeerd met cryptografische certificaten. Deze werken op zo'n manier dat
+een officiële instantie een eigen certificaat heeft en daarmee nieuwe
+certificaten kan uitgeven aan vertrouwde partijen. Doordat mensen de "officiële
 instantie" vertrouwen kunnen ze er automatisch van uit gaan dat de certificaten
-die door deze instantie zijn uitgegeven ook te vertouwen zijn. Hier komt de
+die door deze instantie zijn uitgegeven ook te vertrouwen zijn. Hier komt de
 cryptografie van pas om te bewijzen dat een certificaat is uitgegeven door de
-"officiele instantie". Deze instanties zijn in het geval van dit project van
+"officiële instantie". Deze instanties zijn in het geval van dit project van
 tevoren bepaald, namelijk:
 
 - Duo, voor diploma's
