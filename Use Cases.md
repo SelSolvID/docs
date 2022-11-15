@@ -154,3 +154,27 @@ weten wat de legitimiteit van een ondertekenaar is, en in welke context.
 
 In dit verhaal is een "statement" een meer algemeen woord voor wat tot nu toe
 een verifiable credential is genoemd.
+
+```plantuml
+@startuml
+
+:Jantje: as j
+:Pietje: as p
+:Petertje: as pt
+
+usecase uitleg [
+  Petertje beweert over jante\nte weten dat Jantje laatst\nzijn huiswerk echt wel gemaakt had\nmaar dat het door de hond was opgegeten
+]
+
+j == uitleg : onderwerp
+pt => uitleg : beweert
+
+usecase tegen [
+  Pietje gelooft hier natuurlijk niks van als Jantje dat zelf zegt\nmaar als Petertje, wie Pietje wel vertrouwt, het zegt\ndan gelooft Pietje het wel.
+]
+
+p == tegen
+pt ===> tegen
+p ==> pt : gelooft
+
+```
