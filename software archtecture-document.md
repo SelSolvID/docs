@@ -160,19 +160,109 @@ libraries gebruikt.
 #### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
-een SQL database gebruikt. De api laag is de enige die direct met deze
+een SQL database gebruikt. De api laag is de enige die direct met deze database
+praat. De api laag zit tussen zowel de web applicatie als de mobiele applicatie.
+Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
+Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
+deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
+apparaten.
 
 ### 4.3(Her)gebruik van componenten en frameworks
 
-[Beschrijf hier de bij de bouw te (her)gebruiken componenten en frameworks
-(intern en van derden). Dit voor zover ze niet bij de invulling van de
-lagenstructuur zijn behandeld. Indien er bij de eisen bepaalde frameworks zijn
-genoemd, dienen deze hier terug te komen.]
+Het meest algemene component is de API, deze kan via het internet door iedereen
+met de juiste toegang benaderd worden. Deze is nodig om interne applicaties
+boven op te bouwen maar ook derden zouden toegang kunnen krijgen tot deze api.
+Op deze manier kunnen derden hun eigen toepassingen bouwen die hun eigen doelen
+beter bereiken dan een algemene applicatie.
 
-### 5. Deployment View
+Bij het bouwen van deze api wordt code geschreven die direct herbruikt kan
+worden bij de bouw van de web applicatie. Verder kan deze code gemakkelijk
+vertaald worden naar code voor de mobiele applicatie.
 
-[Beschrijf hier de fysieke netwerk(hardware) configuraties waarop de software
-gaat draaien. Beschrijf minimaal de configuraties van de verschillende fysieke
-nodes (computers, CPUs), de interactie tussen (deel)systemen en de connecties
-tussen deze nodes (bus, LAN, point-to-point, messaging, SOAP, http, https). Maak
-gebruik van een deployment-diagram.]
+Dit komt omdat voor zowel de API als de webapplicatie javascript wordt gebruikt.
+Boven op javascript wordt dan typescript gebruikt. Bij typescript worden
+modellen van data geschreven die overal in het systeem gebruikt moeten worden.
+
+## 5. Deployment View
+
+### 5.1 Deployment en infrastructuur van API, database en web applicatie
+
+Voor de deployment is het belangrijk dat de API en de webapplicatie via een http
+proxy op hetzelfde domein draaien. Dit zorgt ervoor dat de webapplicatie veilig
+en zonder moeilijkheden met de API mag praten.
+
+Om dit te realiseren worden er een aantal docker containers gebouwd. Namelijk
+voor:
+
+- Het serveren van de webapplicatie
+- Het draaien van de API
+- Het draaien van de database.
+- Het proxy-en van requests naar de web-applicatie of de API
+
+Deze vier containers zitten allemaal in een zelfde privé netwerk. Alleen de
+proxy kan van buitenaf benaderd worden. De proxy zet https requests om naar http
+requests, zodat de individuele servers geen verantwoordelijkheid dragen voor
+https, dit zorgt voor veel minder complexiteit in de code. De proxy zorgt er ook
+voor dat elk request bij de juiste service aankomt. Het is alleen natuurlijk
+niet mogelijk direct de database te benaderen, dat kan alleen via de API.
+
+De proxy weet welk request voor welke service is aan de hand van een url.
+
+Requests met een url zoals `domein.nl/api/**/*` gaan allemaal naar de api. Alle
+andere requests worden naar de server van de webapplicatie gestuurd.
+
+Al deze infrastructuur kan, middels docker, op 1 server draaien.  
+Omdat scalability niet van groot belang is in dit project is 1 cloud server
+voldoende voor het demonstreren van het proof of concept.
+
+### 5.2 Deployment en infrastructuur voor de mobiele applicatie
+
+Voor het downloaden van de mobiele applicatie wordt een continuous integration
+pipeline ingesteld die automatisch de mobiele applicatie bouwt en beschikbaar
+stelt voor downloaden. Dit wordt gerealiseerd in github actions.
+
+Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
+bovengenoemde API, op de beschreven manier. Dit gebeurt met http(s). Naast het
+praten met de API moet de mobiele applicatie ook peer-to-peer connecties kunnen
+opzetten met andere instanties van de mobiele applicatie op andere mobiele
+apparaten. Dit gebeurt via Bluetooth. Bluetooth is hiervoor gekozen omdat het
+analoog is aan de manier van een ID kaart laten zien aan een persoon; je bent
+altijd bij elkaar in de buurt.
+
+### 5.3 Deployment diagram
+
+```plantuml
+@startuml
+node server {
+  [proxy]
+  [webapp server]
+  [api]
+  database data
+}
+
+[webapp]
+:externe partij:
+
+:mobiele applicatie: as a1
+:mobiele applicatie: as a2
+
+cloud github {
+  artifact "mobiele app download" as appdl
+}
+
+api -[hidden]- proxy
+proxy ==> "webapp server" : http
+proxy => api : http
+api ==> data : database protocol
+webapp => proxy : https
+"externe partij" => proxy : https
+a1 ===> proxy
+
+a1 --> a2 : bluetooth
+a2 -> a1 : bluetooth
+
+appdl -> a1
+appdl --> a2
+
+@enduml
+```
