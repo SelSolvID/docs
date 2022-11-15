@@ -132,7 +132,8 @@ onderdeel van het systeem.
 
 De twee plekken zijn: de app voor op mobiele telefoons en de website.  
 Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
-maken om een user interface te maken.
+maken om een user interface te maken. De taal waarin de android app geschreven
+wordt is Kotlin.
 
 Voor de website wordt het web framework Svelte gebruikt. Dit is een web
 framework dat zich focust op de presentatie-laag van websites. Dit framework
@@ -145,14 +146,15 @@ dit geval zal dat zijn het aanvragen, aanmaken, ophalen, delen en verifieren van
 VC's.
 
 Voor het aanvragen en ophalen van VC's wordt http gebruikt. Een holder kan via
-haar telefoon verbinden met een server om een VC op te halen, mits deze is
+haar telefoon verbinden met de api om een VC op te halen, mits deze is
 goedgekeurd, en dus ondertekend, door de relevante instantie. De holder kan ook
 via haar telefoon een VC aanvragen. Deze moet dan worden goedgekeurd in de web
 applicatie.
 
 Om dit allemaal te realiseren moeten veel verschillende technieken gebruikt
 worden. Veel van deze acties hebben te maken met cryptografie, hier zullen
-standaard (ingebouwde) frameworks voor zijn. Deze worden ook gebruikt.
+standaard (ingebouwde) frameworks voor zijn. Deze worden ook gebruikt. Het
+bouwen van deze API laag wordt gedaan met Node.js en typescript.
 
 Voor het communiceren met de server en andere telefoons worden ook standaard
 libraries gebruikt.
