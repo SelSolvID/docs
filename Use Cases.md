@@ -75,6 +75,7 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 # 4. Use Case Diagram <a name="usecasediagram"></a>
 
 ```plantuml
+@startuml
 actor "Gebruiker" as user
 actor "Onderwijsinstelling  middelbaar onderwijs" as omo
 actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
@@ -109,4 +110,44 @@ UC3 <-- ovo: Verschaft Diplomas
 user --> UC4
 UC4 <-- vh : vereist rijbewijs, identiteit
 UC4 <-- ur : verschaft rijbewijs
+@enduml
 ```
+
+# Extra use cases
+
+In een brainstormsessie heeft de projectgroep een mogelijke aanvulling op de use
+cases bedacht. Deze zit niet in de besproken scope van dit project, en is
+volgens het MoSCoW model een Wont have. Toch wordt deze hier onder
+gedocumenteerd, in het kader van volledigheid van documentatie.
+
+## Peer to peer statement issuing
+
+Binnen het beoogde systeem is mogelijkheid tot een uitbreiding. In het
+beschreven systeem staan drie duidelijk gescheiden rollen beschreven: issuer,
+verifier en holder. De projectgroep kwam al snel met het besef dat een verifier
+en holder vaak hetzelfde soort mensen zijn. In een supermarkt werken gewone,
+normale mensen. Analoog hieraan is dat met fysieke identiteitskaarten het ook zo
+werkt dat je je eigen kaart aan iedereen kan laten zien en iedereen kan
+controleren dat de kaart klopt en welke gegevens er op de kaart staan.  
+Hierin zijn holder en verifier dus hetzelfde. Hieruit kwam het idee dat er geen
+twee verschillende apps worden gebouwd voor deze twee soorten gebruikers, in
+plaats daarvan wordt er een enkele app gebouwd met functionaliteit voor beide.
+
+Een uitbreiding hierop is als je de issuer rol ook algemener bekijkt. Het
+huidige systeem is gebouwd op het issuen van officiele documenten, dingen zoals
+rijbewijs of opleidingsdiploma's. in algemene zin zijn dit gewoon "statements"
+over een persoon. Je kunt het zien als "het RDW maakt als 'statement' over
+Pietje dat hij mag rijden".
+
+Dit systeem kan nog algemener worden gemaakt door ook iedereen een issuer te
+laten zijn. Iedereen kan dan een "statement" over een ander persoon uitgeven.
+Deze andere persoon kan vervolgens deze "statement" aan anderen laten zien met
+bewijs dat persoon X dit heeft ondertekend. Een belangrijk besef is dan dat
+verschillende handtekeningen enorm verschillende legitimiteit hebben.  
+Als Pietje over Jantje de "statement" maakt 'Hij kan wel rijden" heeft dat niet
+dezelfde legitimiteit als wanneer het RDW dat doet.  
+Een belangrijk subsysteem dat hierbij nodig is is een manier voor mensen om te
+weten wat de legitimiteit van een ondertekenaar is, en in welke context.
+
+In dit verhaal is een "statement" een meer algemeen woord voor wat tot nu toe
+een verifiable credential is genoemd.
