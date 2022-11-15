@@ -132,9 +132,12 @@ controleren dat de kaart klopt en welke gegevens er op de kaart staan.
 Hierin zijn holder en verifier dus hetzelfde. Hieruit kwam het idee dat er geen
 twee verschillende apps worden gebouwd voor deze twee soorten gebruikers, in
 plaats daarvan wordt er een enkele app gebouwd met functionaliteit voor beide.
+Iedereen kan dan ook, net zoals in de situatie met fysieke ID kaarten, de
+verifiable credentials van een ander controleren, mits de ander hier aan mee
+werkt.
 
 Een uitbreiding hierop is als je de issuer rol ook algemener bekijkt. Het
-huidige systeem is gebouwd op het issuen van officiele documenten, dingen zoals
+huidige systeem is gebouwd op het issuen van officiële documenten, dingen zoals
 rijbewijs of opleidingsdiploma's. in algemene zin zijn dit gewoon "statements"
 over een persoon. Je kunt het zien als "het RDW maakt als 'statement' over
 Pietje dat hij mag rijden".
