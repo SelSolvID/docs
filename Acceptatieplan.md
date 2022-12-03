@@ -101,7 +101,7 @@ Voor het werken op meerdere telefoons zal de applicatie schaalbaar moeten zijn.
 ### 3.7.1 Wetgeving en privacy
 Wanneer je praat over al je persoonlijke gegevens op één (lokale) plek hebben, komt al snel de wet aan bod. Gezien dit project een compleet nieuw concept is, zal de wetgeving hier zich ook op moeten aanpassen. Het moet hier duidelijk zijn wanneer je welke informatie verplicht moet vrijgeven en wanneer je je recht behoud op privacy.
 ### 3.7.2 Linter
-Een standaard voor de code is dat er gebruik word gemaakt van een linter die word uitgevoerd bij elke commit. Deze linter maakt gebruik van *soort code standaard*.
+Een standaard voor de code is dat er gebruik word gemaakt van een linter die word uitgevoerd bij elke commit. Voor nodejs wordt prettier en ESLint gebruikt, voor svelte ESLint en voor kotlin Jetbrains.
 ### 3.7.3 Kotlin standaarden
 - In 'pure kotlin projects' volgt de aanbevolen directory structure de package structure en word de common root package weggelaten.
 - Bij een kotlin bestand met 1 class of interface moet de naam van het bestand hetzelfde zijn als die van de class of interface.
