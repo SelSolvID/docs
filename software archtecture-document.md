@@ -152,7 +152,9 @@ de standaard android libraries. Kotlin kan hiervan, net zoals java, gebruik
 maken om gemakkelijk een user interface te bouwen.
 
 De web applicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
-is een framework om responsive user interfaces te bouwen.
+is een framework om responsive user interfaces te bouwen. Bovenop svelte gaan we
+[Svelte material UI](https://sveltematerialui.com/) gebruiken. Dit is een set
+componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
 
 #### 4.1.1 Package diagram
 
