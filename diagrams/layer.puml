@@ -10,12 +10,14 @@ package "service layer" as sl {
 }
 
 package "data layer" as dl {
-  database database
+  database "central database" as cdb
+  database "mobile VC database" as ldb
 }
 
 
 wap --> api : https
 map -> mab : method calls
-api -> database : postgres protocol
+api -> cdb : postgres protocol
 api -> mab : https
+mab -> ldb : sqlite protocol
 @enduml
