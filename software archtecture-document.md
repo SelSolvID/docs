@@ -123,6 +123,27 @@ mogelijk om code uit deze packages te delen. Voor de api worden een aantal
 models geschreven die ook door de webapp kan hergebruiken. De app zal, omdat
 deze niet dezelfde programmeertaal gebruikt, dit model zelf moeten dupliceren.
 
+Verder zullen er een aantal externe packages gebruikt worden. Voor het
+realiseren van de api wordt gebruik gemaakt van [koajs](https://koajs.com/).
+KoaJs is een populair, modern webframework voor het installeren van middleware
+in een web applicatie. Verder biedt het uitbreidingen voor dingen zoals routing,
+logging en automatisch requests parsen.
+
+Verder wordt er bij alle cryptografische handelingen gebruik gemaakt van
+[OpenSSL](https://www.openssl.org/). OpenSSL is de meest populaire toolkit voor
+cryptografie en veilige communicatie.
+
+Voor het realiseren van een user interface op android wordt gebruik gemaakt van
+de standaard android libraries. Kotlin kan hiervan, net zoals java, gebruik
+maken om gemakkelijk een user interface te bouwen.
+
+De web applicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
+is een framework om responsive user interfaces te bouwen.
+
+#### 4.1.1 Package diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/package.puml">
+
 ### 4.2 Invulling lagenstructuur
 
 #### 4.2.1 Presentatie
@@ -169,6 +190,10 @@ Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
 Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
 deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
 apparaten.
+
+##### 4.2.3.1 Database diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database.puml">
 
 ### 4.3(Her)gebruik van componenten en frameworks
 
