@@ -171,11 +171,15 @@ onderdeel van het systeem.
 De twee plekken zijn: de app voor op mobiele telefoons en de website.  
 Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
 maken om een user interface te maken. De taal waarin de android app geschreven
-wordt is Kotlin.
+wordt is Kotlin. Kotlin wordt gebruikt omdat het een modern alternatief is op
+java. Traditioneel wordt java gebruikt voor android apps, maar kotlin is daarop
+een modern alternatief.
 
 Voor de website wordt het web framework Svelte gebruikt. Dit is een web
 framework dat zich focust op de presentatie-laag van websites. Dit framework
-maakt het gemakkelijker om interactieve web applicaties te bouwen.
+maakt het gemakkelijker om interactieve web applicaties te bouwen. Svelte is een
+relatief nieuw web framework dat erg positief is ontvangen. Het zorgt er voor
+dat developers snel en gestructureerd kunnen werken. Daarom gebruiken we Svelte.
 
 #### 4.2.2 Service laag
 
@@ -322,7 +326,10 @@ voldoende voor het demonstreren van het proof of concept.
 
 Voor het downloaden van de mobiele applicatie wordt een continuous integration
 pipeline ingesteld die automatisch de mobiele applicatie bouwt en beschikbaar
-stelt voor downloaden. Dit wordt gerealiseerd in github actions.
+stelt voor downloaden. Dit wordt gerealiseerd in github actions. Binnen github
+actions worden een aantal tools gebruikt om de applicaties te bouwen. Voor
+Kotlin is dat de kotlin compiler, voor svelte is dat de svelte compiler. Voor de
+api wordt Typescript gebruikt om de code te transpilen.
 
 Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
 bovengenoemde API, op de beschreven manier. Dit gebeurt met http(s). Naast het
@@ -332,6 +339,13 @@ apparaten. Dit gebeurt via Bluetooth. Bluetooth is hiervoor gekozen omdat het
 analoog is aan de manier van een ID kaart laten zien aan een persoon; je bent
 altijd bij elkaar in de buurt.
 
-### 5.3 Deployment diagram
+### 5.3 Teststraat
+
+Als onderdeel van het project wordt een teststraat ingericht. Dit houdt in dat
+er van het systeem drie versies beschikbaar komen. Hiervoor worden de api en
+webapp drievoudig gedeployed. De mobile applicatie krijgt drie verschillende
+downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
+
+### 5.4 Deployment diagram
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/deployment.puml">
