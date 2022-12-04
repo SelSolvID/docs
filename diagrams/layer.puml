@@ -17,7 +17,7 @@ package "data layer" as dl {
 
 wap --> api : https
 map -> mab : method calls
-api -> cdb : postgres protocol
+api --> cdb : postgres protocol
 api -> mab : https
-mab -> ldb : sqlite protocol
+mab --> ldb : sqlite protocol
 @enduml
