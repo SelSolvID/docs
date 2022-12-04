@@ -50,7 +50,7 @@ Dit Acceptatie Plan verschaft een meetbare basis voor de te accepteren werkprodu
 | Reimer Wartena     | opdrachtgever     |
 | Matthieu Kroezen   | opdrachtgever     |
 | Jan van Mullingen  | opdrachtgever     |
-| Martijn Riemersma  | projectbegeleider | <--- ???
+| Martijn Riemersma  | docentbegeleider  |
 
 
 
