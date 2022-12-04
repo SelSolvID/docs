@@ -29,9 +29,10 @@ uitgewerkt maar ondergebracht bij de hoofdstukken 3.3 en 5. -->
 
 ### 1.2 referenties
 
-| titel                                   | Auteur      | vindplaats  |
-| --------------------------------------- | ----------- | ----------- |
-| Software architectuur document template | RUP op maat | RUP op maat |
+| titel                                   | Auteur      | vindplaats                                                                                                               |
+| --------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Software architectuur document template | RUP op maat | RUP op maat                                                                                                              |
+| View diagram                            | IBM         | https://posomas.isse.de/PosoMAS/core.tech.common.extend_supp/guidances/examples/four_plus_one_view_of_arch_9A93ACE5.html |
 
 ## 2 Architecturale eisen
 
@@ -233,38 +234,4 @@ altijd bij elkaar in de buurt.
 
 ### 5.3 Deployment diagram
 
-```plantuml
-@startuml
-node server {
-  [proxy]
-  [webapp server]
-  [api]
-  database data
-}
-
-[webapp]
-:externe partij:
-
-:mobiele applicatie: as a1
-:mobiele applicatie: as a2
-
-cloud github {
-  artifact "mobiele app download" as appdl
-}
-
-api -[hidden]- proxy
-proxy ==> "webapp server" : http
-proxy => api : http
-api ==> data : database protocol
-webapp => proxy : https
-"externe partij" => proxy : https
-a1 ===> proxy
-
-a1 --> a2 : bluetooth
-a2 -> a1 : bluetooth
-
-appdl -> a1
-appdl --> a2
-
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/deployment.puml">
