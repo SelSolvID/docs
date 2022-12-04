@@ -3,7 +3,7 @@
 actor "Gebruiker" as user
 actor "Onderwijsinstelling  middelbaar onderwijs" as omo
 actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
-:mobiele applicatie: as wg
+actor "Werkgever" as wg
 actor "Overheid" as o
 
 rectangle SSI {
