@@ -197,6 +197,16 @@ bouwen van deze API laag wordt gedaan met Node.js en typescript.
 Voor het communiceren met de server en andere telefoons worden ook standaard
 libraries gebruikt.
 
+##### 4.2.2.1 API surface
+
+| url            | method | functie                                        |
+| -------------- | ------ | ---------------------------------------------- |
+| /token         | GET    | token ophalen voor gebruik in api communicatie |
+| /requests      | GET    | een lijst ophalen van openstaande VC requests  |
+| /requests/{id} | GET    | Details van een request ophalen                |
+| /requests/{id} | PUT    | Reageren op een request (goed of afkeuren)     |
+| /requests      | POST   | Als holder een nieuw request indienen          |
+
 #### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
