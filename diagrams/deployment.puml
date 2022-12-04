@@ -1,0 +1,33 @@
+@startuml
+node server {
+  [proxy]
+  [webapp server]
+  [api]
+  database data
+}
+
+[webapp]
+:externe partij:
+
+:mobiele applicatie: as a1
+:mobiele applicatie: as a2
+
+cloud github {
+  artifact "mobiele app download" as appdl
+}
+
+api -[hidden]- proxy
+proxy ==> "webapp server" : http
+proxy => api : http
+api ==> data : database protocol
+webapp => proxy : https
+"externe partij" => proxy : https
+a1 ===> proxy
+
+a1 --> a2 : bluetooth
+a2 -> a1 : bluetooth
+
+appdl -> a1
+appdl --> a2
+
+@enduml
