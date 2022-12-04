@@ -1,4 +1,4 @@
-@startuml uc2 diagram 
+@startuml uc2 diagram
 
 actor "Gebruiker" as user
 actor "Werkgever" as wg

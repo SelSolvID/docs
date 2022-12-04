@@ -1,4 +1,5 @@
-@startuml uc4 diagram 
+@startuml uc4 diagram
+
 actor "Gebruiker" as user
 actor "Autoverhuurder" as vh
 actor "Uitgiftepunt rijbewijs" as ur

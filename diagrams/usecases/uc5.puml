@@ -1,4 +1,5 @@
-@startuml uc5 diagram 
+@startuml uc5 diagram
+
 actor "Gebruiker" as user
 actor "Overheid" as o
 actor "Verzekeringsmaatschappij" as vm
