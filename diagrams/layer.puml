@@ -13,11 +13,9 @@ package "data layer" as dl {
   database database
 }
 
-pil <---> sl
-sl <--> dl
 
-wap --> api
-map --> mab
-api -> database
-api -> mab
+wap --> api : https
+map -> mab : method calls
+api -> database : postgres protocol
+api -> mab : https
 @enduml
