@@ -1,0 +1,18 @@
+@startuml package diagram
+node api
+node webapp
+node "mobile app" as ma
+
+rectangle KoaJs
+rectangle OpenSSL
+rectangle "Android UI Libraries" as aul
+rectangle Svelte
+rectangle "Svelte material UI" as smui
+
+api -> KoaJs
+api --> OpenSSL
+webapp --> Svelte
+ma ---> OpenSSL
+ma -> aul
+Svelte -> smui
+@enduml

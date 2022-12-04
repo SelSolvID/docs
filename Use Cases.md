@@ -35,6 +35,12 @@
 - [2. Opsomming actors ](#2-opsomming-actors-)
 - [3. Opsomming Use Cases ](#3-opsomming-use-cases-)
 - [4. Use Case Diagrams ](#4-use-case-diagrams-)
+  - [UC0 Gebruik van SSI](#uc0-gebruik-van-ssi)
+  - [UC1: Kopen van leeftijdsgebonden artikelen](#uc1-kopen-van-leeftijdsgebonden-artikelen)
+  - [UC2: Afsluiten van een hypotheek](#uc2-afsluiten-van-een-hypotheek)
+  - [UC3: Solliciteren](#uc3-solliciteren)
+  - [UC4: Huren van een auto](#uc4-huren-van-een-auto)
+  - [UC5: Verzekering](#uc5-verzekering)
 - [Extra use cases](#extra-use-cases)
   - [Peer to peer statement issuing](#peer-to-peer-statement-issuing)
 
@@ -79,7 +85,7 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 |**UC1**|**Kopen van leeftijdsgebonden artikelen**    |**Een gebruiker wilt alcohol kopen, benodigd is de leeftijd.**|**1** |**1**|
 | UC1-A|Leeftijd tonen|Ik wil bier kopen in de supermarkt, daar moet ik mijn leeftijd voor laten zien|||
 |UC1-B|Leeftijd verifieren|Ik werk in de supermarkt en moet een potentiele koper van bier zijn leeftijd verifieren|||
-|**UC2**|**Afsluiten van een dienst met voorwaarden** |** Een gebruiker wilt een hypotheek afsluiten om een huis te kunnen kopen, benodigd zijn de identiteit, arbeidsovereenkomst.** |**?**             |**4**                |
+|**UC2**|**Afsluiten van een hypotheek** |**Een gebruiker wilt een hypotheek afsluiten om een huis te kunnen kopen, benodigd zijn de identiteit, arbeidsovereenkomst.** |**?**             |**4**                |
 | UC2-A|uitgeven van arbeidsovereenkomst|Ik ben een werkgever en ik wil een arbeidsovereenkomst kunnen uitgeven aan een werknemer|||
 |UC2-B|Ontvangen van arbeidsovereenkomst|Als werknemer wil ik een arbeidsovereenkomst in ontvangst kunnen nemen|||
 |UC2-C|Verifieren van arbeidsovereenkomst|Ik ben een bankmedewerker en voor het afsluiten van een hypotheek moet ik een arbeidsovereenkomst kunnen verifieren|||
@@ -93,52 +99,146 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 |UC3-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
 |UC3-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
 |UC3-F|Verifieren van identiteit|Ik ben een werkgever en voor het aannemen van een werknemer moet ik een identiteit kunnen verifieren|||
-|**UC4**      |**Huren van goederen**                       |**Een gebruiker wilt een auto huren, daar is vanuit de gebruiker een ID en een rijbewijs nodig**                              |**?**             |**2**|
+|**UC4**      |**Huren van een auto**                       |**Een gebruiker wilt een auto huren, daar is vanuit de gebruiker een ID en een rijbewijs nodig**                              |**?**             |**2**|
 |UC4-A|Uitgifte van rijbewijs|Ik ben de RDW en wil rijbewijzen kunnen uitgeven|||
 |UC4-B|Ontvangen van rijbewijs|Ik heb mijn rijexamen gehaald en wil mijn rijbewijs ophalen|||
 |UC4-C|Verifieren van rijbewijs|Ik ben een verhuurbedrijf en ik wil verificeren of iemand een rijbewijs heeft|||
 |UC4-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
 |UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
 |UC4-F|Verifieren van identiteit|Ik ben een verhuurbedrijf en voor het verhuren van goederen moet ik een identiteit kunnen verifieren||                |
+|**UC5**      |**Verzekering afsluiten**                       |**Een gebruiker wilt een verzekering afsluiten daar is vanuit de gebruiker een ID voor nodig**                              |**?**             |**2**|
+|UC4-A|Uitgifte van verzekeringsbewijs|Ik ben verzekeringsmaatschappij en in wil verzekeringen kunnen uitgeven|||
+|UC4-B|Ontvangen van verzekeringsbewijs|Ik heb een verzekering afgelsotne en ik wil daarvan een verzekeringsbewijs ontvangen|||
+|UC4-C|Verifieren van verzekering|Ik ben een verhuurbedrijf en ik wil verificeren of iemand een verzekering heeft|||
+|UC4-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
+|UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
+|UC4-F|Verifieren van identiteit|Ik ben een verzekeringsmaatschappij en voor het afsluiten van een verzekering moet ik een identiteit kunnen verifieren||                |
+
 
 # 4. Use Case Diagrams <a name="usecasediagrams"></a>
 
+In de onderstaande diagrammen zijn de verschillende use cases uitbegeeld die uit de requirements van het project kwamen en een aantal cases die door de projectleden zelf zijn gedacht
+
+##  UC0 Gebruik van SSI
+
+```plantuml
+@startuml
+actor "holder" as holder
+actor "verifier" as verifier
+actor "issuer" as issuer
+
+rectangle SSI {
+  left to right direction
+  usecase "Gebruik SSI" as UC0
+}
+
+holder --> UC0 : heeft gegevens
+UC0 <-- verifier : verifieert gegevens
+UC0 <-- issuer : verschaft gegevens
+@enduml
+```
+
+##  UC1: Kopen van leeftijdsgebonden artikelen
 ```plantuml
 @startuml
 actor "Gebruiker" as user
-actor "Onderwijsinstelling  middelbaar onderwijs" as omo
-actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
-actor "Uitgiftepunt rijbewijs" as ur
-actor "Werkgever" as wg
-actor "Autoverhuurder" as vh
 actor "Verkoper" as vk
-actor "Bank" as b
-
+actor "Overheid" as o
 
 rectangle SSI {
   left to right direction
   usecase "Toon leeftijd" as UC1
-  usecase "Sluit hypotheek af" as UC2
-  usecase "Solliciteer" as UC3
-  usecase "Huurt auto" as UC4
 }
-
 
 user --> UC1 : verschaft leeftijd
 UC1 <-- vk : vereist leeftijd
+UC1 <-- o : Verschaft identiteit
+@enduml
+```
 
-user --> UC2 : verschaft identiteit
+## UC2: Afsluiten van een hypotheek
+```plantuml
+@startuml
+actor "Gebruiker" as user
+actor "Werkgever" as wg
+actor "Bank" as b
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+  usecase "Sluit hypotheek af" as UC2
+}
+
+user --> UC2 : toont identiteit, arbeidsovereenkomst
 UC2 <-- b : vereist arbeidsovereenkomst, identiteit
 wg <-- UC2 : verschaft arbeidsovereenkomst
+UC2 <-- o : Verschaft identiteit
 
-user --> UC3 : verschaft identiteit
-UC3 <-- wg : Vereist Diplomas
+@enduml
+```
+
+## UC3: Solliciteren
+```plantuml
+@startuml
+
+actor "Gebruiker" as user
+actor "Onderwijsinstelling  middelbaar onderwijs" as omo
+actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
+actor "Werkgever" as wg
+actor "Overheid" as o
+rectangle SSI {
+  left to right direction
+    usecase "Solliciteer" as UC3
+  }
+
+user --> UC3 : Toont identiteit, diplomas
+UC3 <-- wg : Vereist Diplomas, identitiet
 UC3 <-- omo: Verschaft Diploma
-UC3 <-- ovo: Verschaft Diplomas
+UC3 <-- ovo: Verschaft Diploma
+UC3 <-- o : Verschaft identiteit
 
-user --> UC4
+@enduml
+```
+
+## UC4: Huren van een auto
+```plantuml
+@startuml
+actor "Gebruiker" as user
+actor "Autoverhuurder" as vh
+actor "Uitgiftepunt rijbewijs" as ur
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+  usecase "Huren van goederen" as UC4
+}
+
+user --> UC4 : Toont identiteit, rijbewijs
 UC4 <-- vh : vereist rijbewijs, identiteit
 UC4 <-- ur : verschaft rijbewijs
+UC4 <-- o : Verschaft identiteit
+
+@enduml
+```
+
+## UC5: Verzekering
+```plantuml
+@startuml
+actor "Gebruiker" as user
+actor "Overheid" as o
+actor "Verzekeringsmaatschappij" as vm
+actor "Verzekeringsmaatschappij 2" as vm2
+
+rectangle SSI {
+  left to right direction
+  usecase "Verzekering" as UC5
+}
+
+user --> UC5 : Toont identiteit
+UC5 <-- vm : verschaft verzekeringsbewijs
+UC5 --> vm : vereist identiteit
+UC5 <-- o : Verschaft identiteit
+vm2 <-- UC5 : Verifieert verzekeringsbewijs
 @enduml
 ```
 

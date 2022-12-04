@@ -1,0 +1,18 @@
+@startuml database diagram
+entity User {
+* ID : number
+--
+* email : text
+* password : blob
+}
+
+entity VCRequest {
+* ID : number
+--
+* toUser : number
+* returnEmail : text
+* VCText : text
+}
+
+User||--o{VCRequest
+@enduml

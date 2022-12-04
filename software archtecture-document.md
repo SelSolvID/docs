@@ -19,7 +19,7 @@ van het systeem om zo verschillende aspecten van het systeem te belichten. Dit
 document beschrijft de verschillend eRUP views op de software architectuur
 volgens het 4+1 view model.
 
-<img src="4plus_1_views.jpg">
+<img src="4plus_1_views.jpg"/>
 
 Het 4+1 model stelt de verschillende belanghebbenden in staat vanuit hun eigen
 perspectief de invloed van de gekozen architectuur te bepalen.
@@ -29,48 +29,59 @@ uitgewerkt maar ondergebracht bij de hoofdstukken 3.3 en 5. -->
 
 ### 1.2 referenties
 
-| titel                                   | Auteur      | vindplaats  |
-| --------------------------------------- | ----------- | ----------- |
-| Software architectuur document template | RUP op maat | RUP op maat |
+| titel                                   | Auteur      | vindplaats                                                                                                               |
+| --------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Software architectuur document template | RUP op maat | RUP op maat                                                                                                              |
+| View diagram                            | IBM         | https://posomas.isse.de/PosoMAS/core.tech.common.extend_supp/guidances/examples/four_plus_one_view_of_arch_9A93ACE5.html |
+| Acceptatieplan                          | SelSolvid   | https://github.com/SelSolvID/docs/blob/master/Acceptatieplan.md                                                          |
 
 ## 2 Architecturale eisen
 
 ### 2.1 Niet-functionele eisen
 
-Voor dit project zijn weinig niet-functionele eisen, dit komt omdat het doel van
-het project is om een proof-of-concept applicatie te bouwen. In overleg met de
-opdrachtgevers is kortgesloten dat dingen zoals performance, accessibility en
-scalability niet belangrijk zijn.
+Omdat het bij dit project gaat om een proof-of-concept applicatie te bouwen zijn
+de niet-functionele eisen anders dan bij een gewoon project. Alle
+niet-functionele eisen zijn ook opgenomen in het
+[acceptatieplan](https://github.com/SelSolvID/docs/blob/master/Acceptatieplan.md)
+Een aantal gegeven niet-functionele eisen zijn:
 
-De eisen die wel gegeven zijn:
+#### 2.1.1 Performance
 
-#### 2.1.1 Snelheid
+Zoals ook genoemd in het acceptatieplan moet de applicatie normaal te gebruiken
+zijn, dit houdt in dat er geen lag-spikes zijn tijdens het gebruik. Verder moet
+een gebruiker niet hoeven wachten op lange laadtijden.
 
-eis: De applicatie moet elke actie binnen een seconde kunnen uitvoeren.  
-bron: opdrachtgever  
-architecturale relevantie: Bij het ontwerpen en bouwen van de applicatie moet
-worden gezorgd en getest dat de applicatie performant genoeg is om deze eis te
-halen
+#### 2.1.2 Beheerbaarheid
+
+Voor het project wordt een teststraat ingericht. Dit houd in dat er drie
+verschillende versies van de applicatie beschikbaar worden gemaakt op elk
+moment. Praktisch betekent dat dat er drie versies van het complete deployment
+diagram (zie 5.3) worden gedeployed.
+
+#### 2.1.3 Betrouwbaarheid
+
+Het systeem moet altijd beschikbaar zijn. Dit wordt behaald door dat de basis
+interacties van het systeem (verifyen van een credential) niet met een centrale
+server hoeven te praten. Hiermee ligt de verantwoordelijkheid bij de gebruiker
+om een werkend apparaat te onderhouden.
+
+#### 2.1.4 Beveiliging
+
+Beveiliging staat centraal in dit project. Daarom wordt het OpenSSL package
+gebruikt (zie 4.1). Dit package staat er om bekend betrouwbare beveiliging te
+bieden.
 
 ### 2.2 Use case View
 
-Het meest interessante, architecturaal gezien, aan de use-cases is dat er een
-synthetische vorm van vertrouwen moet worden gebouwd. Dit model is synthetisch
-omdat het niet alleen berust op menselijke afspraken, zoals vertrouwen normaal
-wordt geïmplementeerd, maar ook op bewijsbare technische manieren. Dit wordt
-geïmplementeerd met cryptografische certificaten. Deze werken op zo'n manier dat
-een officiële instantie een eigen certificaat heeft en daarmee nieuwe
-certificaten kan uitgeven aan vertrouwde partijen. Doordat mensen de "officiële
-instantie" vertrouwen kunnen ze er automatisch van uit gaan dat de certificaten
-die door deze instantie zijn uitgegeven ook te vertrouwen zijn. Hier komt de
-cryptografie van pas om te bewijzen dat een certificaat is uitgegeven door de
-"officiële instantie". Deze instanties zijn in het geval van dit project van
-tevoren bepaald, namelijk:
+De use cases van het project worden in meer detail beschreven in het use-case
+document. De volgende use-cases zijn geïdentificeerd:
 
-- Duo, voor diploma's
-- Gemeente's, voor identiteitsbewijzen
-- Werkgevers, voor inkomensverklaringen
-- RDW, voor rijbewijzen
+- Een issuer wilt requests goedkeuren en of afkeuren
+- Een gebruiker wilt alcohol kopen, benodigd is de leeftijd
+- Afsluiten van een dienst met voorwaarden
+- Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de
+  middelbare school en de HBO instelling voor nodig
+- Huren van goederen
 
 ## 3 Logical view
 
@@ -88,6 +99,10 @@ Een andere data laag is verantwoordelijk voor het behandelen van globale data.
 Deze globale data bestaat uit nog niet opgehaalde VC's en openstaande verzoeken
 tot ondertekening. Zodra deze verzoeken volledig afgehandeld zijn kunnen ze ook
 verwijderd worden uit deze data laag.
+
+#### 3.1.1 Laag-diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/layer.puml"/>
 
 ### 3.2 Deelsystemen
 
@@ -122,6 +137,29 @@ mogelijk om code uit deze packages te delen. Voor de api worden een aantal
 models geschreven die ook door de webapp kan hergebruiken. De app zal, omdat
 deze niet dezelfde programmeertaal gebruikt, dit model zelf moeten dupliceren.
 
+Verder zullen er een aantal externe packages gebruikt worden. Voor het
+realiseren van de api wordt gebruik gemaakt van [koajs](https://koajs.com/).
+KoaJs is een populair, modern webframework voor het installeren van middleware
+in een web applicatie. Verder biedt het uitbreidingen voor dingen zoals routing,
+logging en automatisch requests parsen.
+
+Verder wordt er bij alle cryptografische handelingen gebruik gemaakt van
+[OpenSSL](https://www.openssl.org/). OpenSSL is de meest populaire toolkit voor
+cryptografie en veilige communicatie.
+
+Voor het realiseren van een user interface op android wordt gebruik gemaakt van
+de standaard android libraries. Kotlin kan hiervan, net zoals java, gebruik
+maken om gemakkelijk een user interface te bouwen.
+
+De web applicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
+is een framework om responsive user interfaces te bouwen. Bovenop svelte gaan we
+[Svelte material UI](https://sveltematerialui.com/) gebruiken. Dit is een set
+componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
+
+#### 4.1.1 Package diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/package.puml"/>
+
 ### 4.2 Invulling lagenstructuur
 
 #### 4.2.1 Presentatie
@@ -133,11 +171,15 @@ onderdeel van het systeem.
 De twee plekken zijn: de app voor op mobiele telefoons en de website.  
 Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
 maken om een user interface te maken. De taal waarin de android app geschreven
-wordt is Kotlin.
+wordt is Kotlin. Kotlin wordt gebruikt omdat het een modern alternatief is op
+java. Traditioneel wordt java gebruikt voor android apps, maar kotlin is daarop
+een modern alternatief.
 
 Voor de website wordt het web framework Svelte gebruikt. Dit is een web
 framework dat zich focust op de presentatie-laag van websites. Dit framework
-maakt het gemakkelijker om interactieve web applicaties te bouwen.
+maakt het gemakkelijker om interactieve web applicaties te bouwen. Svelte is een
+relatief nieuw web framework dat erg positief is ontvangen. Het zorgt er voor
+dat developers snel en gestructureerd kunnen werken. Daarom gebruiken we Svelte.
 
 #### 4.2.2 Service laag
 
@@ -159,6 +201,65 @@ bouwen van deze API laag wordt gedaan met Node.js en typescript.
 Voor het communiceren met de server en andere telefoons worden ook standaard
 libraries gebruikt.
 
+##### 4.2.2.1 API surface
+
+| url            | method | functie                                        |
+| -------------- | ------ | ---------------------------------------------- |
+| /token         | GET    | token ophalen voor gebruik in api communicatie |
+| /requests      | GET    | een lijst ophalen van openstaande VC requests  |
+| /requests/{id} | GET    | Details van een request ophalen                |
+| /requests/{id} | PUT    | Reageren op een request (goed of afkeuren)     |
+| /requests      | POST   | Als holder een nieuw request indienen          |
+
+**GET /token** Hierbij wordt de header `Authentication` gebruikt met basic
+authentication scheme.
+
+**GET /requests** Hier wordt het token meegegeven als auth header en krijgt de
+gebruiker een lijst van requests zoals:
+
+```json
+[
+  {
+    "id": 0,
+    "fromUser": "some@example.com"
+  }
+]
+```
+
+**GET /requests/{id}** Hierbij worden de details van een request opgehaald. De
+ID staat in het path. De token wordt meegegeven als auth header. De data zier er
+uit zoals:
+
+```json
+{
+  "id": 0,
+  "fromUser": {
+    "email": "some@example.com"
+  },
+  "requestText": "Some claim"
+}
+```
+
+**PUT /requests/{id}** Hiermee kan een request goed of afgekeurd worden. Het
+token wordt meegegeven in de header en de request body ziet er als volgt uit:
+
+```json
+{
+  "id": 0,
+  "accept": false
+}
+```
+
+**POST /requests** Hiermee kan een holder een nieuw request indienen. De data
+ziet er als volgt uit:
+
+```json
+{
+  "fromUser": "some@example.com",
+  "requestText": "some text"
+}
+```
+
 #### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
@@ -168,6 +269,10 @@ Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
 Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
 deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
 apparaten.
+
+##### 4.2.3.1 Database diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database.puml"/>
 
 ### 4.3(Her)gebruik van componenten en frameworks
 
@@ -221,7 +326,10 @@ voldoende voor het demonstreren van het proof of concept.
 
 Voor het downloaden van de mobiele applicatie wordt een continuous integration
 pipeline ingesteld die automatisch de mobiele applicatie bouwt en beschikbaar
-stelt voor downloaden. Dit wordt gerealiseerd in github actions.
+stelt voor downloaden. Dit wordt gerealiseerd in github actions. Binnen github
+actions worden een aantal tools gebruikt om de applicaties te bouwen. Voor
+Kotlin is dat de kotlin compiler, voor svelte is dat de svelte compiler. Voor de
+api wordt Typescript gebruikt om de code te transpilen.
 
 Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
 bovengenoemde API, op de beschreven manier. Dit gebeurt met http(s). Naast het
@@ -231,40 +339,13 @@ apparaten. Dit gebeurt via Bluetooth. Bluetooth is hiervoor gekozen omdat het
 analoog is aan de manier van een ID kaart laten zien aan een persoon; je bent
 altijd bij elkaar in de buurt.
 
-### 5.3 Deployment diagram
+### 5.3 Teststraat
 
-```plantuml
-@startuml
-node server {
-  [proxy]
-  [webapp server]
-  [api]
-  database data
-}
+Als onderdeel van het project wordt een teststraat ingericht. Dit houdt in dat
+er van het systeem drie versies beschikbaar komen. Hiervoor worden de api en
+webapp drievoudig gedeployed. De mobile applicatie krijgt drie verschillende
+downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
 
-[webapp]
-:externe partij:
+### 5.4 Deployment diagram
 
-:mobiele applicatie: as a1
-:mobiele applicatie: as a2
-
-cloud github {
-  artifact "mobiele app download" as appdl
-}
-
-api -[hidden]- proxy
-proxy ==> "webapp server" : http
-proxy => api : http
-api ==> data : database protocol
-webapp => proxy : https
-"externe partij" => proxy : https
-a1 ===> proxy
-
-a1 --> a2 : bluetooth
-a2 -> a1 : bluetooth
-
-appdl -> a1
-appdl --> a2
-
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/deployment.puml">
