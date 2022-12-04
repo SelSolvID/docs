@@ -1,4 +1,4 @@
-@startuml uc1
+@startuml uc1 diagram
 
 actor "Gebruiker" as user
 actor "Verkoper" as vk

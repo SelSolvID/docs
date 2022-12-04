@@ -1,4 +1,4 @@
-@startuml uc2 diagram
+@startuml uc0 diagram
 
 actor "Holder"  as holder
 actor "Verifier" as verifier
