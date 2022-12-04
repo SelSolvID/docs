@@ -1,0 +1,16 @@
+@startuml uc1
+
+actor "Gebruiker" as user
+actor "Verkoper" as vk
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+  usecase "Toon leeftijd" as UC1
+}
+
+user --> UC1 : verschaft leeftijd
+UC1 <-- vk : vereist leeftijd
+UC1 <-- o : Verschaft identiteit
+
+@enduml

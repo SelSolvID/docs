@@ -1,0 +1,20 @@
+@startuml uc3 diagram
+
+actor "Gebruiker" as user
+actor "Onderwijsinstelling  middelbaar onderwijs" as omo
+actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
+:mobiele applicatie: as wg
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+    usecase "Solliciteer" as UC3
+  }
+
+user --> UC3 : Toont identiteit, diplomas
+UC3 <-- wg : Vereist Diplomas, identitiet
+UC3 <-- omo: Verschaft Diploma
+UC3 <-- ovo: Verschaft Diploma
+UC3 <-- o : Verschaft identiteit
+
+@enduml

@@ -107,140 +107,36 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 |UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
 |UC4-F|Verifieren van identiteit|Ik ben een verhuurbedrijf en voor het verhuren van goederen moet ik een identiteit kunnen verifieren||                |
 |**UC5**      |**Verzekering afsluiten**                       |**Een gebruiker wilt een verzekering afsluiten daar is vanuit de gebruiker een ID voor nodig**                              |**?**             |**2**|
-|UC4-A|Uitgifte van verzekeringsbewijs|Ik ben verzekeringsmaatschappij en in wil verzekeringen kunnen uitgeven|||
-|UC4-B|Ontvangen van verzekeringsbewijs|Ik heb een verzekering afgelsotne en ik wil daarvan een verzekeringsbewijs ontvangen|||
-|UC4-C|Verifieren van verzekering|Ik ben een verhuurbedrijf en ik wil verificeren of iemand een verzekering heeft|||
-|UC4-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
-|UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
-|UC4-F|Verifieren van identiteit|Ik ben een verzekeringsmaatschappij en voor het afsluiten van een verzekering moet ik een identiteit kunnen verifieren||                |
+|UC5-A|Uitgifte van verzekeringsbewijs|Ik ben verzekeringsmaatschappij en in wil verzekeringen kunnen uitgeven|||
+|UC5-B|Ontvangen van verzekeringsbewijs|Ik heb een verzekering afgelsotne en ik wil daarvan een verzekeringsbewijs ontvangen|||
+|UC4-C|Verifieren van verzekering|Ik ben een andere verzekeringsmaatschappij en ik wil verificeren of iemand een verzekering heeft|||
+|UC5-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
+|UC5-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
+|UC5-F|Verifieren van identiteit|Ik ben een verzekeringsmaatschappij en voor het afsluiten van een verzekering moet ik een identiteit kunnen verifieren||                |
 
 
 # 4. Use Case Diagrams <a name="usecasediagrams"></a>
 
-In de onderstaande diagrammen zijn de verschillende use cases uitbegeeld die uit de requirements van het project kwamen en een aantal cases die door de projectleden zelf zijn gedacht
+In de onderstaande diagrammen zijn de verschillende use cases uitgebeeld die uit de requirements van het project kwamen en een aantal cases die door de projectleden zelf zijn gedacht
 
 ##  UC0 Gebruik van SSI
 
-```plantuml
-@startuml
-actor "holder" as holder
-actor "verifier" as verifier
-actor "issuer" as issuer
-
-rectangle SSI {
-  left to right direction
-  usecase "Gebruik SSI" as UC0
-}
-
-holder --> UC0 : heeft gegevens
-UC0 <-- verifier : verifieert gegevens
-UC0 <-- issuer : verschaft gegevens
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc0.puml"/>
 
 ##  UC1: Kopen van leeftijdsgebonden artikelen
-```plantuml
-@startuml
-actor "Gebruiker" as user
-actor "Verkoper" as vk
-actor "Overheid" as o
-
-rectangle SSI {
-  left to right direction
-  usecase "Toon leeftijd" as UC1
-}
-
-user --> UC1 : verschaft leeftijd
-UC1 <-- vk : vereist leeftijd
-UC1 <-- o : Verschaft identiteit
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc1.puml"/>
 
 ## UC2: Afsluiten van een hypotheek
-```plantuml
-@startuml
-actor "Gebruiker" as user
-actor "Werkgever" as wg
-actor "Bank" as b
-actor "Overheid" as o
-
-rectangle SSI {
-  left to right direction
-  usecase "Sluit hypotheek af" as UC2
-}
-
-user --> UC2 : toont identiteit, arbeidsovereenkomst
-UC2 <-- b : vereist arbeidsovereenkomst, identiteit
-wg <-- UC2 : verschaft arbeidsovereenkomst
-UC2 <-- o : Verschaft identiteit
-
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc2.puml"/>
 
 ## UC3: Solliciteren
-```plantuml
-@startuml
-
-actor "Gebruiker" as user
-actor "Onderwijsinstelling  middelbaar onderwijs" as omo
-actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
-actor "Werkgever" as wg
-actor "Overheid" as o
-rectangle SSI {
-  left to right direction
-    usecase "Solliciteer" as UC3
-  }
-
-user --> UC3 : Toont identiteit, diplomas
-UC3 <-- wg : Vereist Diplomas, identitiet
-UC3 <-- omo: Verschaft Diploma
-UC3 <-- ovo: Verschaft Diploma
-UC3 <-- o : Verschaft identiteit
-
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc3.puml"/>
 
 ## UC4: Huren van een auto
-```plantuml
-@startuml
-actor "Gebruiker" as user
-actor "Autoverhuurder" as vh
-actor "Uitgiftepunt rijbewijs" as ur
-actor "Overheid" as o
-
-rectangle SSI {
-  left to right direction
-  usecase "Huren van goederen" as UC4
-}
-
-user --> UC4 : Toont identiteit, rijbewijs
-UC4 <-- vh : vereist rijbewijs, identiteit
-UC4 <-- ur : verschaft rijbewijs
-UC4 <-- o : Verschaft identiteit
-
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc4.puml"/>
 
 ## UC5: Verzekering
-```plantuml
-@startuml
-actor "Gebruiker" as user
-actor "Overheid" as o
-actor "Verzekeringsmaatschappij" as vm
-actor "Verzekeringsmaatschappij 2" as vm2
-
-rectangle SSI {
-  left to right direction
-  usecase "Verzekering" as UC5
-}
-
-user --> UC5 : Toont identiteit
-UC5 <-- vm : verschaft verzekeringsbewijs
-UC5 --> vm : vereist identiteit
-UC5 <-- o : Verschaft identiteit
-vm2 <-- UC5 : Verifieert verzekeringsbewijs
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc5.puml"/>
 
 # Extra use cases
 
@@ -284,26 +180,4 @@ weten wat de legitimiteit van een ondertekenaar is, en in welke context.
 In dit verhaal is een "statement" een meer algemeen woord voor wat tot nu toe
 een verifiable credential is genoemd.
 
-```plantuml
-@startuml
-
-:Jantje: as j
-:Pietje: as p
-:Petertje: as pt
-
-usecase uitleg [
-  Petertje beweert over jante\nte weten dat Jantje laatst\nzijn huiswerk echt wel gemaakt had\nmaar dat het door de hond was opgegeten
-]
-
-j == uitleg : onderwerp
-pt => uitleg : beweert
-
-usecase tegen [
-  Pietje gelooft hier natuurlijk niks van als Jantje dat zelf zegt\nmaar als Petertje, wie Pietje wel vertrouwt, het zegt\ndan gelooft Pietje het wel.
-]
-
-p == tegen
-pt ===> tegen
-p ==> pt : gelooft
-@enduml
-```
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc6.puml"/>

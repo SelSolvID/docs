@@ -1,7 +1,7 @@
 # App
 
 De app voor holders en verifyers gaan we schrijven in
-[kotlin](https://kotlinlang.org/)
+[kotlin](https://kotlinlang.org/). Dit omdat ons het leuk lijkt om nieuwe technieken te leren.
 
 # Uitgever web app
 

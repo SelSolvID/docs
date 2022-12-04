@@ -1,0 +1,16 @@
+@startuml uc2 diagram
+
+actor "Holder"  as holder
+actor "Verifier" as verifier
+actor "Issuer" as issuer
+
+rectangle SSI {
+  left to right direction
+  usecase "Gebruik SSI" as UC0
+}
+
+holder --> UC0 : heeft gegevens
+UC0 <-- verifier : verifieert gegevens
+UC0 <-- issuer : verschaft gegevens
+
+@enduml

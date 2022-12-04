@@ -1,0 +1,17 @@
+@startuml uc4 diagram 
+actor "Gebruiker" as user
+actor "Autoverhuurder" as vh
+actor "Uitgiftepunt rijbewijs" as ur
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+  usecase "Huren van goederen" as UC4
+}
+
+user --> UC4 : Toont identiteit, rijbewijs
+UC4 <-- vh : vereist rijbewijs, identiteit
+UC4 <-- ur : verschaft rijbewijs
+UC4 <-- o : Verschaft identiteit
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml uc5 diagram 
+actor "Gebruiker" as user
+actor "Overheid" as o
+actor "Verzekeringsmaatschappij" as vm
+actor "Verzekeringsmaatschappij 2" as vm2
+
+rectangle SSI {
+  left to right direction
+  usecase "Verzekering" as UC5
+}
+
+user --> UC5 : Toont identiteit
+UC5 <-- vm : verschaft verzekeringsbewijs
+UC5 --> vm : vereist identiteit
+UC5 <-- o : Verschaft identiteit
+vm2 <-- UC5 : Verifieert verzekeringsbewijs
+@enduml
