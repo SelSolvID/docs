@@ -19,7 +19,7 @@ van het systeem om zo verschillende aspecten van het systeem te belichten. Dit
 document beschrijft de verschillend eRUP views op de software architectuur
 volgens het 4+1 view model.
 
-<img src="4plus_1_views.jpg">
+<img src="4plus_1_views.jpg"/>
 
 Het 4+1 model stelt de verschillende belanghebbenden in staat vanuit hun eigen
 perspectief de invloed van de gekozen architectuur te bepalen.
@@ -33,45 +33,55 @@ uitgewerkt maar ondergebracht bij de hoofdstukken 3.3 en 5. -->
 | --------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Software architectuur document template | RUP op maat | RUP op maat                                                                                                              |
 | View diagram                            | IBM         | https://posomas.isse.de/PosoMAS/core.tech.common.extend_supp/guidances/examples/four_plus_one_view_of_arch_9A93ACE5.html |
+| Acceptatieplan                          | SelSolvid   | https://github.com/SelSolvID/docs/blob/master/Acceptatieplan.md                                                          |
 
 ## 2 Architecturale eisen
 
 ### 2.1 Niet-functionele eisen
 
-Voor dit project zijn weinig niet-functionele eisen, dit komt omdat het doel van
-het project is om een proof-of-concept applicatie te bouwen. In overleg met de
-opdrachtgevers is kortgesloten dat dingen zoals performance, accessibility en
-scalability niet belangrijk zijn.
+Omdat het bij dit project gaat om een proof-of-concept applicatie te bouwen zijn
+de niet-functionele eisen anders dan bij een gewoon project. Alle
+niet-functionele eisen zijn ook opgenomen in het
+[acceptatieplan](https://github.com/SelSolvID/docs/blob/master/Acceptatieplan.md)
+Een aantal gegeven niet-functionele eisen zijn:
 
-De eisen die wel gegeven zijn:
+#### 2.1.1 Performance
 
-#### 2.1.1 Snelheid
+Zoals ook genoemd in het acceptatieplan moet de applicatie normaal te gebruiken
+zijn, dit houdt in dat er geen lag-spikes zijn tijdens het gebruik. Verder moet
+een gebruiker niet hoeven wachten op lange laadtijden.
 
-eis: De applicatie moet elke actie binnen een seconde kunnen uitvoeren.  
-bron: opdrachtgever  
-architecturale relevantie: Bij het ontwerpen en bouwen van de applicatie moet
-worden gezorgd en getest dat de applicatie performant genoeg is om deze eis te
-halen
+#### 2.1.2 Beheerbaarheid
+
+Voor het project wordt een teststraat ingericht. Dit houd in dat er drie
+verschillende versies van de applicatie beschikbaar worden gemaakt op elk
+moment. Praktisch betekent dat dat er drie versies van het complete deployment
+diagram (zie 5.3) worden gedeployed.
+
+#### 2.1.3 Betrouwbaarheid
+
+Het systeem moet altijd beschikbaar zijn. Dit wordt behaald door dat de basis
+interacties van het systeem (verifyen van een credential) niet met een centrale
+server hoeven te praten. Hiermee ligt de verantwoordelijkheid bij de gebruiker
+om een werkend apparaat te onderhouden.
+
+#### 2.1.4 Beveiliging
+
+Beveiliging staat centraal in dit project. Daarom wordt het OpenSSL package
+gebruikt (zie 4.1). Dit package staat er om bekend betrouwbare beveiliging te
+bieden.
 
 ### 2.2 Use case View
 
-Het meest interessante, architecturaal gezien, aan de use-cases is dat er een
-synthetische vorm van vertrouwen moet worden gebouwd. Dit model is synthetisch
-omdat het niet alleen berust op menselijke afspraken, zoals vertrouwen normaal
-wordt geïmplementeerd, maar ook op bewijsbare technische manieren. Dit wordt
-geïmplementeerd met cryptografische certificaten. Deze werken op zo'n manier dat
-een officiële instantie een eigen certificaat heeft en daarmee nieuwe
-certificaten kan uitgeven aan vertrouwde partijen. Doordat mensen de "officiële
-instantie" vertrouwen kunnen ze er automatisch van uit gaan dat de certificaten
-die door deze instantie zijn uitgegeven ook te vertrouwen zijn. Hier komt de
-cryptografie van pas om te bewijzen dat een certificaat is uitgegeven door de
-"officiële instantie". Deze instanties zijn in het geval van dit project van
-tevoren bepaald, namelijk:
+De use cases van het project worden in meer detail beschreven in het use-case
+document. De volgende use-cases zijn geïdentificeerd:
 
-- Duo, voor diploma's
-- Gemeente's, voor identiteitsbewijzen
-- Werkgevers, voor inkomensverklaringen
-- RDW, voor rijbewijzen
+- Een issuer wilt requests goedkeuren en of afkeuren
+- Een gebruiker wilt alcohol kopen, benodigd is de leeftijd
+- Afsluiten van een dienst met voorwaarden
+- Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de
+  middelbare school en de HBO instelling voor nodig
+- Huren van goederen
 
 ## 3 Logical view
 
@@ -89,6 +99,10 @@ Een andere data laag is verantwoordelijk voor het behandelen van globale data.
 Deze globale data bestaat uit nog niet opgehaalde VC's en openstaande verzoeken
 tot ondertekening. Zodra deze verzoeken volledig afgehandeld zijn kunnen ze ook
 verwijderd worden uit deze data laag.
+
+#### 3.1.1 Laag-diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/layer.puml"/>
 
 ### 3.2 Deelsystemen
 
@@ -122,6 +136,29 @@ Omdat niet elk deelsysteem in dezelfde taal wordt gebouwd wordt het niet altijd
 mogelijk om code uit deze packages te delen. Voor de api worden een aantal
 models geschreven die ook door de webapp kan hergebruiken. De app zal, omdat
 deze niet dezelfde programmeertaal gebruikt, dit model zelf moeten dupliceren.
+
+Verder zullen er een aantal externe packages gebruikt worden. Voor het
+realiseren van de api wordt gebruik gemaakt van [koajs](https://koajs.com/).
+KoaJs is een populair, modern webframework voor het installeren van middleware
+in een web applicatie. Verder biedt het uitbreidingen voor dingen zoals routing,
+logging en automatisch requests parsen.
+
+Verder wordt er bij alle cryptografische handelingen gebruik gemaakt van
+[OpenSSL](https://www.openssl.org/). OpenSSL is de meest populaire toolkit voor
+cryptografie en veilige communicatie.
+
+Voor het realiseren van een user interface op android wordt gebruik gemaakt van
+de standaard android libraries. Kotlin kan hiervan, net zoals java, gebruik
+maken om gemakkelijk een user interface te bouwen.
+
+De web applicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
+is een framework om responsive user interfaces te bouwen. Bovenop svelte gaan we
+[Svelte material UI](https://sveltematerialui.com/) gebruiken. Dit is een set
+componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
+
+#### 4.1.1 Package diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/package.puml"/>
 
 ### 4.2 Invulling lagenstructuur
 
@@ -169,6 +206,10 @@ Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
 Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
 deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
 apparaten.
+
+##### 4.2.3.1 Database diagram
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database.puml"/>
 
 ### 4.3(Her)gebruik van componenten en frameworks
 

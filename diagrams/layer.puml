@@ -1,0 +1,23 @@
+@startuml layer diagram
+package "presentation/interaction layer" as pil {
+  [webapp] as wap
+  [mobile app] as map
+}
+
+package "service layer" as sl {
+  [api]
+  [mobile app backend] as mab
+}
+
+package "data layer" as dl {
+  database "central database" as cdb
+  database "mobile VC database" as ldb
+}
+
+
+wap --> api : https
+map -> mab : method calls
+api --> cdb : postgres protocol
+api -> mab : https
+mab --> ldb : sqlite protocol
+@enduml
