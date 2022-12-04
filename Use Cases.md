@@ -2,11 +2,11 @@
 
 ## Documenthistorie
 
-| **Datum**  | **Versie** | **Beschrijving** | **Auteur**  |
-| ---------- | ---------- | ---------------- | ----------- |
-| 10-10-2022 | 0.1        | Initiele versie  | HDJRijnders |
-|            |            |                  |             |
-|            |            |                  |             |
+| **Datum** | **Versie** | **Beschrijving** | **Auteur**  |
+|-----------|------------|------------------|-------------|
+|10-10-2022 | 0.1        | Initiele versie  | HDJRijnders |          
+|1-12-2022  |1.0         |Versie na feedback: meer use cases|HDJRijnders  |          
+|||||          
 
 # Distributie
 
@@ -24,13 +24,19 @@
 | Naam ondertekenaar       | Selsovid         |
 
 # Inhoudsopgave
-
-1. [Inleiding](#inleiding)
-   1. [Doel van dit document](#doelvandoc)
-   2. [Referenties](#referenties)
-2. [Opsomming Actors](#opsommingactors)
-3. [Opsomming Use Cases](#opsommingusecases)
-4. [Use Case Diagrams](usecasediagram)
+- [Project 4 SSI Use Case Models](#project-4-ssi-use-case-models)
+  - [Documenthistorie](#documenthistorie)
+- [Distributie](#distributie)
+  - [Accordering Document](#accordering-document)
+- [Inhoudsopgave](#inhoudsopgave)
+- [1. Inleiding ](#1-inleiding-)
+  - [1.1 Doel van dit document ](#11-doel-van-dit-document-)
+  - [1.2 Referenties ](#12-referenties-)
+- [2. Opsomming actors ](#2-opsomming-actors-)
+- [3. Opsomming Use Cases ](#3-opsomming-use-cases-)
+- [4. Use Case Diagrams ](#4-use-case-diagrams-)
+- [Extra use cases](#extra-use-cases)
+  - [Peer to peer statement issuing](#peer-to-peer-statement-issuing)
 
 # 1. Inleiding <a name="inleiding"></a>
 
@@ -67,12 +73,35 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 
 | **Code** | **Use case naam**                        | **Omschrijving**                                                                                                          | **Gewicht** | **prioritering** |
 | -------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------- |
-| UC1      | Kopen van leeftijdsgebonden artikelen    | Een gebruiker wilt alcohol kopen, benodigd is de leeftijd.                                                                | 1           | 1                |
-| UC2      | Afsluiten van een dienst met voorwaarden | Een gebruiker wilt een hypotheek afsluiten om een huis te kunnen kopen, benodigd zijn de identiteit, arbeidsovereenkomst. |             | 4                |
-| UC3      | Solliciteren                             | Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de middelbare school en de HBO instelling voor nodig |             | 3                |
-| UC4      | Huren van goederen                       | Een gebruiker wilt een auto huren, daar is vanuit de gebruiker een ID en een rijbewijs nodig                              |             | 2                |
+|**UC0**|**Gebruik van SSI**|**Een issuer wilt requests goedkeuren en of afkeuren**|||
+|UC0-A|Goedkeuren request |Een issuer wil een request goedkeuren|||
+|UC0-B|Een request afkeuren |Een issuer wilt een request afkeuren|||
+|**UC1**|**Kopen van leeftijdsgebonden artikelen**    |**Een gebruiker wilt alcohol kopen, benodigd is de leeftijd.**|**1** |**1**|
+| UC1-A|Leeftijd tonen|Ik wil bier kopen in de supermarkt, daar moet ik mijn leeftijd voor laten zien|||
+|UC1-B|Leeftijd verifieren|Ik werk in de supermarkt en moet een potentiele koper van bier zijn leeftijd verifieren|||
+|**UC2**|**Afsluiten van een dienst met voorwaarden** |** Een gebruiker wilt een hypotheek afsluiten om een huis te kunnen kopen, benodigd zijn de identiteit, arbeidsovereenkomst.** |**?**             |**4**                |
+| UC2-A|uitgeven van arbeidsovereenkomst|Ik ben een werkgever en ik wil een arbeidsovereenkomst kunnen uitgeven aan een werknemer|||
+|UC2-B|Ontvangen van arbeidsovereenkomst|Als werknemer wil ik een arbeidsovereenkomst in ontvangst kunnen nemen|||
+|UC2-C|Verifieren van arbeidsovereenkomst|Ik ben een bankmedewerker en voor het afsluiten van een hypotheek moet ik een arbeidsovereenkomst kunnen verifieren|||
+|UC2-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
+|UC2-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
+|UC2-F|Verifieren van identiteit|Ik ben een bankmedewerker en voor het afsluiten van een hypotheek moet ik een identiteit kunnen verifieren|||
+|**UC3**      |**Solliciteren**                             |**Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de middelbare school en de HBO instelling voor nodig** |**?**             |**3**                |
+| UC3-A|uitgeven van diploma|Ik ben een onderwijsinstelling en ik wil een diploma kunnen uitgeven aan een persoon die is afgestudeerd|||
+|UC3-B|Ontvangen van diploma|Als afgestudeerde wil ik een diploma in ontvangst kunnen nemen|||
+|UC3-C|Verifieren van diploma|Ik ben een werkgever en ik wil het diploma van mijn sollicitant kunnen verifieren|||
+|UC3-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
+|UC3-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
+|UC3-F|Verifieren van identiteit|Ik ben een werkgever en voor het aannemen van een werknemer moet ik een identiteit kunnen verifieren|||
+|**UC4**      |**Huren van goederen**                       |**Een gebruiker wilt een auto huren, daar is vanuit de gebruiker een ID en een rijbewijs nodig**                              |**?**             |**2**|
+|UC4-A|Uitgifte van rijbewijs|Ik ben de RDW en wil rijbewijzen kunnen uitgeven|||
+|UC4-B|Ontvangen van rijbewijs|Ik heb mijn rijexamen gehaald en wil mijn rijbewijs ophalen|||
+|UC4-C|Verifieren van rijbewijs|Ik ben een verhuurbedrijf en ik wil verificeren of iemand een rijbewijs heeft|||
+|UC4-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
+|UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
+|UC4-F|Verifieren van identiteit|Ik ben een verhuurbedrijf en voor het verhuren van goederen moet ik een identiteit kunnen verifieren||                |
 
-# 4. Use Case Diagram <a name="usecasediagram"></a>
+# 4. Use Case Diagrams <a name="usecasediagrams"></a>
 
 ```plantuml
 @startuml
