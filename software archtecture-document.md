@@ -207,6 +207,55 @@ libraries gebruikt.
 | /requests/{id} | PUT    | Reageren op een request (goed of afkeuren)     |
 | /requests      | POST   | Als holder een nieuw request indienen          |
 
+**GET /token** Hierbij wordt de header `Authentication` gebruikt met basic
+authentication scheme.
+
+**GET /requests** Hier wordt het token meegegeven als auth header en krijgt de
+gebruiker een lijst van requests zoals:
+
+```json
+[
+  {
+    "id": 0,
+    "fromUser": "some@example.com"
+  }
+]
+```
+
+**GET /requests/{id}** Hierbij worden de details van een request opgehaald. De
+ID staat in het path. De token wordt meegegeven als auth header. De data zier er
+uit zoals:
+
+```json
+{
+  "id": 0,
+  "fromUser": {
+    "email": "some@example.com"
+  },
+  "requestText": "Some claim"
+}
+```
+
+**PUT /requests/{id}** Hiermee kan een request goed of afgekeurd worden. Het
+token wordt meegegeven in de header en de request body ziet er als volgt uit:
+
+```json
+{
+  "id": 0,
+  "accept": false
+}
+```
+
+**POST /requests** Hiermee kan een holder een nieuw request indienen. De data
+ziet er als volgt uit:
+
+```json
+{
+  "fromUser": "some@example.com",
+  "requestText": "some text"
+}
+```
+
 #### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
