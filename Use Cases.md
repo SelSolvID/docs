@@ -121,22 +121,22 @@ In de onderstaande diagrammen zijn de verschillende use cases uitgebeeld die uit
 
 ##  UC0 Gebruik van SSI
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc0.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc0.puml"/>
 
 ##  UC1: Kopen van leeftijdsgebonden artikelen
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc1.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc1.puml"/>
 
 ## UC2: Afsluiten van een hypotheek
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc2.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc2.puml"/>
 
 ## UC3: Solliciteren
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc3.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc3.puml"/>
 
 ## UC4: Huren van een auto
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc4.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc4.puml"/>
 
 ## UC5: Verzekering
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc5.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc5.puml"/>
 
 # Extra use cases
 
@@ -180,4 +180,4 @@ weten wat de legitimiteit van een ondertekenaar is, en in welke context.
 In dit verhaal is een "statement" een meer algemeen woord voor wat tot nu toe
 een verifiable credential is genoemd.
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/uc6.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/usecases/uc6.puml"/>
