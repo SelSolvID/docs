@@ -103,42 +103,86 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 
 # 4. Use Case Diagrams <a name="usecasediagrams"></a>
 
+##  UC1
 ```plantuml
 @startuml
 actor "Gebruiker" as user
-actor "Onderwijsinstelling  middelbaar onderwijs" as omo
-actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
-actor "Uitgiftepunt rijbewijs" as ur
-actor "Werkgever" as wg
-actor "Autoverhuurder" as vh
 actor "Verkoper" as vk
-actor "Bank" as b
-
+actor "Overheid" as o
 
 rectangle SSI {
   left to right direction
   usecase "Toon leeftijd" as UC1
-  usecase "Sluit hypotheek af" as UC2
-  usecase "Solliciteer" as UC3
-  usecase "Huurt auto" as UC4
 }
-
 
 user --> UC1 : verschaft leeftijd
 UC1 <-- vk : vereist leeftijd
+UC1 <-- o : Verschaft identiteit
+@enduml
+```
 
-user --> UC2 : verschaft identiteit
+## UC2
+```plantuml
+@startuml
+actor "Gebruiker" as user
+actor "Werkgever" as wg
+actor "Bank" as b
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+  usecase "Sluit hypotheek af" as UC2
+}
+
+user --> UC2 : toont identiteit, arbeidsovereenkomst
 UC2 <-- b : vereist arbeidsovereenkomst, identiteit
 wg <-- UC2 : verschaft arbeidsovereenkomst
+UC2 <-- o : Verschaft identiteit
 
-user --> UC3 : verschaft identiteit
-UC3 <-- wg : Vereist Diplomas
+@enduml
+```
+
+## UC3
+```plantuml
+@startuml
+
+actor "Gebruiker" as user
+actor "Onderwijsinstelling  middelbaar onderwijs" as omo
+actor "Onderwijsinstelling  vervolgonderwijsonderwijs" as ovo
+actor "Werkgever" as wg
+actor "Overheid" as o
+rectangle SSI {
+  left to right direction
+    usecase "Solliciteer" as UC3
+  }
+
+user --> UC3 : toont identiteit, diplomas
+UC3 <-- wg : Vereist Diplomas, identitiet
 UC3 <-- omo: Verschaft Diploma
 UC3 <-- ovo: Verschaft Diplomas
+UC3 <-- o : Verschaft identiteit
 
-user --> UC4
+@enduml
+```
+
+## UC4
+```plantuml
+@startuml
+actor "Gebruiker" as user
+actor "Autoverhuurder" as vh
+actor "Uitgiftepunt rijbewijs" as ur
+actor "Overheid" as o
+
+rectangle SSI {
+  left to right direction
+  usecase "Huren van goederen" as UC4
+}
+
+user --> UC4 : Toont identiteit, rijbewijs
 UC4 <-- vh : vereist rijbewijs, identiteit
 UC4 <-- ur : verschaft rijbewijs
+UC4 <-- o : Verschaft identiteit
+
 @enduml
 ```
 
