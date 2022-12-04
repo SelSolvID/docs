@@ -1,0 +1,23 @@
+@startuml layer diagram
+package "presentation/interaction layer" as pil {
+  [webapp] as wap
+  [mobile app] as map
+}
+
+package "service layer" as sl {
+  [api]
+  [mobile app backend] as mab
+}
+
+package "data layer" as dl {
+  database database
+}
+
+pil <---> sl
+sl <--> dl
+
+wap --> api
+map --> mab
+api -> database
+api -> mab
+@enduml
