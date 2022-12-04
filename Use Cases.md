@@ -6,7 +6,7 @@
 |-----------|------------|------------------|-------------|
 |10-10-2022 | 0.1        | Initiele versie  | HDJRijnders |          
 |1-12-2022  |1.0         |Versie na feedback: meer use cases|HDJRijnders  |          
-|||||          
+|4-12-2022  |1.1         |twee use cases uitgewerkt|HDJRijnders  |        
 
 # Distributie
 
@@ -79,40 +79,40 @@ verwezen of op basis waarvan dit document tot stand is gekomen.
 
 | **Code** | **Use case naam**                        | **Omschrijving**                                                                                                          | **Gewicht** | **prioritering** |
 | -------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------- |
-|**UC0**|**Gebruik van SSI**|**Een issuer wilt requests goedkeuren en of afkeuren**|||
-|UC0-A|Goedkeuren request |Een issuer wil een request goedkeuren|||
-|UC0-B|Een request afkeuren |Een issuer wilt een request afkeuren|||
-|**UC1**|**Kopen van leeftijdsgebonden artikelen**    |**Een gebruiker wilt alcohol kopen, benodigd is de leeftijd.**|**1** |**1**|
-| UC1-A|Leeftijd tonen|Ik wil bier kopen in de supermarkt, daar moet ik mijn leeftijd voor laten zien|||
-|UC1-B|Leeftijd verifieren|Ik werk in de supermarkt en moet een potentiele koper van bier zijn leeftijd verifieren|||
-|**UC2**|**Afsluiten van een hypotheek** |**Een gebruiker wilt een hypotheek afsluiten om een huis te kunnen kopen, benodigd zijn de identiteit, arbeidsovereenkomst.** |**?**             |**4**                |
-| UC2-A|uitgeven van arbeidsovereenkomst|Ik ben een werkgever en ik wil een arbeidsovereenkomst kunnen uitgeven aan een werknemer|||
-|UC2-B|Ontvangen van arbeidsovereenkomst|Als werknemer wil ik een arbeidsovereenkomst in ontvangst kunnen nemen|||
+|**UC0**|**Gebruik van SSI**|**Een issuer wilt requests goedkeuren en of afkeuren**||M|
+|UC0-A|Goedkeuren request |Een issuer wil een request voor een Verifiable Credential goedkeuren||M|
+|UC0-B|Een request afkeuren |Een issuer wilt een request voor een Verifiable Credential afkeuren||M|
+|**UC1**|**Kopen van leeftijdsgebonden artikelen**    |**Een gebruiker wilt alcohol kopen, benodigd is de leeftijd. Deze wordt verschaft door de overheid, daarna wordt deze gecontroleerd door de verkoopmedewerker bij de supermarkt.**|**1** |**1**|
+| UC1-A|Leeftijd tonen|Ik wil bier kopen in de supermarkt, daar moet ik mijn leeftijd voor laten zien||M|
+|UC1-B|Leeftijd verifieren|Ik werk in de supermarkt en moet een potentiele koper van bier zijn leeftijd verifieren||M|
+|**UC2**|**Afsluiten van een hypotheek** |**Een gebruiker wilt een hypotheek afsluiten om een huis te kunnen kopen, benodigd zijn de identiteit en een arbeidsovereenkomst. De identiteit wordt verschaft door de overheid en de arbeidsovereenkomst wordt verschaft door de huidige werkgever van de gebruiker ** | **?**            |**4**                |
+| UC2-A|uitgeven van arbeidsovereenkomst|Ik ben een werkgever en ik wil een arbeidsovereenkomst kunnen uitgeven aan een werknemer||M|
+|UC2-B|Ontvangen van arbeidsovereenkomst|Als werknemer wil ik een arbeidsovereenkomst in ontvangst kunnen nemen||M|
 |UC2-C|Verifieren van arbeidsovereenkomst|Ik ben een bankmedewerker en voor het afsluiten van een hypotheek moet ik een arbeidsovereenkomst kunnen verifieren|||
-|UC2-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
-|UC2-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
-|UC2-F|Verifieren van identiteit|Ik ben een bankmedewerker en voor het afsluiten van een hypotheek moet ik een identiteit kunnen verifieren|||
-|**UC3**      |**Solliciteren**                             |**Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de middelbare school en de HBO instelling voor nodig** |**?**             |**3**                |
+|UC2-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.||M|
+|UC2-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben||M|
+|UC2-F|Verifieren van identiteit|Ik ben een bankmedewerker en voor het afsluiten van een hypotheek moet ik een identiteit kunnen verifieren||M|
+|**UC3**      |**Solliciteren**                             |**Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de middelbare school en de HBO instelling voor nodig, de identiteit wordt verschaft door de overheid en de diplomas worden verschaft door de onderwijsinstellingen.** |**?**             |**M**                |
 | UC3-A|uitgeven van diploma|Ik ben een onderwijsinstelling en ik wil een diploma kunnen uitgeven aan een persoon die is afgestudeerd|||
-|UC3-B|Ontvangen van diploma|Als afgestudeerde wil ik een diploma in ontvangst kunnen nemen|||
-|UC3-C|Verifieren van diploma|Ik ben een werkgever en ik wil het diploma van mijn sollicitant kunnen verifieren|||
-|UC3-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
-|UC3-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
-|UC3-F|Verifieren van identiteit|Ik ben een werkgever en voor het aannemen van een werknemer moet ik een identiteit kunnen verifieren|||
-|**UC4**      |**Huren van een auto**                       |**Een gebruiker wilt een auto huren, daar is vanuit de gebruiker een ID en een rijbewijs nodig**                              |**?**             |**2**|
+|UC3-B|Ontvangen van diploma|Als afgestudeerde wil ik een diploma in ontvangst kunnen nemen||M|
+|UC3-C|Verifieren van diploma|Ik ben een werkgever en ik wil het diploma van mijn sollicitant kunnen verifieren||M|
+|UC3-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.||M|
+|UC3-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben||M|
+|UC3-F|Verifieren van identiteit|Ik ben een werkgever en voor het aannemen van een werknemer moet ik een identiteit kunnen verifieren||M|
+|**UC4**      |**Huren van een auto**                       |**Een gebruiker wilt een auto huren, daar is vanuit de gebruiker een identiteit en een rijbewijs nodig. De identiteit wordt verschaft door de overheid en het rijbewijs wordt verschaft door het uitgiftepunt van rijbewijzen.**                              |**?**             |**M**|
 |UC4-A|Uitgifte van rijbewijs|Ik ben de RDW en wil rijbewijzen kunnen uitgeven|||
-|UC4-B|Ontvangen van rijbewijs|Ik heb mijn rijexamen gehaald en wil mijn rijbewijs ophalen|||
-|UC4-C|Verifieren van rijbewijs|Ik ben een verhuurbedrijf en ik wil verificeren of iemand een rijbewijs heeft|||
-|UC4-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
-|UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
-|UC4-F|Verifieren van identiteit|Ik ben een verhuurbedrijf en voor het verhuren van goederen moet ik een identiteit kunnen verifieren||                |
-|**UC5**      |**Verzekering afsluiten**                       |**Een gebruiker wilt een verzekering afsluiten daar is vanuit de gebruiker een ID voor nodig**                              |**?**             |**2**|
-|UC5-A|Uitgifte van verzekeringsbewijs|Ik ben verzekeringsmaatschappij en in wil verzekeringen kunnen uitgeven|||
-|UC5-B|Ontvangen van verzekeringsbewijs|Ik heb een verzekering afgelsotne en ik wil daarvan een verzekeringsbewijs ontvangen|||
-|UC4-C|Verifieren van verzekering|Ik ben een andere verzekeringsmaatschappij en ik wil verificeren of iemand een verzekering heeft|||
-|UC5-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.|||
-|UC5-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben|||
-|UC5-F|Verifieren van identiteit|Ik ben een verzekeringsmaatschappij en voor het afsluiten van een verzekering moet ik een identiteit kunnen verifieren||                |
+|UC4-B|Ontvangen van rijbewijs|Ik heb mijn rijexamen gehaald en wil mijn rijbewijs ophalen||M|
+|UC4-C|Verifieren van rijbewijs|Ik ben een verhuurbedrijf en ik wil verificeren of iemand een rijbewijs heeft||M|
+|UC4-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.||M|
+|UC4-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben||M|
+|UC4-F|Verifieren van identiteit|Ik ben een verhuurbedrijf en voor het verhuren van goederen moet ik een identiteit kunnen verifieren||M|
+|**UC5**      |**Verzekering afsluiten**                       |**Een gebruiker wilt een verzekering afsluiten daar is vanuit de gebruiker een ID voor nodig, de overheid verschaft de identieit, waarna de verzekersnsmaatschappij een verzekering afsluit op naam van de gebruiker.  Daarnaast wil bij een ongeval een verzekeringsmaatschappij kijken of de gebruiker verzekerd is voor de geleden schade, deze vraagt het verzekersingsbewijs op. **                              |**?**             |**c**|
+|UC5-A|Uitgifte van verzekeringsbewijs|Ik ben verzekeringsmaatschappij en in wil verzekeringen kunnen uitgeven||c|
+|UC5-B|Ontvangen van verzekeringsbewijs|Ik heb een verzekering afgelsotne en ik wil daarvan een verzekeringsbewijs ontvangen||c|
+|UC4-C|Verifieren van verzekering|Ik ben een andere verzekeringsmaatschappij en ik wil verifieren of iemand een verzekering heeft||c|
+|UC5-D|Uitgeven identiteit|Ik ben een overheid en ik wil uitgeven dat deze persoon daadwerkelijk deze persoon is.||c|
+|UC5-E|Ophalen identiteit|Ik ben een persoon en ik wil een bevestiging ophalen dat ik ben wie ik zeg dat ik ben||c|
+|UC5-F|Verifieren van identiteit|Ik ben een verzekeringsmaatschappij en voor het afsluiten van een verzekering moet ik een identiteit kunnen verifieren||c|
 
 
 # 4. Use Case Diagrams <a name="usecasediagrams"></a>

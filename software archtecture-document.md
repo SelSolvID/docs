@@ -82,6 +82,7 @@ document. De volgende use-cases zijn geïdentificeerd:
 - Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de
   middelbare school en de HBO instelling voor nodig
 - Huren van goederen
+- Het afsluiten en het checken van een verzekering.
 
 ## 3 Logical view
 
