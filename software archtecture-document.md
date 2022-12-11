@@ -222,7 +222,11 @@ gebruiker een lijst van requests zoals:
 [
   {
     "id": 0,
-    "fromUser": "some@example.com"
+    "fromUser": {
+      "email": "some@example.com"
+    },
+    "date": 10123718972391823,
+    "requestText": "Some claim"
   }
 ]
 ```
@@ -237,6 +241,7 @@ uit zoals:
   "fromUser": {
     "email": "some@example.com"
   },
+  "date": 10123718972391823,
   "requestText": "Some claim"
 }
 ```
