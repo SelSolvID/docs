@@ -103,6 +103,7 @@ de docentbegeleider direct gemaild.
 Na het afgeven van een waarschuwing bespreekt het hele team hoe een volgende
 waarschuwing kan worden voorkomen.
 
-## ondertekening
+## Ondertekening
 
 Mees van Dijk
+Wouter de Boer
