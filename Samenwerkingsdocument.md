@@ -18,7 +18,7 @@
 We houden contact op de volgende manieren:
 
 - De whatsappgroep waar we allemaal in zitten.
-- De discordgroep waar we allemaal in zitten.
+- De discordgroep wanneer we in een discord call zitten of kort na een call.
 
 Tussen 11:00 en 22:00 verwachten we van elkaar dat er actief aandacht aan de
 verstuurde berichten wordt gegeven.
@@ -33,9 +33,17 @@ verzuimde projectlid.
 
 ## Aanwezigheid
 
-Bij gemaakte afspraken wordt vewacht dat alle projectleden op tijd aanwezig
-zijn. Als een projectlid weet dat hij te laat komt laat hij dit duidelijk en op
-tijd weten aan de rest van zijn groep.
+Bij gemaakte afspraken over werksessies wordt vewacht dat alle projectleden die
+de afspraak zijn aangegaan op tijd aanwezig zijn. Als een projectlid weet dat
+hij te laat komt laat hij dit duidelijk en op tijd weten aan de rest van zijn
+groep.
+
+Als een projectlid weet dat hij onverhoopt toch niet aanwezig kan zijn bij een
+werksessie geeft hij dit, voor zover mogelijk, minimaal 3 uur van tevoren aan.
+Als een projectlid niet aangeeft bij een werksessie voordat de werksessie
+begint, leidt dit ook tot een waarschuwing. Als bij twee afspraken het voorkomt
+dat een projectlid wel vooraf, maar korter dan drie uur vooraf, zonder goede
+reden afzegt, krijgt hij ook een waarschuwing.
 
 ## Uitval
 
@@ -50,25 +58,23 @@ een set opties. Bij gelijke uitkomst wordt de uitkomst bepaald door kans.
 
 ## Samenkomsten
 
-Elke week komen projectgenoten bijeen om te overleggen over de voortgang van het
-project. Vanwege wisselende agenda's wordt per week een week vooruit gepland.  
-Elk projectlid is aanwezig bij deze bijeenkomst, tenzij van tevoren anders
-overeengekomen. De bijeenkomst heeft geen vaste duur, maar indien een
-projectgenoot minder dan twee uur de tijd heeft, geeft hij dat wel van tevoren
-aan.
+De scrum master is verantwoordelijk voor het plannen van samenkomsten. Het team
+komt ten minste eens per week bijeen. De voorkeur voor werksessies ligt bij
+fysiek samenkomen, liever dan via discord.
+
+Tijdens de sprint is het streven om twee keer per week een fysieke werksessie in
+te plannen.
 
 ### Taken
 
-Taken worden bedacht en verdeeld door de hele groep tijdens de wekelijkse
-bijeenkomst. Ook wordt op dit moment een deadline voor de taak bedacht. Alle
-projectgenoten worden het eens over deze verdeling en deadlines.  
-Als een projectgenoot gedurende het uitvoeren van de taak het gevoel krijgt de
-deadline niet te halen wordt dit z.s.m. besproken met de projectgroep. Deze
-overlegt dan over een evenetuele nieuwe deadline of andere oplossing.  
-Als een deadline niet gehaald blijkt te zijn zonder communicatie beschouwen we
-dit als conflict en wordt het behandeld op de beschreven wijze. Een mogelijke
-consequentie van herhaald deadlines missen kan zijn ontzetting van de
-projectgroep.
+Taken worden bedacht en verdeeld door de hele groep tijdens de wekelijkse sprint
+planning. De deadline voor taken is het einde van de sprint. Alle projectgenoten
+worden het eens over deze verdeling en deadlines.
+
+Als het gaat om een afspraak om groepswerk af te hebben, een deadline, geeft een
+projectlid het minimaal twee dagen van tevoren aan als de deadline in gevaar
+komt. Wanneer dit gebeurt overlegt de projectgroep of mensen het overnemen of er
+bij helpen. Als het niet tijdig wordt aangegeven leidt dit tot een waarschuwing.
 
 ## Conflict
 
@@ -76,3 +82,25 @@ In geval van een conflict wordt er een speciale bijeenkomst gepland om het
 conflict uit te praten. Hierbij zijn alle projectgenoten aanwezig. Als na afloop
 van deze bijeenkomst het conflict nog niet is opgelost, wordt het besproken met
 de projectbegeleider.
+
+## Waarschuwingen
+
+Dingen waarvoor een waarschuwing gegeven wordt:
+
+- Niet (tijdig) communiceren van gevaar deadline (zie taken)
+- Niet (tijdig) communiceren van afwezigheid afspraak (zie aanwezigheid)
+
+Het team is met zijn allen verantwoordelijk voor het nakomen van de afspraken.
+Het team is ook met zijn allen verantwoordelijk voor het controleren van elkaar.
+Bij het afgeven van een waarschuwing zijn ten minste de drie projectgenoten die
+de waarschuwing _niet_ ontvangen het eens over het afgeven van de waarschuwing.
+
+In het geval dat een waarschuwing wordt afgegeven wordt dit ten minste op de
+eerstvolgende sprint retrospective en tijdens de eerstvolgende meeting met de
+docentbegeleider besproken. Ook wordt het gedeeld in de whatsappgroep en wordt
+de docentbegeleider direct gemaild.
+
+Na het afgeven van een waarschuwing bespreekt het hele team hoe een volgende
+waarschuwing kan worden voorkomen.
+
+## ondertekening
