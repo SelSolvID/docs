@@ -251,7 +251,6 @@ token wordt meegegeven in de header en de request body ziet er als volgt uit:
 
 ```json
 {
-  "id": 0,
   "accept": false
 }
 ```
