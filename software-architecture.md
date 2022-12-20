@@ -213,10 +213,13 @@ libraries gebruikt.
 | /requests      | POST   | Als holder een nieuw request indienen          |
 
 **GET /token** Hierbij wordt de header `Authentication` gebruikt met basic
-authentication scheme.
+authentication scheme.  
+Dit endpoint zorgt ervoor dat de token als cookie wordt gezet in de browser
+zodat de client hem automatisch bij volgende requests kan meesturen. Dit is
+"inloggen" in het systeem.
 
-**GET /requests** Hier wordt het token meegegeven als auth header en krijgt de
-gebruiker een lijst van requests zoals:
+**GET /requests** Hier wordt het token meegegeven als auth header of als cookie.
+De response body ziet er als volgt uit:
 
 ```json
 [
@@ -232,8 +235,8 @@ gebruiker een lijst van requests zoals:
 ```
 
 **GET /requests/{id}** Hierbij worden de details van een request opgehaald. De
-ID staat in het path. De token wordt meegegeven als auth header. De data zier er
-uit zoals:
+ID staat in het path. De token wordt meegegeven als auth header. De response
+body ziet er uit zoals:
 
 ```json
 {
