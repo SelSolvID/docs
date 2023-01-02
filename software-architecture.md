@@ -264,7 +264,8 @@ ziet er als volgt uit:
 ```json
 {
   "fromUser": "some@example.com",
-  "requestText": "some text"
+  "requestText": "some text",
+  "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
 }
 ```
 
