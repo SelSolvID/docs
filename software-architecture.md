@@ -260,9 +260,21 @@ body ziet er uit zoals:
 **PUT /requests/{id}** Hiermee kan een request goed of afgekeurd worden. Het
 token wordt meegegeven in de header en de request body ziet er als volgt uit:
 
+Een accepted request:
+
 ```json
 {
-  "accept": false
+  "accept": true
+}
+```
+
+Een niet-accepted request:
+
+```json
+{
+  "accept": false,
+  // reason is optional and only applicable when "accept": false
+  "reason": "You lied about your age"
 }
 ```
 
