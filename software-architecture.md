@@ -124,10 +124,11 @@ van een VC wordt een peer-to-peer connectie opgezet tussen twee mobiele
 telefoons. De holder stuurt dan de relevante VC naar de verifier. De verifier
 kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC
 geldig is.  
-Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de API 
-om de beide users te verbinden aan elkaar, om zo data te wisselen met elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5.
-Verder wordt er gebruik gemaakt van bekende cryptografie libraries om de certificaten aan te
-maken en te verifiëren.
+Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de
+API om de beide users te verbinden aan elkaar, om zo data te wisselen met
+elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5. Verder wordt er gebruik
+gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te
+verifiëren.
 
 ## 4 implementation view
 
@@ -270,6 +271,7 @@ ziet er als volgt uit:
 
 ```json
 {
+  "issuerId": 01923123,
   "fromUser": "some@example.com",
   "requestText": "some text",
   "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
@@ -415,29 +417,52 @@ Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
 bovengenoemde API, op de beschreven manier. Dit gebeurt met http(s). Naast het
 praten met de API moet de mobiele applicatie ook peer-to-peer connecties kunnen
 opzetten met andere instanties van de mobiele applicatie op andere mobiele
-apparaten. Het plan was eerst om dit te doen via Bluetooth. Maar vanwege problemen 
-verder uitgelegd in het volgende kopje, is dit niet gelukt. De nieuw bedachte optie om
-dit te implementeren is door gebruik te maken van de API om beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
+apparaten. Het plan was eerst om dit te doen via Bluetooth. Maar vanwege
+problemen verder uitgelegd in het volgende kopje, is dit niet gelukt. De nieuw
+bedachte optie om dit te implementeren is door gebruik te maken van de API om
+beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 
 #### 5.2.1 Waarom de implementatie van bluetooth niet is gelukt
 
-Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; voornamelijk de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth) op het eind. Met deze implementatie van bluetooth kwam de app het verste. De setup was gelukt en je kon in de app je device discoverable maken (zodat andere telefoons je kunnen vinden bij het zoeken naar bluetooth connecties). 
+Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; voornamelijk de
+officiele
+[android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)
+op het eind. Met deze implementatie van bluetooth kwam de app het verste. De
+setup was gelukt en je kon in de app je device discoverable maken (zodat andere
+telefoons je kunnen vinden bij het zoeken naar bluetooth connecties).
 
-Het eerste waar we hier tegenaan liepen was het automatisch verbinden met elkaar. Wanneer de gebruiker de qr-code heeft gescanned van een ander device, zouden deze twee apparaten automatisch met elkaar via bluetooth moeten verbinden. 
-Dit kan je doen door lokale hardware identifiers op te halen. Voor de automatische verbinding kon je het lokale bluetooth MAC address gebruiken en deze zou je moeten kunnen ophalen met [BluetoothAdapter.getAddress()](https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#getAddress()).
-Jammer genoeg kan dit niet meer sinds Android 6 gezien de getAdress methode nu altijd een 
-waarde van ```02:00:00:00:00:00``` terug geeft (zie [deze](https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-hardware-id) documentatie).
-Voor dit probleem habben we wel een [mogelijke oplossing](https://developer.android.com/guide/topics/connectivity/companion-device-pairing) voor gevonden maar hier waren we helaas niet aan toen gekomen gezien er meerdere andere problemen waren waar we tegenaan liepen.
-Hoewel het automatisch pairen via bluetooth niet mogelijk was, zou dit nog wel handmatig mogelijk zijn als de gebruiker dit zelf doet in de bluetooth settings van zijn/haar telefoon.
+Het eerste waar we hier tegenaan liepen was het automatisch verbinden met
+elkaar. Wanneer de gebruiker de qr-code heeft gescanned van een ander device,
+zouden deze twee apparaten automatisch met elkaar via bluetooth moeten
+verbinden. Dit kan je doen door lokale hardware identifiers op te halen. Voor de
+automatische verbinding kon je het lokale bluetooth MAC address gebruiken en
+deze zou je moeten kunnen ophalen met
+[BluetoothAdapter.getAddress()](<https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#getAddress()>).
+Jammer genoeg kan dit niet meer sinds Android 6 gezien de getAdress methode nu
+altijd een waarde van `02:00:00:00:00:00` terug geeft (zie
+[deze](https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-hardware-id)
+documentatie). Voor dit probleem habben we wel een
+[mogelijke oplossing](https://developer.android.com/guide/topics/connectivity/companion-device-pairing)
+voor gevonden maar hier waren we helaas niet aan toen gekomen gezien er meerdere
+andere problemen waren waar we tegenaan liepen. Hoewel het automatisch pairen
+via bluetooth niet mogelijk was, zou dit nog wel handmatig mogelijk zijn als de
+gebruiker dit zelf doet in de bluetooth settings van zijn/haar telefoon.
 
-Waar we uiteindelijk vast zijn gelopen is het versturen van data via bluetooth (bij [deze](https://developer.android.com/guide/topics/connectivity/bluetooth/connect-bluetooth-devices) en [deze](https://developer.android.com/guide/topics/connectivity/bluetooth/transfer-data) stap). Dit was ingewikkeld om te maken omdat de documentatie veel belangrijke stappen oversloeg waardoor het stappenplan niet te volgen was. Ook was een redelijk groot deel van de code outdated en waren meerdere gebruikte methodes deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om te maken binnen de resterende tijd.
+Waar we uiteindelijk vast zijn gelopen is het versturen van data via bluetooth
+(bij
+[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/connect-bluetooth-devices)
+en
+[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/transfer-data)
+stap). Dit was ingewikkeld om te maken omdat de documentatie veel belangrijke
+stappen oversloeg waardoor het stappenplan niet te volgen was. Ook was een
+redelijk groot deel van de code outdated en waren meerdere gebruikte methodes
+deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en
+hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om te maken
+binnen de resterende tijd.
 
-Overige pogingen waren:
-*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*
+Overige pogingen waren: _AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_
 
 #### 5.2.2 Nieuwe oplossing
-
-
 
 ### 5.3 Teststraat
 
