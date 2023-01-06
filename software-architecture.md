@@ -278,8 +278,8 @@ Een niet-accepted request:
 }
 ```
 
-**POST /requests** Hiermee kan een holder een nieuw request indienen. De data
-ziet er als volgt uit:
+**POST /holder/request** Hiermee kan een holder een nieuw request indienen. De
+data ziet er als volgt uit:
 
 ```json
 {
