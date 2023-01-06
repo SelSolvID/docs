@@ -202,6 +202,11 @@ bouwen van deze API laag wordt gedaan met Node.js en typescript.
 Voor het communiceren met de server en andere telefoons worden ook standaard
 libraries gebruikt.
 
+Verder biedt de servicelaag een Websocket server die als alternatief op
+bluetooth dient. Hiermee kunnen verschillende telefoons met elkaar verbinden
+voor real-time communicatie. Het protocol van deze websocket server is hieronder
+in punt 4.2.2.2 beschreven.
+
 ##### 4.2.2.1 API surface
 
 | url            | method | functie                                        |
@@ -245,7 +250,8 @@ body ziet er uit zoals:
     "email": "some@example.com"
   },
   "date": 10123718972391823,
-  "requestText": "Some claim"
+  "requestText": "Some claim",
+  "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
 }
 ```
 
@@ -266,6 +272,70 @@ ziet er als volgt uit:
   "fromUser": "some@example.com",
   "requestText": "some text",
   "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
+}
+```
+
+##### 4.2.2.2 Websocket server protocol
+
+De websocket server werkt met JSON berichten. Het protocol biedt alleen
+mogelijkheid tot het openen(/verbinden met) van een kanaal met een id, het
+sluiten van een kanaal met een id en het broadcasten van een arbitrair bericht
+naar een kanaal.
+
+**Open**
+
+```json
+{
+  "type": "open",
+  "channel": "*channelID*"
+}
+```
+
+**Close**
+
+```json
+{
+  "type": "close",
+  "channel": "*channelID*"
+}
+```
+
+**Message**
+
+```json
+{
+  "type": "message",
+  "payload": "arbitrairy data"
+}
+```
+
+in het Geval dat een `message` of `close` bericht wordt gestuurd stuurt de
+server een bericht naar alle clients in dat kanaal. Deze zien er als volgt uit:
+
+**Message**
+
+```json
+{
+  "type": "message",
+  "payload": "the message payload"
+}
+```
+
+**Close**
+
+```json
+{
+  "type": "close"
+}
+```
+
+Als een client een message stuurt zonder `type` of met een onbekend `type` dan
+stuurt de server het volgende bericht terug:
+
+```json
+{
+  "type": "erorr",
+  "payload": "unknown message type"
 }
 ```
 
@@ -327,9 +397,9 @@ De proxy weet welk request voor welke service is aan de hand van een url.
 Requests met een url zoals `domein.nl/api/**/*` gaan allemaal naar de api. Alle
 andere requests worden naar de server van de webapplicatie gestuurd.
 
-Al deze infrastructuur kan, middels docker, op 1 server draaien.  
-Omdat scalability niet van groot belang is in dit project is 1 cloud server
-voldoende voor het demonstreren van het proof of concept.
+Al deze infrastructuur kan, middels docker, op 1 server draaien. Omdat
+scalability niet van groot belang is in dit project is 1 cloud server voldoende
+voor het demonstreren van het proof of concept.
 
 ### 5.2 Deployment en infrastructuur voor de mobiele applicatie
 
@@ -358,3 +428,4 @@ downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
 ### 5.4 Deployment diagram
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/deployment.puml">
+```
