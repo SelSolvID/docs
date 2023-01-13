@@ -437,11 +437,11 @@ beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 #### 5.2.1 Waarom de implementatie van bluetooth niet is gelukt
 
 Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er gebruik gemaakt van de 
-de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth). Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder resultaat, dit omdat een concrete impleementatie van de functionaliteit die hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat er bij sommige pogningen drie verschillende bornnen door elkaar heenliepen wat ervoor zorgde dat het overzicht compleet weg was.
+de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth). Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder resultaat, dit omdat een concrete impleementatie van de functionaliteit die hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat er bij sommige pogningen drie verschillende bronnen door elkaar heenliepen wat ervoor zorgde dat het overzicht compleet weg was.
 
 Ook is het mede door de onervarenheid met het gebruik van Activities en Fragments en de communicaite hiertussen spaak gelopen.
 
-Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom egebruik tem aken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)kwam de app het verste. De
+Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom gebruik te maken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)kwam de app het verste. De
 setup was gelukt en je kon in de app je device discoverable maken (zodat andere
 telefoons je kunnen vinden bij het zoeken naar bluetooth connecties).
 
