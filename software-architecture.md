@@ -451,6 +451,7 @@ de officiele [android bluetooth documentatie](https://developer.android.com/guid
 
 
 Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom gebruik te maken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)kwam de app het verste. De
+Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom gebruik te maken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)kwam de app het verste. De
 setup was gelukt en je kon in de app je device discoverable maken (zodat andere
 telefoons je kunnen vinden bij het zoeken naar bluetooth connecties).
 
