@@ -357,16 +357,25 @@ stuurt de server het volgende bericht terug:
 #### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
-een SQL database gebruikt. De api laag is de enige die direct met deze database
+een SQL database gebruikt in de API.
+
+De api laag is de enige die direct met deze database
 praat. De api laag zit tussen zowel de web applicatie als de mobiele applicatie.
 Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
 Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
 deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
 apparaten.
 
-##### 4.2.3.1 Database diagram
+Op de user app bevind zich een SQLITE database om aangevraagde, goed- en afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database.puml"/>
+##### 4.2.3.1 Database diagrammen
+
+
+###### 4.2.3.1.1 Database diagram API
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/databaseAPI.puml"/>
+
+###### 4.2.3.1.1 Database diagram user-app
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/databaseUserApp.puml"/>
 
 ### 4.3(Her)gebruik van componenten en frameworks
 
@@ -437,11 +446,11 @@ beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 #### 5.2.1 Waarom de implementatie van bluetooth niet is gelukt
 
 Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er gebruik gemaakt van de 
-de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth). Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder resultaat, dit omdat een concrete impleementatie van de functionaliteit die hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat er bij sommige pogningen drie verschillende bornnen door elkaar heenliepen wat ervoor zorgde dat het overzicht compleet weg was.
+de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth). Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder resultaat, dit omdat een concrete implementatie van de functionaliteit die hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat er bij sommige pogingen drie verschillende voorbeelden door elkaar heenliepen wat ervoor zorgde ervoor dat het overzicht compleet weg was.
 
-Ook is het mede door de onervarenheid met het gebruik van Activities en Fragments en de communicaite hiertussen spaak gelopen.
 
-Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom egebruik tem aken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)kwam de app het verste. De
+
+Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom gebruik te maken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)kwam de app het verste. De
 setup was gelukt en je kon in de app je device discoverable maken (zodat andere
 telefoons je kunnen vinden bij het zoeken naar bluetooth connecties).
 
