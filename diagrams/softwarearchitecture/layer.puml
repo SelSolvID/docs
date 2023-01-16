@@ -11,7 +11,7 @@ package "service layer" as sl {
 
 package "data layer" as dl {
   database "central database" as cdb
-  database "mobile VC database" as ldb
+  database "database_selsovid" as ldb
 }
 
 
@@ -19,5 +19,5 @@ wap --> api : https
 map -> mab : method calls
 api --> cdb : postgres protocol
 mab --> api : https
-mab --> ldb : sqlite protocol
+mab --> ldb : ROOM ORM
 @enduml

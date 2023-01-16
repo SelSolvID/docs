@@ -454,8 +454,6 @@ beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er gebruik gemaakt van de 
 de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth). Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder resultaat, dit omdat een concrete implementatie van de functionaliteit die hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat er bij sommige pogingen drie verschillende voorbeelden door elkaar heenliepen wat ervoor zorgde ervoor dat het overzicht compleet weg was.
 
-
-
 Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom gebruik te maken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth) kwam de app het verste. De
 setup was gelukt en je kon in de app je device discoverable maken (zodat andere
 telefoons je kunnen vinden bij het zoeken naar bluetooth connecties).
@@ -478,27 +476,28 @@ via bluetooth niet mogelijk was, zou dit nog wel handmatig mogelijk zijn als de
 gebruiker dit zelf doet in de bluetooth settings van zijn/haar telefoon.
 
 Waar we uiteindelijk vast zijn gelopen is het versturen van data via bluetooth
-(bij
-[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/connect-bluetooth-devices)
-en
-[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/transfer-data)
-stap). Dit was ingewikkeld om te maken omdat de documentatie veel belangrijke
-stappen oversloeg waardoor het stappenplan niet te volgen was. Ook was een
-redelijk groot deel van de code outdated en waren meerdere gebruikte methodes
-deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en
-hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om te maken
-binnen de resterende tijd.
+(bij [deze](https://developer.android.com/guide/topics/connectivity/bluetooth/connect-bluetooth-devices) en[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/transfer-data) stap). Dit was ingewikkeld om te maken omdat de documentatie veel belangrijke stappen oversloeg waardoor het stappenplan niet te volgen was. Ook was een redelijk groot deel van de code outdated en waren meerdere gebruikte methodes deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om werkend te krijgen binnen de tijd die wij nog hadden.
 
-#### 5.2.2 Nieuwe oplossing
+#### 5.2.2 Websockets als vervangende oplossing
+Omdat Bluetooth dus niet werkend gekregen kon worden is er voor gekozen om te werken met WebSockets. Bij deze techniek wordt er vanuit de user app verbinding gelegd met een ander apparaat via de API middels het WebSocket protocol. Op deze manier kunnen twee apparaten volledig over-en-weer communiceren over één doorlopende TCP verbinding, in plaats van bijvoorbeeld HTTPS, dat slechts één bericht per keer kan versturen.
 
 ### 5.3 Teststraat
 
 Als onderdeel van het project wordt een teststraat ingericht. Dit houdt in dat
-er van het systeem drie versies beschikbaar komen. Hiervoor worden de api en
-webapp drievoudig gedeployed. De mobile applicatie krijgt drie verschillende
-downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
+er van het systeem drie versies beschikbaar komen volgens het OTAP model, te weten Ontwikkel, Testen, Acceptatie, Productie. 
+Hiervoor worden de api en webapp drievoudig gedeployed. 
+
+#### 5.3.1 API
+
+#### 5.3.2 Svelte
+
+#### 5.3.3 Android
+De mobile applicatie krijgt drie verschillende downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
+
+#### 5.3.1 Websocketserver
 
 ### 5.4 Deployment diagram
+
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/deployment.puml">
 ```

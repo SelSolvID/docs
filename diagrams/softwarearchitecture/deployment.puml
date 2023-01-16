@@ -16,7 +16,7 @@ cloud github {
   artifact "mobiele app download" as appdl
 }
 
-api -[hidden]- proxy
+api - [hidden] - proxy
 proxy ==> "webapp server" : http
 proxy => api : http
 api ==> data : database protocol
