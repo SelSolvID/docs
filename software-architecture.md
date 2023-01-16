@@ -84,6 +84,8 @@ document. De volgende use-cases zijn geïdentificeerd:
 - Huren van goederen
 - Het afsluiten en het checken van een verzekering.
 
+De usecases zijn op genomen in een apart use cases bestand.
+
 ## 3 Logical view
 
 ### 3.1 Lagen
@@ -122,13 +124,14 @@ De api is voor de webapp en de app, via de api krijgen de apps hun nieuwe VC's
 Alle use cases zullen gebouwd worden op een zelfde techniek. Bij het verifiëren
 van een VC wordt een peer-to-peer connectie opgezet tussen twee mobiele
 telefoons. De holder stuurt dan de relevante VC naar de verifier. De verifier
-kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC
-geldig is.  
-Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de
-API om de beide users te verbinden aan elkaar, om zo data te wisselen met
-elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5. Verder wordt er gebruik
-gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te
-verifiëren.
+kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC geldig is.  
+
+Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de API om de beide users te verbinden aan elkaar, om zo data te wisselen met elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5. Verder wordt er gebruik gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te verifiëren.
+
+### 3.4 Sequentiediagrammen
+
+### 3.4.1 VC aanvragen
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/sequencediagramaanvragenVC.puml"/>
 
 ## 4 implementation view
 
