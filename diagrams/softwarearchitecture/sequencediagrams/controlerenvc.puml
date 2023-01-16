@@ -1,0 +1,17 @@
+@startuml sequence diagram
+actor gebruiker
+database selsovid_database
+entity user_app1
+entity API
+entity user_app2
+actor verifier
+
+gebruiker -> user_app1 :  Gebruikt user_app
+verifier -> user_app2:  gebruikt user_app
+user_app1->API : stelt verbinding open
+user_app2-> API :maakt verbinding 
+selsovid_database -> user_app1 : laat VC zien
+user_app2 -> user_app1: VC zichtbaar voor user_app2
+verifier-> user_app2 : controleert VC
+
+@enduml
