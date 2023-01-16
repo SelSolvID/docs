@@ -134,10 +134,14 @@ gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te
 verifiëren.
 
 ### 3.4 Sequentiediagrammen
+Dit zijn de verschillende sequentiediagrammen die uitlegge nwat er precies gedaan wordt in een applicatie wie wleke acties uitvoeren
 
 ### 3.4.1 VC aanvragen
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/sequencediagramaanvragenVC.puml"/>
+
+### 3.4.2 VC controleren
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/controlerenvc.puml"/>
 
 ## 4 implementation view
 
