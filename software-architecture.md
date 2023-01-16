@@ -166,18 +166,25 @@ componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
 ### 4.2 Invulling lagenstructuur
 
 #### 4.2.1 Presentatie
+
 De presentatie wordt op twee verschillende plekken op verschillende manieren
 uitgevoerd. Dit komt omdat er twee verschillende applicaties worden gebouwd als
 onderdeel van het systeem.
 
-#####  4.2.1.1 Android
- Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
+##### 4.2.1.1 Android
+
+Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
 maken om een user interface te maken. De taal waarin de android app geschreven
 wordt is Kotlin. Kotlin wordt gebruikt omdat het een modern alternatief is op
 java. Traditioneel wordt java gebruikt voor android apps, maar kotlin is daarop
-een modern alternatief en sinds enige tijd door google aanbevolen als taal om de apps in te ontwikkelen. Gezien er slechts drie schermen in onze applicatie zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanweig is in androidn, omdat elk scherm vanuit de onderste navigatiebalm toegankelijk is.
+een modern alternatief en sinds enige tijd door google aanbevolen als taal om de
+apps in te ontwikkelen. Gezien er slechts drie schermen in onze applicatie
+zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanweig
+is in androidn, omdat elk scherm vanuit de onderste navigatiebalm toegankelijk
+is.
 
-#####  4.2.1.2 Websites
+##### 4.2.1.2 Websites
+
 Voor de website wordt het web framework Svelte gebruikt. Dit is een web
 framework dat zich focust op de presentatie-laag van websites. Dit framework
 maakt het gemakkelijker om interactieve web applicaties te bouwen. Svelte is een
@@ -294,7 +301,6 @@ De data ziet er dan als volgt uit:
     "name": "Paradigm"
   }
   // More in list
-  }
 ]
 ```
 
@@ -381,29 +387,36 @@ stuurt de server het volgende bericht terug:
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
 een SQL database gebruikt in de API en in de android-app.
 
- #### 4.2.3.1 API
-De api laag is de enige die direct met deze database
-praat. De api laag zit tussen zowel de web applicatie als de mobiele applicatie.
-Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
-Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
-deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
-apparaten.
+#### 4.2.3.1 API
+
+De api laag is de enige die direct met deze database praat. De api laag zit
+tussen zowel de web applicatie als de mobiele applicatie. Hoewel de mobiele
+applicatie over het algemeen de api weinig nodig zal hebben. Dit is omdat de
+mobiele applicatie door verifyers en holders wordt gebruikt en deze communiceren
+altijd via een peer-to-peer connectie tussen twee mobiele apparaten.
 
 #### 4.2.3.2 API
-Op de user app bevind zich een SQLITE database om aangevraagde, goed- en afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
+
+Op de user app bevind zich een SQLITE database om aangevraagde, goed- en
+afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
 
 #### 4.2.3.3 Database diagrammen
-De volgende diagrammen laten zien hoe de interne databasestructuur van de API en de android app eruit zien.
+
+De volgende diagrammen laten zien hoe de interne databasestructuur van de API en
+de android app eruit zien.
 
 ###### 4.2.3.3.1 Database diagram API
+
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/databaseAPI.puml"/>
 
 ###### 4.2.3.3.1 Database diagram user-app
+
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/databaseUserApp.puml"/>
 
 ### 4.3 (Her)gebruik van componenten en frameworks
 
 #### 4.3.1 API
+
 Het meest algemene component is de API, deze kan via het internet door iedereen
 met de juiste toegang benaderd worden. Deze is nodig om interne applicaties
 boven op te bouwen maar ook derden zouden toegang kunnen krijgen tot deze api.
@@ -419,7 +432,12 @@ Boven op javascript wordt dan typescript gebruikt. Bij typescript worden
 modellen van data geschreven die overal in het systeem gebruikt moeten worden.
 
 #### 4.3.1 Android
-Bij de android app wordt er gebruik gemaakt van zogenoemde fragments: herbruikbare stukken layout die dynamisch in elk scherm vna de app kunnen worden gebruikt. Ook wordt er gebruik gemaakt van een zogenoemde recyclerview, dit is een speciale soort lijst die optimaal gebruik maakt van de resources van een apparaat.
+
+Bij de android app wordt er gebruik gemaakt van zogenoemde fragments:
+herbruikbare stukken layout die dynamisch in elk scherm vna de app kunnen worden
+gebruikt. Ook wordt er gebruik gemaakt van een zogenoemde recyclerview, dit is
+een speciale soort lijst die optimaal gebruik maakt van de resources van een
+apparaat.
 
 ## 5. Deployment View
 
@@ -473,14 +491,24 @@ beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 
 #### 5.2.1 Waarom de implementatie van bluetooth niet is gelukt
 
-Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er gebruik gemaakt van de 
-de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth). Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder resultaat, dit omdat een concrete implementatie van de functionaliteit die hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat er bij sommige pogingen drie verschillende voorbeelden door elkaar heenliepen wat ervoor zorgde ervoor dat het overzicht compleet weg was.
+Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er
+gebruik gemaakt van de de officiele
+[android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth).
+Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met
+bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen
+van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn
+verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder
+resultaat, dit omdat een concrete implementatie van de functionaliteit die
+hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat
+er bij sommige pogingen drie verschillende voorbeelden door elkaar heenliepen
+wat ervoor zorgde ervoor dat het overzicht compleet weg was.
 
-
-
-Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.  Door wederom gebruik te maken van de officiele [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth) kwam de app het verste. De
-setup was gelukt en je kon in de app je device discoverable maken (zodat andere
-telefoons je kunnen vinden bij het zoeken naar bluetooth connecties).
+Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.
+Door wederom gebruik te maken van de officiele
+[android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)
+kwam de app het verste. De setup was gelukt en je kon in de app je device
+discoverable maken (zodat andere telefoons je kunnen vinden bij het zoeken naar
+bluetooth connecties).
 
 Het eerste waar we hier tegenaan liepen was het automatisch verbinden met
 elkaar. Wanneer de gebruiker de qr-code heeft gescanned van een ander device,
