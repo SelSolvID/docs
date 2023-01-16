@@ -103,7 +103,7 @@ verwijderd worden uit deze data laag.
 
 #### 3.1.1 Laag-diagram
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/layer.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/layer.puml"/>
 
 ### 3.2 Deelsystemen
 
@@ -161,23 +161,23 @@ componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
 
 #### 4.1.1 Package diagram
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/package.puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/package.puml"/>
 
 ### 4.2 Invulling lagenstructuur
 
 #### 4.2.1 Presentatie
-
 De presentatie wordt op twee verschillende plekken op verschillende manieren
 uitgevoerd. Dit komt omdat er twee verschillende applicaties worden gebouwd als
 onderdeel van het systeem.
 
-De twee plekken zijn: de app voor op mobiele telefoons en de website.  
-Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
+#####  4.2.1.1 Android
+ Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
 maken om een user interface te maken. De taal waarin de android app geschreven
 wordt is Kotlin. Kotlin wordt gebruikt omdat het een modern alternatief is op
 java. Traditioneel wordt java gebruikt voor android apps, maar kotlin is daarop
-een modern alternatief.
+een modern alternatief en sinds enige tijd door google aanbevolen als taal om de apps in te ontwikkelen. Gezien er slechts drie schermen in onze applicatie zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanweig is in androidn, omdat elk scherm vanuit de onderste navigatiebalm toegankelijk is.
 
+#####  4.2.1.2 Websites
 Voor de website wordt het web framework Svelte gebruikt. Dit is een web
 framework dat zich focust op de presentatie-laag van websites. Dit framework
 maakt het gemakkelijker om interactieve web applicaties te bouwen. Svelte is een
@@ -354,11 +354,12 @@ stuurt de server het volgende bericht terug:
 }
 ```
 
-#### 4.2.3 Data laag
+### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
-een SQL database gebruikt in de API.
+een SQL database gebruikt in de API en in de android-app.
 
+ #### 4.2.3.1 API
 De api laag is de enige die direct met deze database
 praat. De api laag zit tussen zowel de web applicatie als de mobiele applicatie.
 Hoewel de mobiele applicatie over het algemeen de api weinig nodig zal hebben.
@@ -366,19 +367,21 @@ Dit is omdat de mobiele applicatie door verifyers en holders wordt gebruikt en
 deze communiceren altijd via een peer-to-peer connectie tussen twee mobiele
 apparaten.
 
+#### 4.2.3.2 API
 Op de user app bevind zich een SQLITE database om aangevraagde, goed- en afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
 
-##### 4.2.3.1 Database diagrammen
+#### 4.2.3.3 Database diagrammen
+De volgende diagrammen laten zien hoe de interne databasestructuur van de API en de android app eruit zien.
 
+###### 4.2.3.3.1 Database diagram API
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/databaseAPI.puml"/>
 
-###### 4.2.3.1.1 Database diagram API
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/databaseAPI.puml"/>
+###### 4.2.3.3.1 Database diagram user-app
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/databaseUserApp.puml"/>
 
-###### 4.2.3.1.1 Database diagram user-app
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/databaseUserApp.puml"/>
+### 4.3 (Her)gebruik van componenten en frameworks
 
-### 4.3(Her)gebruik van componenten en frameworks
-
+#### 4.3.1 API
 Het meest algemene component is de API, deze kan via het internet door iedereen
 met de juiste toegang benaderd worden. Deze is nodig om interne applicaties
 boven op te bouwen maar ook derden zouden toegang kunnen krijgen tot deze api.
@@ -392,6 +395,9 @@ vertaald worden naar code voor de mobiele applicatie.
 Dit komt omdat voor zowel de API als de webapplicatie javascript wordt gebruikt.
 Boven op javascript wordt dan typescript gebruikt. Bij typescript worden
 modellen van data geschreven die overal in het systeem gebruikt moeten worden.
+
+#### 4.3.1 Android
+Bij de android app wordt er gebruik gemaakt van zogenoemde fragments: herbruikbare stukken layout die dynamisch in elk scherm vna de app kunnen worden gebruikt. Ook wordt er gebruik gemaakt van een zogenoemde recyclerview, dit is een speciale soort lijst die optimaal gebruik maakt van de resources van een apparaat.
 
 ## 5. Deployment View
 
@@ -494,5 +500,5 @@ downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
 
 ### 5.4 Deployment diagram
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/deployment.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/deployment.puml">
 ```
