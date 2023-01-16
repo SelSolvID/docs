@@ -1,33 +1,38 @@
 @startuml deployment diagram
 node server {
   [proxy]
-  [webapp server]
+  [webappserver]
   [api]
+  [websocket]
   database data
 }
 
 [webapp]
-:externe partij:
+:externepartij:
 
 :mobiele applicatie: as a1
 :mobiele applicatie: as a2
 
 cloud github {
-  artifact "mobiele app download" as appdl
+  artifact "user_app download" as appdl
 }
 
-api - [hidden] - proxy
-proxy ==> "webapp server" : http
+api - proxy
+proxy ==> webappserver : http
 proxy => api : http
 api ==> data : database protocol
 webapp => proxy : https
-"externe partij" => proxy : https
+proxy => websocket :WebSocket
+
 a1 ===> proxy
 
-a1 --> a2 : websocket connection
-a2 -> a1 : websocket connection
+externepartij => proxy : https
+a1 <--> proxy : websocket 
+a2 <--> proxy : websocket 
+externepartij => proxy : https
 
-appdl -> a1
+appdl --> a1
 appdl --> a2
 
 @enduml
+
