@@ -332,7 +332,11 @@ ID dus opslaan. Die body ziet er als volgt uit:
 
 **GET /holder/request/{id}** Hiermee kun je de status van een request ophalen.
 De id krijg je uit een post van een request. Deze moet je dus opslaan bij het
-posten. De response body ziet er als volgt uit:
+posten.  
+Op het moment dat je de status opvraagt kunnen er twee dingen aan de hand zijn:
+
+1. De request is behandeld en heeft een uitkomst. In dit geval krijg je een HTTP
+   200 status en ziet de response body er als volgt uit:
 
 ```json
 {
@@ -349,6 +353,9 @@ of
   "vc": null
 }
 ```
+
+2. De request is nog niet behandeld. In dit geval krijg je een HTTP 202 status
+   en is de response body leeg.
 
 ##### 4.2.2.2 Websocket server protocol
 
