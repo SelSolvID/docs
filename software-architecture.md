@@ -124,13 +124,19 @@ De api is voor de webapp en de app, via de api krijgen de apps hun nieuwe VC's
 Alle use cases zullen gebouwd worden op een zelfde techniek. Bij het verifiëren
 van een VC wordt een peer-to-peer connectie opgezet tussen twee mobiele
 telefoons. De holder stuurt dan de relevante VC naar de verifier. De verifier
-kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC geldig is.  
+kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC
+geldig is.
 
-Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de API om de beide users te verbinden aan elkaar, om zo data te wisselen met elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5. Verder wordt er gebruik gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te verifiëren.
+Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de
+API om de beide users te verbinden aan elkaar, om zo data te wisselen met
+elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5. Verder wordt er gebruik
+gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te
+verifiëren.
 
 ### 3.4 Sequentiediagrammen
 
 ### 3.4.1 VC aanvragen
+
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/sequencediagramaanvragenVC.puml"/>
 
 ## 4 implementation view
@@ -243,9 +249,7 @@ De response body ziet er als volgt uit:
 [
   {
     "id": 0,
-    "fromUser": {
-      "email": "some@example.com"
-    },
+    "fromUser": "I am a legit user",
     "date": 10123718972391823,
     "requestText": "Some claim"
   }
@@ -259,9 +263,7 @@ body ziet er uit zoals:
 ```json
 {
   "id": 0,
-  "fromUser": {
-    "email": "some@example.com"
-  },
+  "fromUser": "I am a legit user",
   "date": 10123718972391823,
   "requestText": "Some claim",
   "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
@@ -308,14 +310,43 @@ De data ziet er dan als volgt uit:
 ```
 
 **POST /holder/request** Hiermee kan een holder een nieuw request indienen. De
-data ziet er als volgt uit:
+data van de _request body_ ziet er als volgt uit:
 
 ```json
 {
   "issuerId": 2,
-  "fromUser": "some@example.com",
-  "requestText": "some text",
+  "vc": "**EXPORTED VC TEXT**",
   "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
+}
+```
+
+De server stuurt dan een _response body_ terug met een random ID van je request.
+Deze kun je gebruiken om later de status van je request te checken. Je moet de
+ID dus opslaan. Die body ziet er als volgt uit:
+
+```json
+{
+  "id": "f55G3QkF8bN1K39LvsXgD4jGppX9xc_0oZEz5gJPcJE"
+}
+```
+
+**GET /holder/request/{id}** Hiermee kun je de status van een request ophalen.
+De id krijg je uit een post van een request. Deze moet je dus opslaan bij het
+posten. De response body ziet er als volgt uit:
+
+```json
+{
+  "accept": true,
+  "vc": "**EXPORTED VC TEXT**"
+}
+```
+
+of
+
+```json
+{
+  "accept": false,
+  "vc": null
 }
 ```
 
@@ -531,28 +562,44 @@ via bluetooth niet mogelijk was, zou dit nog wel handmatig mogelijk zijn als de
 gebruiker dit zelf doet in de bluetooth settings van zijn/haar telefoon.
 
 Waar we uiteindelijk vast zijn gelopen is het versturen van data via bluetooth
-(bij [deze](https://developer.android.com/guide/topics/connectivity/bluetooth/connect-bluetooth-devices) en[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/transfer-data) stap). Dit was ingewikkeld om te maken omdat de documentatie veel belangrijke stappen oversloeg waardoor het stappenplan niet te volgen was. Ook was een redelijk groot deel van de code outdated en waren meerdere gebruikte methodes deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om werkend te krijgen binnen de tijd die wij nog hadden.
+(bij
+[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/connect-bluetooth-devices)
+en[deze](https://developer.android.com/guide/topics/connectivity/bluetooth/transfer-data)
+stap). Dit was ingewikkeld om te maken omdat de documentatie veel belangrijke
+stappen oversloeg waardoor het stappenplan niet te volgen was. Ook was een
+redelijk groot deel van de code outdated en waren meerdere gebruikte methodes
+deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en
+hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om werkend te
+krijgen binnen de tijd die wij nog hadden.
 
 #### 5.2.2 Websockets als vervangende oplossing
-Omdat Bluetooth dus niet werkend gekregen kon worden is er voor gekozen om te werken met WebSockets. Bij deze techniek wordt er vanuit de user app verbinding gelegd met een ander apparaat via de API middels het WebSocket protocol. Op deze manier kunnen twee apparaten volledig over-en-weer communiceren over één doorlopende TCP verbinding, in plaats van bijvoorbeeld HTTPS, dat slechts één bericht per keer kan versturen.
+
+Omdat Bluetooth dus niet werkend gekregen kon worden is er voor gekozen om te
+werken met WebSockets. Bij deze techniek wordt er vanuit de user app verbinding
+gelegd met een ander apparaat via de API middels het WebSocket protocol. Op deze
+manier kunnen twee apparaten volledig over-en-weer communiceren over één
+doorlopende TCP verbinding, in plaats van bijvoorbeeld HTTPS, dat slechts één
+bericht per keer kan versturen.
 
 ### 5.3 Teststraat
 
 Als onderdeel van het project wordt een teststraat ingericht. Dit houdt in dat
-er van het systeem drie versies beschikbaar komen volgens het OTAP model, te weten Ontwikkel, Testen, Acceptatie, Productie. 
-Hiervoor worden de api en webapp drievoudig gedeployed. 
+er van het systeem drie versies beschikbaar komen volgens het OTAP model, te
+weten Ontwikkel, Testen, Acceptatie, Productie. Hiervoor worden de api en webapp
+drievoudig gedeployed.
 
 #### 5.3.1 API
 
 #### 5.3.2 Svelte
 
 #### 5.3.3 Android
-De mobile applicatie krijgt drie verschillende downloads die overeenkomen met de drie gedeployde versies van de webapp en api.
+
+De mobile applicatie krijgt drie verschillende downloads die overeenkomen met de
+drie gedeployde versies van de webapp en api.
 
 #### 5.3.1 Websocketserver
 
 ### 5.4 Deployment diagram
-
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/deployment.puml">
 ```
