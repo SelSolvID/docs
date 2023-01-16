@@ -211,13 +211,14 @@ in punt 4.2.2.2 beschreven.
 
 ##### 4.2.2.1 API surface
 
-| url            | method | functie                                        |
-| -------------- | ------ | ---------------------------------------------- |
-| /token         | GET    | token ophalen voor gebruik in api communicatie |
-| /requests      | GET    | een lijst ophalen van openstaande VC requests  |
-| /requests/{id} | GET    | Details van een request ophalen                |
-| /requests/{id} | PUT    | Reageren op een request (goed of afkeuren)     |
-| /requests      | POST   | Als holder een nieuw request indienen          |
+| url             | method | functie                                        |
+| --------------- | ------ | ---------------------------------------------- |
+| /token          | GET    | token ophalen voor gebruik in api communicatie |
+| /requests       | GET    | een lijst ophalen van openstaande VC requests  |
+| /requests/{id}  | GET    | Details van een request ophalen                |
+| /requests/{id}  | PUT    | Reageren op een request (goed of afkeuren)     |
+| /issuer         | GET    | Een lijst van issuers ophalen                  |
+| /holder/request | POST   | Als holder een nieuw request indienen          |
 
 **GET /token** Hierbij wordt de header `Authentication` gebruikt met basic
 authentication scheme.  
@@ -278,12 +279,31 @@ Een niet-accepted request:
 }
 ```
 
+**GET /issuer** Hiermee kun je een lijst aan issuerId's ophalen
+
+De data ziet er dan als volgt uit:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Test issuer"
+  },
+  {
+    "id": 2,
+    "name": "Paradigm"
+  }
+  // More in list
+  }
+]
+```
+
 **POST /holder/request** Hiermee kan een holder een nieuw request indienen. De
 data ziet er als volgt uit:
 
 ```json
 {
-  "issuerId": 01923123,
+  "issuerId": 2,
   "fromUser": "some@example.com",
   "requestText": "some text",
   "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
@@ -320,6 +340,7 @@ naar een kanaal.
 ```json
 {
   "type": "message",
+  "channel": "*channelID*",
   "payload": "arbitrairy data"
 }
 ```
@@ -332,6 +353,7 @@ server een bericht naar alle clients in dat kanaal. Deze zien er als volgt uit:
 ```json
 {
   "type": "message",
+  "channel": "*channelID*",
   "payload": "the message payload"
 }
 ```
