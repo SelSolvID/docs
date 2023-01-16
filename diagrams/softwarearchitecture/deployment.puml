@@ -24,8 +24,8 @@ webapp => proxy : https
 "externe partij" => proxy : https
 a1 ===> proxy
 
-a1 --> a2 : bluetooth
-a2 -> a1 : bluetooth
+a1 --> a2 : websocket connection
+a2 -> a1 : websocket connection
 
 appdl -> a1
 appdl --> a2

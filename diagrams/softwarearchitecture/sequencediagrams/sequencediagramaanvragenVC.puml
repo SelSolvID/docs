@@ -1,0 +1,22 @@
+@startuml sequence diagram
+actor gebruiker
+database selsovid_database
+entity user_app
+
+entity svelte_app
+
+actor uitgever_vc
+
+entity API
+
+database API_Database
+
+gebruiker -> user_app :  Gebruikt user_app
+user_app -> API : vraagt VC aan
+API -> API_Database : Slaat verzoek op in database
+svelte_app -> uitgever_vc : verwerkt aanvraag VC
+API_Database-> svelte_app : verwijderd VC als deze is verwerkt
+API -> user_app : Stuurt VC terug 
+user_app-> selsovid_database : slaat VC op
+
+@enduml
