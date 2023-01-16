@@ -1,0 +1,20 @@
+@startuml database diagram
+
+package database_selsovid <<Database>> {
+entity verified_credentials_table {
+* PK vc_id: int
+--
+vc_parent_id: int
+* vc_name: String
+* vc_request_text: String
+vc_reject_text: String
+vc_issuer_signature: String
+vc_issuer_public_key: String
+* vc_requested: String
+vc_granted: String
+vc_last_used: String
+
+}
+
+}
+@enduml
