@@ -36,7 +36,7 @@ basisfunctionaliteit.
 
 Om verkeerde architectuurkeuzes tegen te gaan wordt er vooraf research gedaan over deze architectuurkeuzes. Op deze manier kan er worden besloten of deze architectuurkeuze geschikt is of niet.
 
-In het geval dat er achteraf toch blijkt dat er verkeerde architectuurkeuzes zijn gemaakt, wordt er gekeken in hoeverre dit een limitatie is en of hier iets aan is te doen. Als er niks aan is te doen en het hindert het project zo dat we niet verder kunnen, zullen we moeten kieze voor een andere architectuur.
+In het geval dat er achteraf toch blijkt dat er verkeerde architectuurkeuzes zijn gemaakt, wordt er gekeken in hoeverre dit een limitatie is en of hier iets aan is te doen. Als er niks aan is te doen en het hindert het project zo dat we niet verder kunnen, zullen we moeten kiezen voor een andere architectuur.
 
 ## 3. Onrealistische planning
 

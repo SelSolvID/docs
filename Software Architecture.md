@@ -70,12 +70,9 @@ Mees van Dijk
 ### 1.1 Doel van dit document
 
 Het software architectuur document bevat een uitgebreide architecturale kijk op
-het systeem SSI. Het beschrijft een aantal verschillende architecturale views
-van het systeem om zo verschillende aspecten van het systeem te belichten. Dit
-document beschrijft de verschillend eRUP views op de software architectuur
-volgens het 4+1 view model.
-
-<img src="4plus_1_views.jpg"/>
+het systeem SSI middels het 4+1 view model op software architectuur:
+Logical, Implementational, Process, Deployment + Use Case
+<img src="images/4plus_1_views.jpg"/>
 
 Het 4+1 model stelt de verschillende belanghebbenden in staat vanuit hun eigen
 perspectief de invloed van de gekozen architectuur te bepalen.
@@ -140,7 +137,7 @@ document. De volgende use-cases zijn geïdentificeerd:
 - Huren van goederen
 - Het afsluiten en het checken van een verzekering.
 
-De usecases zijn op genomen in een apart use cases bestand.
+De usecases zijn opgenomen in een [apart use cases bestand](Usecasedocument.md).
 
 ## 3 Logical view
 
@@ -167,9 +164,9 @@ verwijderd worden uit deze data laag.
 
 Onze Proof of Concept (POC) vereist een aantal deelsystemen. Het bestaat uit een android app, een webapp en een API.
 
-De app is bedoeld voor de gebruikers die verifiable credentials (VC's) willen verifyen en holen. 
+De app is bedoeld voor de gebruikers die verifiable credentials (VC's) willen verifyen en holden. 
 
-De webapp is bedoeld voor issuers, die VC's willen uitgeven aan individuen.
+De webapp is bedoeld voor issuers, die VC's willen goedkeuren en uitgeven aan individuen of rechtspersonen.
 
 De api is voor de webapp en de app, via de api krijgen de apps hun nieuwe VC's
 
@@ -200,8 +197,8 @@ Dit zijn de verschillende sequentiediagrammen die uitleggen wat er precies gedaa
 
 ### 4.1 Package structuur
 
-Voor het implementeren van de applicatie worden een aantal packages geschreven.
-Omdat niet elk deelsysteem in dezelfde taal wordt gebouwd wordt het niet altijd
+Voor het implementeren van de applicatie worden een aantal packages gebruikt.
+Omdat niet elk deelsysteem in dezelfde taal is gebouwd is het niet altijd
 mogelijk om code uit deze packages te delen. Voor de api worden een aantal
 models geschreven die ook door de webapp kan hergebruiken. De app zal, omdat
 deze niet dezelfde programmeertaal gebruikt, dit model zelf moeten dupliceren.
@@ -220,7 +217,7 @@ Voor het realiseren van een user interface op android wordt gebruik gemaakt van
 de standaard android libraries. Kotlin kan hiervan, net zoals java, gebruik
 maken om gemakkelijk een user interface te bouwen.
 
-De web applicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
+De webapplicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
 is een framework om responsive user interfaces te bouwen. Bovenop svelte gaan we
 [Svelte material UI](https://sveltematerialui.com/) gebruiken. Dit is een set
 componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
@@ -251,19 +248,18 @@ is.
 
 ##### 4.2.1.2 Websites
 
-Voor de website wordt het web framework Svelte gebruikt. Dit is een web
-framework dat zich focust op de presentatie-laag van websites. Dit framework
+Voor de website wordt het web framework Svelte gebruikt. Dit is een webframework dat zich focust op de presentatielaag van websites. Dit framework
 maakt het gemakkelijker om interactieve web applicaties te bouwen. Svelte is een
 relatief nieuw web framework dat erg positief is ontvangen. Het zorgt er voor
 dat developers snel en gestructureerd kunnen werken. Daarom gebruiken we Svelte.
 
 #### 4.2.2 Service laag
 
-De service laag is verantwoordelijk voor het uitvoeren van de business logic. In
+De servicelaag is verantwoordelijk voor het uitvoeren van de business logic. In
 dit geval zal dat zijn het aanvragen, aanmaken, ophalen, delen en verifieren van
 VC's.
 
-Voor het aanvragen en ophalen van VC's wordt http gebruikt. Een holder kan via
+Voor het aanvragen en ophalen van VC's wordt https gebruikt. Een holder kan via
 haar telefoon verbinden met de api om een VC op te halen, mits deze is
 goedgekeurd, en dus ondertekend, door de relevante instantie. De holder kan ook
 via haar telefoon een VC aanvragen. Deze moet dan worden goedgekeurd in de web
@@ -495,7 +491,7 @@ altijd via een peer-to-peer connectie tussen twee mobiele apparaten.
 
 #### 4.2.3.2 Android
 
-Op de user app bevind zich een SQLITE database om aangevraagde, goed- en
+In de user app bevind zich een SQLITE database om aangevraagde, goed- en
 afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
 
 #### 4.2.3.3 Database diagrammen
@@ -556,7 +552,7 @@ voor:
 - Het draaien van de database.
 - Het proxy-en van requests naar de web-applicatie of de API
 
-Deze vier containers zitten allemaal in een zelfde privé netwerk. Alleen de
+Deze vier containers zitten allemaal in een zelfde privénetwerk. Alleen de
 proxy kan van buitenaf benaderd worden. De proxy zet https requests om naar http
 requests, zodat de individuele servers geen verantwoordelijkheid dragen voor
 https, dit zorgt voor veel minder complexiteit in de code. De proxy zorgt er ook

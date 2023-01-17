@@ -51,7 +51,7 @@ Mees van Dijk
 # 1 Inleiding
 
 ## 1.1 Doel van dit document
-Dit Acceptatie Plan verschaft een meetbare basis voor de te accepteren werkproducten. Het bevat een lijst met meetbare acceptatiecriteria die invulling geven aan niet-functionele requirements, Use Case overstijgende eisen en de procedure waarop we bepalen of het project geaccepteerd wordt. 
+Dit Acceptatieplan verschaft een meetbare basis voor de te accepteren werkproducten. Het bevat een lijst met meetbare acceptatiecriteria die invulling geven aan niet-functionele requirements, Usecaseoverstijgende eisen en de procedure waarop we bepalen of het project geaccepteerd wordt. 
 
 ## 1.2 Referenties
 | Titel       | Vindplaats               |
@@ -78,29 +78,38 @@ Dit Acceptatie Plan verschaft een meetbare basis voor de te accepteren werkprodu
 
 ## 3.1 Performance
 Om de performance van de applicatie op niveau te krijgen zal de applicatie aan een aantal eisen moeten voldoen. Deze eisen zijn erg algemeen en klein gezien het project een proof of concept is en vanuit de opdrachtgever ook is aangegeven dat de focus niet hoeft te liggen bij de performance.
+
 ### 3.1.1 Vastlopen
 De gebruiker mag geen 'lag-spikes' merken bij het gebruiken van de applicatie of mee maken dat de applicatie vast loopt. 
+
 ### 3.1.2 Laadtijden
 De gebruiker mag geen lange laadtijden tegenkomen. Voor de proof of concept is het niet van top priotiteit dat de app extreem snel werkt maar hij mag ook niet 10 seconden bezig zijn met bijvoorbeeld het inladen van een lijst met aanvragen voor een issuer.
 
 ## 3.2 Beheerbaarheid
+
 ### 3.2.1 Teststraat
 Voor het beheer van de applicatie zal er een teststraat ontwikkeld worden die kan worden gebruikt voor unittests. Op deze manier kan in het project op een TDD manier worden gewerkt en zorgt het voor hogere kwaliteit code. Zo word er elke keer gechecked of alles nog goed gaat in het project en niet ergens anders iets kapot is gegaan na aanpassingen van de code.
+
 ### 3.2.2 Documentatie
 Om de code te beheren zal er goede documentatie moeten zijn. Deze documentatie moet te begrijpen zijn voor iedereen, ook mensen met weinig of geen technische kennis. Wanneer dit project is afgelopen, moet het duidelijk zijn in de documentatie hoe het project is verlopen, wat is er goed gegaan, wat ging slecht, welke keuzes zijn er gemaakt en waarom.
 
 ## 3.3 Betrouwbaarheid
+
 ### 3.3.1 Altijd beschikbaar
 Het is erg van belang dat het systeem altijd werkt in een project als dit. Dit project zorgt ervoor dat je niet meer al je pasjes bij je hoeft te hebben omdat deze altijd op je telefoon digitaal beschikbaar zijn. Het is hierom heel belangrijk dat het systeem werkt, anders heb je geen toegang tot je persoonlijke gegevens. Een voorbeeld kan zijn wanneer je wordt aangehouden en je moet je rijbewijs laten zien. Wanneer het systeem het niet doet en je niet je rijbewijs kan laten zien, kan dit problemen veroorzaken.
+
 ### 3.3.2 Offline gebruik
 Alle persoonlijke gegevens worden lokaal opgeslagen op bijvoorbeeld je telefoon. De gebruiker moet deze gegevens nog steeds kunnen laten zien aan verifiers wanneer de gebruiker offline is.
 
 ## 3.4 Beveiliging
 Voor een applicatie als dit is beveiliging natuurlijk een van de meest belangrijke aspecten. Al je persoonlijke gegevens zijn hier opgeslagen en dat kan flink fout aflopen als die gehackt wordt. 
+
 ### 3.4.1 Inlog-systeem
 De applicatie moet een inlogsysteem hebben met gebruikersnaam en wachtwoord. 
+
 ### 3.4.2 Cryptografie
 Voor alle data dat wordt rondgestuurd, zal gebruik worden gemaakt van cryptografie. 
+
 ### 3.4.3 Backup & recovery
 Ook zal de wallet waar je al je persoonlijke gegevens in hebt een veilige optie moeten hebben om een backup te maken en mogelijk verloren data te recoveren. 
 
@@ -137,7 +146,7 @@ Een standaard voor de code is dat er gebruik word gemaakt van een linter die wor
 ### 3.7.4 Svelte standaarden
 De svelte-app zal de volgende structuur aanhouden:
 
-<img src="svelte-structure.png">
+<img src="images/svelte-structure.png">
 
 ## 3.8 Documentatie
 ### 3.8.1 Duidelijk met weinig technische kennis
