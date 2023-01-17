@@ -16,7 +16,7 @@ package "data layer" as dl {
 
 map -> mab : method calls
 
-map -> api: https
+map --> api: https
 wap --> api : https
 
 api --> cdb : postgres protocol
