@@ -1,12 +1,12 @@
 # SelSovID Docs
-Dit zijn de documenten die wij, volgens RUP Op Maat gebruiken voro de realisatie van ons project.
+Dit zijn de documenten die wij, volgens RUP Op Maat, gebruiken voor de realisatie van ons project.
 
 TOC:
 - Acceptatieplan
-- Planning
-- Risks
+- Planningsodcument
+- Risicodocument
 - Samenwerkingsdocument
-- software-architecture
-- technische keuzes
-- use cases
-- visiedocument
+- Software Architecture
+- Technische Keuzes
+- Usecasedocument
+- Vsisiedocument

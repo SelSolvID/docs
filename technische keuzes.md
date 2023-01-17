@@ -1,6 +1,6 @@
 # Project 4 SSI Technische Keuzes
 
-## Self Souvereign Identity
+## Self Sovereign Identity
 
 ## Auteurs
 
