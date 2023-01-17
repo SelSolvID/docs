@@ -1,8 +1,8 @@
-# Samenwerkingsdocument SSI
+# Samenwerkingsdocument SSI HBO-ICT SE Jaar 4 Groep 5
 
-
-- [Samenwerkingsdocument SSI](#samenwerkingsdocument-ssi)
-    - [HBO-ICT SE Jaar 4 Groep 5](#hbo-ict-se-jaar-4-groep-5)
+# Inhoudsopgave
+- [Samenwerkingsdocument SSI HBO-ICT SE Jaar 4 Groep 5](#samenwerkingsdocument-ssi-hbo-ict-se-jaar-4-groep-5)
+- [Inhoudsopgave](#inhoudsopgave)
   - [Rollen](#rollen)
   - [Contact](#contact)
   - [Ziekte](#ziekte)
@@ -14,9 +14,6 @@
   - [Conflict](#conflict)
   - [Waarschuwingen](#waarschuwingen)
   - [Ondertekening](#ondertekening)
-
-
-### HBO-ICT SE Jaar 4 Groep 5
 
 ## Rollen
 

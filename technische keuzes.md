@@ -21,8 +21,9 @@ Mees van Dijk
 |-----------|------------|------------------|-------------|
 |17-1-2023 | 0.1        | Initiele versie  | HDJRijnders | 
 
+# Inhoudsopgave
 - [Project 4 SSI Technische Keuzes](#project-4-ssi-technische-keuzes)
-  - [Self Souvereign Identity](#self-souvereign-identity)
+  - [Self Sovereign Identity](#self-sovereign-identity)
   - [Auteurs](#auteurs)
   - [1.2 Referenties](#12-referenties)
   - [Documenthistorie](#documenthistorie)
@@ -35,10 +36,6 @@ Mees van Dijk
 - [5.1 webapp](#51-webapp)
 - [5.2 android app](#52-android-app)
 - [5.3 API](#53-api)
-
-# Inhoudsopgave
-
-- [Project 4 SSI Technische Keuzes](#project-4-ssi-technische-keuzes)
 
 
 # 1. Doel van dit document
