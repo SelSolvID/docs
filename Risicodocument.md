@@ -1,6 +1,12 @@
 # Risico's
 
-## Uitval projectlid
+- [Risico's](#risicos)
+  - [1. Uitval projectlid](#1-uitval-projectlid)
+  - [2. Verkeerde architectuurkeuze](#2-verkeerde-architectuurkeuze)
+  - [3. Onrealistische planning](#3-onrealistische-planning)
+  - [4. Slecht gedocumenteerde requirements](#4-slecht-gedocumenteerde-requirements)
+
+## 1. Uitval projectlid
 
 Uitval van een projectlid kan zijn permanent of tijdelijk. Tijdelijk kan zijn
 vanwege ziekte. Permanent kan ook zijn vanwege zieke, maar kan ook andere
@@ -13,7 +19,7 @@ worden taken verdeeld onder andere projectleden.
 Om uitval tegen te gaan hebben we wekelijkse meetings waarbij projectleden zowel
 hun voortgang als eventuele andere problemen kunnen benoemen.
 
-## Verkeerde architectuurkeuze
+## 2. Verkeerde architectuurkeuze
 
 Verkeerde architectuurkeuze kan een verkeerde keuze van programmeertaal zijn.
 Hier kan je er achter komen dat je in deze programmeertaal toch niet je project
@@ -32,7 +38,7 @@ Om verkeerde architectuurkeuzes tegen te gaan wordt er vooraf research gedaan ov
 
 In het geval dat er achteraf toch blijkt dat er verkeerde architectuurkeuzes zijn gemaakt, wordt er gekeken in hoeverre dit een limitatie is en of hier iets aan is te doen. Als er niks aan is te doen en het hindert het project zo dat we niet verder kunnen, zullen we moeten kieze voor een andere architectuur.
 
-## Onrealistische planning
+## 3. Onrealistische planning
 
 Een onrealistische planning houdt in dat er een planning is gemaakt die niet
 werkt voor de praktijk. Dit treedt op als er teveel werk is ingepland voor een
@@ -45,7 +51,7 @@ In het geval dat dit risico waar wordt moet het projectteam kiezen tussen
 overwerken of de scope van het product verkleinen. Deze keuze wordt op dat
 moment overlegd.
 
-## slecht gedocumenteerde requirements
+## 4. Slecht gedocumenteerde requirements
 
 Een slecht gedocumenteerde requirement houd in dat de requirements te
 onduidelijk zijn om deze goed uit te voeren, hierdoor komen er problemen rond de

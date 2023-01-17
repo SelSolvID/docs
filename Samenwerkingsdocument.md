@@ -1,4 +1,20 @@
-# Samenwerkingscontract SSI
+# Samenwerkingsdocument SSI
+
+
+- [Samenwerkingsdocument SSI](#samenwerkingsdocument-ssi)
+    - [HBO-ICT SE Jaar 4 Groep 5](#hbo-ict-se-jaar-4-groep-5)
+  - [Rollen](#rollen)
+  - [Contact](#contact)
+  - [Ziekte](#ziekte)
+  - [Aanwezigheid](#aanwezigheid)
+  - [Uitval](#uitval)
+  - [Besluitvorming](#besluitvorming)
+  - [Samenkomsten](#samenkomsten)
+    - [Taken](#taken)
+  - [Conflict](#conflict)
+  - [Waarschuwingen](#waarschuwingen)
+  - [Ondertekening](#ondertekening)
+
 
 ### HBO-ICT SE Jaar 4 Groep 5
 

@@ -1,7 +1,5 @@
 # Self sovereign ID
 
-### Versie 1
-
 ## Auteurs
 
 Wouter de Boer  
@@ -9,26 +7,35 @@ Daniel Hofman
 Hylbren Rijnders  
 Mees van Dijk
 
-# Inhoudsopgave
-
-1. Inleiding  
-   1.1 Doel van dit document  
-   1.2 Referenties
-2. Positionering  
-   2.1 De huidige situatie  
-   2.2 Probleemstelling  
-   2.3 Alternative oplossingen
-3. Belanghebbenden  
-   3.1 Rollenoverzicht belanghebbenden  
-   3.2 Profiel van de belanghebbenden  
-   3.3 Behoeften van belanghebbenden
-4. Productperspectief
-5. Producteigenschappen
-6. Overige requirements  
-   6.1 Niet-functionele requirements  
-   6.2 Randvoorwaarden  
-   6.3 Documentatie requirements
-7. Openstaande punten
+# Inhoudsopgave- 
+- [Self sovereign ID](#self-sovereign-id)
+  - [Auteurs](#auteurs)
+- [Inhoudsopgave-](#inhoudsopgave-)
+- [1 Inleiding](#1-inleiding)
+  - [1.1 Doel van dit document](#11-doel-van-dit-document)
+  - [1.2 Referenties](#12-referenties)
+- [2 Positionering](#2-positionering)
+  - [2.1 De huidige situatie](#21-de-huidige-situatie)
+  - [2.2 Probleemstelling](#22-probleemstelling)
+  - [2.3 De oplossing](#23-de-oplossing)
+  - [2.4 Alternatieve oplossingen](#24-alternatieve-oplossingen)
+    - [2.4.1 Huidige situatie](#241-huidige-situatie)
+    - [2.4.2 Centrale database](#242-centrale-database)
+    - [2.4.3 Andere landen afkijken](#243-andere-landen-afkijken)
+- [3 Belanghebbenden](#3-belanghebbenden)
+  - [3.1 Overzicht belanghebbenden vertegenwoordigers](#31-overzicht-belanghebbenden-vertegenwoordigers)
+  - [3.2 Profiel van de belanghebbenden](#32-profiel-van-de-belanghebbenden)
+    - [3.2.1 Opdrachtgever](#321-opdrachtgever)
+  - [3.3 Behoeften van belanghebbenden](#33-behoeften-van-belanghebbenden)
+    - [3.3.1 Werkend proof-of-concept](#331-werkend-proof-of-concept)
+    - [3.3.2 Bijbehorende documentatie](#332-bijbehorende-documentatie)
+- [4 Productperspectief](#4-productperspectief)
+- [5 Producteigenschappen](#5-producteigenschappen)
+- [6 Requirements](#6-requirements)
+  - [6.1 Niet-functionele requirements](#61-niet-functionele-requirements)
+  - [6.2 Randvoorwaarden](#62-randvoorwaarden)
+  - [6.3 Documentatie requirements](#63-documentatie-requirements)
+- [7 Openstaande punten](#7-openstaande-punten)
 
 # 1 Inleiding
 

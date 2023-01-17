@@ -11,6 +11,62 @@ Mees van Dijk
 
 ## Inleiding
 
+# Inhoudsopgave
+- [Software architecture document](#software-architecture-document)
+  - [Self-sovereign Identity](#self-sovereign-identity)
+  - [Auteurs](#auteurs)
+  - [Inleiding](#inleiding)
+- [Inhoudsopgave](#inhoudsopgave)
+    - [1.1 Doel van dit document](#11-doel-van-dit-document)
+    - [1.2 referenties](#12-referenties)
+  - [2 Architecturale eisen](#2-architecturale-eisen)
+    - [2.1 Niet-functionele eisen](#21-niet-functionele-eisen)
+      - [2.1.1 Performance](#211-performance)
+      - [2.1.2 Beheerbaarheid](#212-beheerbaarheid)
+      - [2.1.3 Betrouwbaarheid](#213-betrouwbaarheid)
+      - [2.1.4 Beveiliging](#214-beveiliging)
+    - [2.2 Use case View](#22-use-case-view)
+  - [3 Logical view](#3-logical-view)
+    - [3.1 Lagen](#31-lagen)
+      - [3.1.1 Laag-diagram](#311-laag-diagram)
+    - [3.2 Deelsystemen](#32-deelsystemen)
+    - [3.3 Use case realizations](#33-use-case-realizations)
+    - [3.4 Sequentiediagrammen](#34-sequentiediagrammen)
+    - [3.4.1 VC aanvragen](#341-vc-aanvragen)
+    - [3.4.2 VC controleren](#342-vc-controleren)
+  - [4 Implementation View](#4-implementation-view)
+    - [4.1 Package structuur](#41-package-structuur)
+      - [4.1.1 Package diagram](#411-package-diagram)
+    - [4.2 Invulling lagenstructuur](#42-invulling-lagenstructuur)
+      - [4.2.1 Presentatie](#421-presentatie)
+        - [4.2.1.1 Android](#4211-android)
+        - [4.2.1.2 Websites](#4212-websites)
+      - [4.2.2 Service laag](#422-service-laag)
+        - [4.2.2.1 API surface](#4221-api-surface)
+        - [4.2.2.2 Websocket server protocol](#4222-websocket-server-protocol)
+    - [4.2.3 Data laag](#423-data-laag)
+      - [4.2.3.1 API](#4231-api)
+      - [4.2.3.2 Android](#4232-android)
+      - [4.2.3.3 Database diagrammen](#4233-database-diagrammen)
+          - [4.2.3.3.1 Database diagram API](#42331-database-diagram-api)
+          - [4.2.3.3.1 Database diagram user-app](#42331-database-diagram-user-app)
+    - [4.3 (Her)gebruik van componenten en frameworks](#43-hergebruik-van-componenten-en-frameworks)
+      - [4.3.1 API](#431-api)
+      - [4.3.2 Android](#432-android)
+      - [4.3.2 Svelte](#432-svelte)
+  - [5. Deployment View](#5-deployment-view)
+    - [5.1 Deployment en infrastructuur van API, database en web applicatie](#51-deployment-en-infrastructuur-van-api-database-en-web-applicatie)
+    - [5.2 Deployment en infrastructuur voor de mobiele applicatie](#52-deployment-en-infrastructuur-voor-de-mobiele-applicatie)
+      - [5.2.1 Waarom de implementatie van bluetooth niet is gelukt](#521-waarom-de-implementatie-van-bluetooth-niet-is-gelukt)
+      - [5.2.2 Websockets als vervangende oplossing](#522-websockets-als-vervangende-oplossing)
+    - [5.3 Teststraat](#53-teststraat)
+      - [5.3.1 API](#531-api)
+      - [5.3.2 Svelte](#532-svelte)
+      - [5.3.3 Android](#533-android)
+      - [5.3.1 Websocketserver](#531-websocketserver)
+    - [5.4 Deployment diagram](#54-deployment-diagram)
+
+
 ### 1.1 Doel van dit document
 
 Het software architectuur document bevat een uitgebreide architecturale kijk op
@@ -109,11 +165,9 @@ verwijderd worden uit deze data laag.
 
 ### 3.2 Deelsystemen
 
-De applicatie vereist een aantal deelsystemen. In grote lijnen komen er een app,
-een webapp en een api voor de webapp en app.
+Onze Proof of Concept (POC) vereist een aantal deelsystemen. Het bestaat uit een android app, een webapp en een API.
 
-De app is bedoeld voor de gebruikers die willen verifyen en holden van
-verifiable credentials (VC's).
+De app is bedoeld voor de gebruikers die verifiable credentials (VC's) willen verifyen en holen. 
 
 De webapp is bedoeld voor issuers, die VC's willen uitgeven aan individuen.
 
@@ -123,9 +177,8 @@ De api is voor de webapp en de app, via de api krijgen de apps hun nieuwe VC's
 
 Alle use cases zullen gebouwd worden op een zelfde techniek. Bij het verifiëren
 van een VC wordt een peer-to-peer connectie opgezet tussen twee mobiele
-telefoons. De holder stuurt dan de relevante VC naar de verifier. De verifier
-kan, omdat deze de benodigde root certificaten al bezig, verifiëren dat de VC
-geldig is.
+telefoons middels WebSockets. De holder stuurt dan de relevante VC naar de verifier. 
+De verifier kan, omdat deze de benodigde root certificaten al bezit, verifiëren dat de VC geldig is.
 
 Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de
 API om de beide users te verbinden aan elkaar, om zo data te wisselen met
@@ -143,7 +196,7 @@ Dit zijn de verschillende sequentiediagrammen die uitleggen wat er precies gedaa
 ### 3.4.2 VC controleren
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/controlerenvc.puml"/>
 
-## 4 implementation view
+## 4 Implementation View
 
 ### 4.1 Package structuur
 
@@ -193,7 +246,7 @@ java. Traditioneel wordt java gebruikt voor android apps, maar kotlin is daarop
 een modern alternatief en sinds enige tijd door google aanbevolen als taal om de
 apps in te ontwikkelen. Gezien er slechts drie schermen in onze applicatie
 zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanweig
-is in androidn, omdat elk scherm vanuit de onderste navigatiebalm toegankelijk
+is in android, omdat elk scherm vanuit de onderste navigatiebalk toegankelijk
 is.
 
 ##### 4.2.1.2 Websites
@@ -440,7 +493,7 @@ applicatie over het algemeen de api weinig nodig zal hebben. Dit is omdat de
 mobiele applicatie door verifyers en holders wordt gebruikt en deze communiceren
 altijd via een peer-to-peer connectie tussen twee mobiele apparaten.
 
-#### 4.2.3.2 API
+#### 4.2.3.2 Android
 
 Op de user app bevind zich een SQLITE database om aangevraagde, goed- en
 afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
@@ -476,13 +529,16 @@ Dit komt omdat voor zowel de API als de webapplicatie javascript wordt gebruikt.
 Boven op javascript wordt dan typescript gebruikt. Bij typescript worden
 modellen van data geschreven die overal in het systeem gebruikt moeten worden.
 
-#### 4.3.1 Android
+#### 4.3.2 Android
 
 Bij de android app wordt er gebruik gemaakt van zogenoemde fragments:
 herbruikbare stukken layout die dynamisch in elk scherm vna de app kunnen worden
 gebruikt. Ook wordt er gebruik gemaakt van een zogenoemde recyclerview, dit is
 een speciale soort lijst die optimaal gebruik maakt van de resources van een
 apparaat.
+
+#### 4.3.2 Svelte
+Daniel?
 
 ## 5. Deployment View
 

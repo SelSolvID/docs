@@ -9,24 +9,44 @@ Daniel Hofman
 Hylbren Rijnders  
 Mees van Dijk
 
-
-
 # Inhoudsopgave
-1. Inleiding  
-   1.1 Doel van dit document  
-   1.2 Referenties
-2. Verantwoordelijkheden  
-3. Acceptatiecriteria  
-   3.1 Performance  
-   3.2 Beheerbaarheid   
-   3.3 Betrouwbaarheid  
-   3.4 Beveiliging  
-   3.5 Funcitonaliteit  
-   3.6 Gebruiksvriendelijkheid  
-   3.7 Standaards   
-   3.8 Documentatie  
-
-
+- [Acceptatieplan SSI](#acceptatieplan-ssi)
+    - [Versie 3](#versie-3)
+  - [Auteurs](#auteurs)
+- [Inhoudsopgave](#inhoudsopgave)
+- [1 Inleiding](#1-inleiding)
+  - [1.1 Doel van dit document](#11-doel-van-dit-document)
+  - [1.2 Referenties](#12-referenties)
+- [2 Verantwoordelijkheden](#2-verantwoordelijkheden)
+- [3 Acceptatiecriteria](#3-acceptatiecriteria)
+  - [3.1 Performance](#31-performance)
+    - [3.1.1 Vastlopen](#311-vastlopen)
+    - [3.1.2 Laadtijden](#312-laadtijden)
+  - [3.2 Beheerbaarheid](#32-beheerbaarheid)
+    - [3.2.1 Teststraat](#321-teststraat)
+    - [3.2.2 Documentatie](#322-documentatie)
+  - [3.3 Betrouwbaarheid](#33-betrouwbaarheid)
+    - [3.3.1 Altijd beschikbaar](#331-altijd-beschikbaar)
+    - [3.3.2 Offline gebruik](#332-offline-gebruik)
+  - [3.4 Beveiliging](#34-beveiliging)
+    - [3.4.1 Inlog-systeem](#341-inlog-systeem)
+    - [3.4.2 Cryptografie](#342-cryptografie)
+    - [3.4.3 Backup \& recovery](#343-backup--recovery)
+  - [3.5 Funcitonaliteit](#35-funcitonaliteit)
+  - [3.6 Gebruiksvriendelijkheid](#36-gebruiksvriendelijkheid)
+    - [3.6.1 Toegankelijk voor iedereen](#361-toegankelijk-voor-iedereen)
+    - [3.6.2 Lettergrootte](#362-lettergrootte)
+    - [3.6.3 Layout \& icons](#363-layout--icons)
+    - [3.6.4 Schaalbaarheid](#364-schaalbaarheid)
+  - [3.7 Standaards](#37-standaards)
+    - [3.7.1 Wetgeving en privacy](#371-wetgeving-en-privacy)
+    - [3.7.2 Linter](#372-linter)
+    - [3.7.3 Kotlin standaarden](#373-kotlin-standaarden)
+    - [3.7.4 Svelte standaarden](#374-svelte-standaarden)
+  - [3.8 Documentatie](#38-documentatie)
+    - [3.8.1 Duidelijk met weinig technische kennis](#381-duidelijk-met-weinig-technische-kennis)
+    - [3.8.2 Verloop van het project](#382-verloop-van-het-project)
+    - [3.8.3 Keuzes in het project](#383-keuzes-in-het-project)
 
 # 1 Inleiding
 
