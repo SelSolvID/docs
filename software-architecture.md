@@ -134,7 +134,7 @@ gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te
 verifiëren.
 
 ### 3.4 Sequentiediagrammen
-Dit zijn de verschillende sequentiediagrammen die uitlegge nwat er precies gedaan wordt in een applicatie wie wleke acties uitvoeren
+Dit zijn de verschillende sequentiediagrammen die uitleggen wat er precies gedaan worden in een applicatie en  wie welke acties uitvoert.
 
 ### 3.4.1 VC aanvragen
 
