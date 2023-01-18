@@ -1,6 +1,8 @@
-# Risico's
+# Risicodocument
 
-- [Risico's](#risicos)
+# Inhoudsopgave
+- [Risicodocument](#risicodocument)
+- [Inhoudsopgave](#inhoudsopgave)
   - [1. Uitval projectlid](#1-uitval-projectlid)
   - [2. Verkeerde architectuurkeuze](#2-verkeerde-architectuurkeuze)
   - [3. Onrealistische planning](#3-onrealistische-planning)
@@ -8,8 +10,8 @@
 
 ## 1. Uitval projectlid
 
-Uitval van een projectlid kan zijn permanent of tijdelijk. Tijdelijk kan zijn
-vanwege ziekte. Permanent kan ook zijn vanwege zieke, maar kan ook andere
+Uitval van een projectlid kan tijdelijk of permanent zijn. Tijdelijk kan zijn
+vanwege ziekte. Permanent kan ook zijn vanwege ziekte, maar kan ook andere
 redenen hebben zoals problemen in de samenwerking of externe factoren.
 
 De kans dat een projectlid tijdelijk uitvalt is zeker aanwezig. Hiervoor zijn
@@ -21,18 +23,17 @@ hun voortgang als eventuele andere problemen kunnen benoemen.
 
 ## 2. Verkeerde architectuurkeuze
 
-Verkeerde architectuurkeuze kan een verkeerde keuze van programmeertaal zijn.
+Een verkeerde architectuurkeuze kan een verkeerde keuze in programmeertaal zijn.
 Hier kan je er achter komen dat je in deze programmeertaal toch niet je project
 kan realiseren door limitaties. Ook kan een verkeerde architectuurkeuze een
 slecht opgezette teststraat zijn. Zo kan je je applicatie niet goed
 testen/deployen.
 
 Een verkeerde keuze van programmeertaal zal de hoogste prioriteit hebben gezien
-dit er voor kan zorgen dat we in het ergste geval een een deel van de applicatie
-die in geschreven met deze taal, compleet opnieuw moeten gaan ontwikkelen met
-een andere taal. Een verkeerd opgezette teststraat komt daarna. Als de
-teststraat verkeerd is opgezet kan dit leiden tot niet stabiele/correct werkende
-basisfunctionaliteit.
+dit er voor kan zorgen dat we in het ergste geval een deel van de applicatie
+die is geschreven met deze taal compleet opnieuw moeten gaan ontwikkelen in
+een andere taal. Een verkeerd opgezette teststraat is een geval wat tijdens of na het ontwikkelen van de applicaties de kop op kan steken. Als de
+teststraat verkeerd is opgezet kan dit leiden tot niet stabiele/correct werkende (basis)functionaliteit.
 
 Om verkeerde architectuurkeuzes tegen te gaan wordt er vooraf research gedaan over deze architectuurkeuzes. Op deze manier kan er worden besloten of deze architectuurkeuze geschikt is of niet.
 

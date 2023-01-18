@@ -1,7 +1,11 @@
-# Planning project SSI
+# Planningsdocument 
+
+# Inhoudsopgave
+- [Planningsdocument](#planningsdocument)
+- [Inhoudsopgave](#inhoudsopgave)
 - [Planning project SSI](#planning-project-ssi)
   - [Op te leveren documenten](#op-te-leveren-documenten)
-
+# Planning project SSI
 | schoolweek | kalenderweek | activiteit           |
 | ---------- | ------------ | -------------------- |
 | 1          | 37           | oriëntatie           |
