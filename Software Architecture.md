@@ -239,7 +239,7 @@ onderdeel van het systeem.
 Voor de app worden standaard Android libraries gebruikt die het gemakkelijk
 maken om een user interface te maken. De taal waarin de android app geschreven
 wordt is Kotlin. Kotlin wordt gebruikt omdat het een modern alternatief is op
-java. Traditioneel wordt java gebruikt voor android apps, maar kotlin is daarop
+java. Traditioneel wordt java gebruikt voor android apps, maar Kotlin is daarop
 een modern alternatief en sinds enige tijd door google aanbevolen als taal om de
 apps in te ontwikkelen. Gezien er slechts drie schermen in onze applicatie
 zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanweig
@@ -574,7 +574,7 @@ Voor het downloaden van de mobiele applicatie wordt een continuous integration
 pipeline ingesteld die automatisch de mobiele applicatie bouwt en beschikbaar
 stelt voor downloaden. Dit wordt gerealiseerd in github actions. Binnen github
 actions worden een aantal tools gebruikt om de applicaties te bouwen. Voor
-Kotlin is dat de kotlin compiler, voor svelte is dat de svelte compiler. Voor de
+Kotlin is dat de Kotlin compiler, voor svelte is dat de svelte compiler. Voor de
 api wordt Typescript gebruikt om de code te transpilen.
 
 Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
@@ -592,7 +592,7 @@ Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er
 gebruik gemaakt van de de officiele
 [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth).
 Hier was hylbren aanvankelijk niet ver mee gekomen door de onervarenheid met
-bluetooth en kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen
+bluetooth en Kotlin ontwikkeling in het algemeen. Buiten het in-en-uitschakelen
 van de bluetoothadapter kon er niets gerealiseerd worden. Daarnaast zijn
 verschillende youtubefilmpjes en online tutorials gevolgd, allen zonder
 resultaat, dit omdat een concrete implementatie van de functionaliteit die
