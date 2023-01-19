@@ -1,38 +1,47 @@
 @startuml deployment diagram
 node server {
   [proxy]
-  [webappserver]
+  [webapp server] as was
   [api]
-  [websocket]
+  [websocket server] as wss
   database data
 }
 
 [webapp]
 :externepartij:
 
-:mobiele applicatie: as a1
-:mobiele applicatie: as a2
+:Holder: as holder
+:verifier: as verifier
 
-cloud github {
-  artifact "user_app download" as appdl
+
+' Mobile holder/verifier connection
+holder <=> verifier : "WebSocket (via server)"
+
+cloud "Root certificate" {
+  artifact "Root certificate" as rootcert
 }
 
-api - proxy
-proxy ==> webappserver : http
-proxy => api : http
-api ==> data : database protocol
+rootcert => verifier
+
+' App download
+cloud github {
+  artifact "user app download" as appdl
+}
+
+appdl --> holder
+appdl -> verifier
+
+' Connections to proxy
 webapp => proxy : https
-proxy => websocket :WebSocket
+holder ===> proxy
+externepartij ==> proxy : https
 
-a1 ===> proxy
 
-externepartij => proxy : https
-a1 <--> proxy : websocket 
-a2 <--> proxy : websocket 
-externepartij => proxy : https
 
-appdl --> a1
-appdl --> a2
-
+' Inside server block
+proxy <-> was : http
+proxy <--> api : http
+api <-> data : database protocol
+proxy <--> wss : WebSocket
 @enduml
 
