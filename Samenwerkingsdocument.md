@@ -1,7 +1,10 @@
-# Samenwerkingsdocument SSI HBO-ICT SE Jaar 4 Groep 5
+# Samenwerkingsdocument
+
+##### SSI HBO-ICT SE Jaar 4 Groep 5
 
 # Inhoudsopgave
-- [Samenwerkingsdocument SSI HBO-ICT SE Jaar 4 Groep 5](#samenwerkingsdocument-ssi-hbo-ict-se-jaar-4-groep-5)
+
+- [Samenwerkingsdocument SSI HBO-ICT SE Jaar 4 Groep 5](#samenwerkingsdocument)
 - [Inhoudsopgave](#inhoudsopgave)
   - [Rollen](#rollen)
   - [Contact](#contact)
@@ -118,7 +121,4 @@ waarschuwing kan worden voorkomen.
 
 ## Ondertekening
 
-Mees van Dijk
-Wouter de Boer
-Daniël Hofman 
-Hylbren Rijnders
+Mees van Dijk Wouter de Boer Daniël Hofman Hylbren Rijnders
