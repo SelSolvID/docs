@@ -1,0 +1,17 @@
+@startuml show identity
+actor holder
+participant "holder app" as ha
+participant "verifier app" as va
+actor verifier
+
+holder -> ha : Select VC's to share
+holder -> ha : Click Share
+ha -> holder : Show connection QR code
+va -> ha : scan connection QR code
+va -> ha : connect
+ha -> va : Send verifiable credentials
+va -> va : Verify valid credentials with signature
+va -> verifier : Show credentials
+verifier -> holder : Accept identity
+
+@enduml
