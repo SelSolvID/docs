@@ -1,6 +1,6 @@
 @startuml identity not answered
 !include base.puml
-
+== Continues at some later point in time ==
 Holder -> MobileApp : Click check button
 MobileApp -> Api : Get VCRequest status
 Api -> MobileApp : Return VCRequest not answered

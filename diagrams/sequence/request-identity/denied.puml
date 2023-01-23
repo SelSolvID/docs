@@ -2,6 +2,10 @@
 
 !include base.puml
 
+Issuer -> IssuerApp : Click deny button
+IssuerApp -> Api : Deny VC request
+
+== Continues at some later point in time ==
 Holder -> MobileApp : Click check button
 MobileApp -> Api : Get VCRequest status
 Api -> MobileApp : Return VCRequest denied

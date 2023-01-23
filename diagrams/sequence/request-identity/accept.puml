@@ -3,7 +3,7 @@
 
 Issuer -> IssuerApp : Click accept button
 IssuerApp -> Api : Accept VC request
-
+== Continues at some later point in time ==
 Holder -> MobileApp : Click check button
 MobileApp -> Api : Get VCRequest status
 Api -> MobileApp : Return VCRequest Accepted

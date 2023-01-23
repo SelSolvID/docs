@@ -16,7 +16,7 @@ Holder -> MobileApp : Click Send
 MobileApp -> Api : Send VC request to API
 Api -> MobileApp : VC added
 MobileApp -> Holder : VC added to list
-note across: Continues at some later point in time
+== Continues at some later point in time ==
 Issuer -> IssuerApp : Open issuer app
 Issuer -> IssuerApp : login
 Issuer -> IssuerApp : Navigate to requests page
