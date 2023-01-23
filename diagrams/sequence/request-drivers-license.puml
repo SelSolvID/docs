@@ -1,0 +1,44 @@
+@startuml
+
+!startsub participants
+actor Holder
+participant MobileApp
+participant Api
+participant IssuerApp
+actor Issuer
+!endsub
+
+Holder -> MobileApp : Open mobile app
+Holder -> MobileApp : Select Theory exam VC\nand practical exam VC
+Holder -> MobileApp : Add VC button
+Holder -> MobileApp : Fill title 'DRIVERS LICENSE'
+Holder -> MobileApp : Fill body 'Type: AM-B'
+Holder -> MobileApp : Click Send
+MobileApp -> Api : Send VC request to API\nwith attached VCs
+Api -> MobileApp : VC added
+MobileApp -> Holder : VC added to list
+== Continues at some later point in time ==
+Issuer -> IssuerApp : Open issuer app
+Issuer -> IssuerApp : login
+Issuer -> IssuerApp : Navigate to requests page
+IssuerApp -> Api : Get VC requests
+Api -> IssuerApp : VC requests
+IssuerApp -> Issuer : Show VC requests
+Issuer -> IssuerApp : Click on VC request 'DRIVERS LICENSE'
+IssuerApp -> Api : Get VC request\nwith attached VCs
+Api -> IssuerApp : VC request\nwith attached VCs
+IssuerApp -> Issuer : Show VC request
+Issuer -> IssuerApp : Check attached VCs
+
+Issuer -> IssuerApp : Click accept button
+IssuerApp -> Api : Accept VC request
+
+== Continues at some later point in time ==
+
+Holder -> MobileApp : Click check button
+MobileApp -> Api : Get VCRequest status
+Api -> MobileApp : Return VCRequest Accepted
+MobileApp -> MobileApp : Store VC
+MobileApp -> Holder : Show VCRequest Accepted
+
+@enduml
