@@ -1,0 +1,7 @@
+!include demo-request-identity.puml
+
+Holder -> MobileApp : Click check button
+MobileApp -> Api : Get VCRequest status
+Api -> MobileApp : Return VCRequest denied
+MobileApp -> MobileApp : Delete VCREquest
+MobileApp -> Holder : Show VC Request denied

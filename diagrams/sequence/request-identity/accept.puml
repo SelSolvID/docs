@@ -1,0 +1,10 @@
+!include demo-request-identity.puml
+
+Issuer -> IssuerApp : Click accept button
+IssuerApp -> Api : Accept VC request
+
+Holder -> MobileApp : Click check button
+MobileApp -> Api : Get VCRequest status
+Api -> MobileApp : Return VCRequest Accepted
+MobileApp -> MobileApp : Store VC
+MobileApp -> Holder : Show VCRequest Accepted

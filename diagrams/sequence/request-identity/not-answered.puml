@@ -1,0 +1,6 @@
+!include demo-request-identity.puml
+
+Holder -> MobileApp : Click check button
+MobileApp -> Api : Get VCRequest status
+Api -> MobileApp : Return VCRequest not answered
+MobileApp -> Holder : Show no request answer
