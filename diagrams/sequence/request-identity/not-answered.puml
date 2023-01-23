@@ -1,6 +1,8 @@
+@startuml identity not answered
 !include base.puml
 
 Holder -> MobileApp : Click check button
 MobileApp -> Api : Get VCRequest status
 Api -> MobileApp : Return VCRequest not answered
 MobileApp -> Holder : Show no request answer
+@enduml

@@ -1,3 +1,4 @@
+@startuml identity accepted
 !include base.puml
 
 Issuer -> IssuerApp : Click accept button
@@ -8,3 +9,4 @@ MobileApp -> Api : Get VCRequest status
 Api -> MobileApp : Return VCRequest Accepted
 MobileApp -> MobileApp : Store VC
 MobileApp -> Holder : Show VCRequest Accepted
+@enduml
