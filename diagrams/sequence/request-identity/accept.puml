@@ -1,4 +1,4 @@
-!include demo-request-identity.puml
+!include base.puml
 
 Issuer -> IssuerApp : Click accept button
 IssuerApp -> Api : Accept VC request
