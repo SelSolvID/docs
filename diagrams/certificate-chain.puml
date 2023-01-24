@@ -1,0 +1,62 @@
+@startuml certificate chain
+object "Root certificate" as rcrt {
+  text = "ROOT CERTIFICATE"
+  publicKey = "..."
+  signature = "..."
+}
+object "Nederlandse overheid certificate" as nl {
+  text = "Nederland"
+  publicKey = "..."
+  signature = "Signature door nl"
+  parentSignature = "signature van ROOT"
+}
+
+rcrt --> nl
+
+
+object "CBR certificate" as CBR {
+  text = "Centraal Bureau Rijvaardigheidsbewijzen"
+  publicKey = "..."
+  signature = "signature door CBR"
+  parentSignature = "signature van Nederland"
+}
+
+nl --> CBR
+
+object "Hanze hogeschool certificate" as hanze {
+  text = "Hanze hogeschool"
+  publicKey = "..."
+  signature = "signature door hanze"
+  parentSignature = "signature van Nederland"
+}
+
+nl --> hanze
+
+object student {
+  publicKey
+  privateKey
+}
+
+object "Diploma certificate" as Diploma {
+  text = "Diploma HBO-ICT Software engineering"
+  publicKey
+  signature
+}
+
+object "Identity certificate" as id {
+  text = "Student naam"
+  publicKey
+  signature
+}
+
+nl -> id
+
+student::publicKey -> Diploma::publicKey
+student::privateKey -> Diploma::signature
+student::publicKey --> id::publicKey
+student::privateKey --> id::signature
+
+hanze --> Diploma
+ 
+
+@enduml
