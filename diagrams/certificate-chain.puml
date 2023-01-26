@@ -41,12 +41,14 @@ object "Diploma certificate" as Diploma {
   text = "Diploma HBO-ICT Software engineering"
   publicKey
   signature
+  parentSignature = "Signature van hanze"
 }
 
 object "Identity certificate" as id {
   text = "Student naam"
   publicKey
   signature
+  parentSignature = "Signature van nl"
 }
 
 nl -> id
