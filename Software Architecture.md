@@ -33,8 +33,8 @@ Mees van Dijk
     - [3.2 Deelsystemen](#32-deelsystemen)
     - [3.3 Use case realizations](#33-use-case-realizations)
     - [3.4 sequence diagrammen](#34-sequence-diagrammen)
-    - [3.4.1 VC aanvragen](#341-vc-aanvragen)
-    - [3.4.2 VC controleren](#342-vc-controleren)
+      - [3.4.1 VC aanvragen](#341-vc-aanvragen)
+      - [3.4.2 VC controleren](#342-vc-controleren)
   - [4 Implementation View](#4-implementation-view)
     - [4.1 Package structuur](#41-package-structuur)
       - [4.1.1 Package diagram](#411-package-diagram)
@@ -45,21 +45,20 @@ Mees van Dijk
       - [4.2.2 Service laag](#422-service-laag)
         - [4.2.2.1 API surface](#4221-api-surface)
         - [4.2.2.2 Websocket server protocol](#4222-websocket-server-protocol)
-      - [4.2.2.3 Bluetooth](#4223-bluetooth)
-    - [4.2.3 Data laag](#423-data-laag)
-      - [4.2.3.1 API](#4231-api)
-      - [4.2.3.2 Android](#4232-android)
-      - [4.2.3.3 Database diagrammen](#4233-database-diagrammen)
-          - [4.2.3.3.1 Database diagram API](#42331-database-diagram-api)
-          - [4.2.3.3.2 Database diagram user-app](#42332-database-diagram-user-app)
+        - [4.2.2.3 SSI Certificaat structuur](#4223-ssi-certificaat-structuur)
+        - [4.2.2.4 Bluetooth](#4224-bluetooth)
+      - [4.2.3 Data laag](#423-data-laag)
+        - [4.2.3.1 API](#4231-api)
+        - [4.2.3.2 Android](#4232-android)
+        - [4.2.3.3 Database diagrammen](#4233-database-diagrammen)
     - [4.3 (Her)gebruik van componenten en frameworks](#43-hergebruik-van-componenten-en-frameworks)
       - [4.3.1 API](#431-api)
       - [4.3.2 Android](#432-android)
-      - [4.3.2 Web-app](#432-web-app)
+      - [4.3.3 Web-app](#433-web-app)
   - [5. Deployment View](#5-deployment-view)
     - [5.1 Deployment en infrastructuur van API, database en web applicatie](#51-deployment-en-infrastructuur-van-api-database-en-web-applicatie)
     - [5.2 Deployment en infrastructuur voor de mobiele applicatie](#52-deployment-en-infrastructuur-voor-de-mobiele-applicatie)
-    - [5.4 Deployment diagram](#54-deployment-diagram)
+    - [5.3 Deployment diagram](#53-deployment-diagram)
 
 ### 1.1 Doel van dit document
 
@@ -204,7 +203,7 @@ verifiëren.
 Dit zijn de verschillende sequence diagrammen die uitleggen wat er precies
 gedaan worden in een applicatie en wie welke acties uitvoert.
 
-### 3.4.1 VC aanvragen
+#### 3.4.1 VC aanvragen
 
 Een diagram waarbij de aanvraag wordt goedgekeurd
 
@@ -223,7 +222,7 @@ aanvraag:
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/request-drivers-license.puml"/>
 
-### 3.4.2 VC controleren
+#### 3.4.2 VC controleren
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/show-identity.puml"/>
 
@@ -535,7 +534,50 @@ Wanneer iemand een kanaal joint waar je al in zit krijg je het volgende bericht:
 }
 ```
 
-#### 4.2.2.3 Bluetooth
+##### 4.2.2.3 SSI Certificaat structuur
+
+Om de verifiable credentials cryptografisch te realiseren is een bepaalde
+structuur ontworpen waarin de data voor een verifiable credential wordt
+opgeslagen. Een aantal properties zijn nodig om een vc op te slaan, dit zijn:
+
+- Tekst op de VC
+- Digitale ondertekening van de eigenaar(/aanvrager) van de vc
+- Public key van de eigenaar van de VC
+- De parent certificate (recursive) als de vc niet self-signed is, anders is
+  deze niet aanwezig
+- Digitale ondertekening van de parent.
+
+Deze properties dienen er voor om een VC aan een eigenaar public key te binden,
+en om te kunnen verifiëren dat een bepaalde issuer een VC heeft goedgekeurd en
+dus ondertekend. Een VC moet ook altijd een chain aan parents tot en met de root
+certificate bijgevoegd hebben om te kunnen verifiëren.
+
+De ondertekeningen werken middels RSA-SHA256. Op elk certificaat worden twee
+signatures gezet, één door de eigenaar van het certificaat, die daarmee zijn
+public key aan de tekst vastmaakt. De signature van de eigenaar is een signature
+over alleen de tekst op de vc.  
+De tweede signature is van de parent, deze ondertekent niet alleen de tekst,
+maar ook de public key en de signature van de eigenaar. Door dus de parent
+signature te verifiëren kun je zeker weten dat de combinatie tekst en eigenaar
+zijn goedgekeurd door de issuer.
+
+Om de certificaten te encoden is gekozen voor een protocol buffer methode.
+[Protocol Buffers](https://developers.google.com/protocol-buffers) zijn een
+manier van google om data op een compacte manier in binary data op te slaan.
+Deze binary data wordt, in onze toepassingen, soms dan weer omgezet naar Base64
+strings. Dit is omdat JSON geen ondersteuning heeft voor binary data, maar wel
+voor strings.
+
+Voor specifieke informatie over de layout van de protocol buffer kun je in de
+API repository
+[de proto file](https://github.com/SelSovID/web-api/blob/master/SSICert.proto)
+bekijken.
+
+Een voorbeeld van een bepaalde certificate tree staat hieronder.
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/certificate-chain.puml"/>
+
+##### 4.2.2.4 Bluetooth
 
 <!-- ##### Waarom de implementatie van bluetooth niet is gelukt -->
 
@@ -551,7 +593,7 @@ hylbren specifiek wilde niet te vinden was in tutorialvorm. Met als gevolg dat
 er bij sommige pogingen drie verschillende voorbeelden door elkaar heenliepen
 wat ervoor zorgde ervoor dat het overzicht compleet weg was.
 
-Op gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.
+Op een gegeven moment hebben Wouter en Daniel het bluetoothgedeelte overgenomen.
 Door wederom gebruik te maken van de officiele
 [android bluetooth documentatie](https://developer.android.com/guide/topics/connectivity/bluetooth)
 kwam de app het verste. De setup was gelukt en je kon in de app je device
@@ -595,13 +637,13 @@ manier kunnen twee apparaten volledig over-en-weer communiceren over één
 doorlopende TCP verbinding, in plaats van bijvoorbeeld HTTPS, dat slechts één
 bericht per keer kan versturen.
 
-### 4.2.3 Data laag
+#### 4.2.3 Data laag
 
 Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
 een SQL database gebruikt in de API. Voor het opslaan van VC's op de mobiele
 apparaten wordt een SQLite database gebruikt die is ingebouwd in android.
 
-#### 4.2.3.1 API
+##### 4.2.3.1 API
 
 De api laag is de enige die direct met de centrale database praat. De api laag
 zit tussen zowel de web applicatie als de mobiele applicatie. Hoewel de mobiele
@@ -609,21 +651,21 @@ applicatie over het algemeen de api weinig nodig zal hebben. Dit is omdat de
 mobiele applicatie door verifiers en holders wordt gebruikt en deze communiceren
 altijd via een peer-to-peer connectie tussen twee mobiele apparaten.
 
-#### 4.2.3.2 Android
+##### 4.2.3.2 Android
 
 In de user app bevind zich een SQLite database om aangevraagde, goed en
 afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
 
-#### 4.2.3.3 Database diagrammen
+##### 4.2.3.3 Database diagrammen
 
 De volgende diagrammen laten zien hoe de interne databasestructuur van de API en
 de android app eruit zien.
 
-###### 4.2.3.3.1 Database diagram API
+**Database diagram API**
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database/central-db-puml"/>
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database/central-db.puml"/>
 
-###### 4.2.3.3.2 Database diagram user-app
+**Database diagram user-app**
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database/user-app.puml"/>
 
@@ -653,12 +695,36 @@ gebruikt. Verder is een groot deel van de code voor certificaten geporteerd
 vanaf de api naar Kotlin. Dit is wel andere code maar kon gemakkelijk
 overgeschreven worden naar een andere taal.
 
-#### 4.3.2 Web-app
+Voor het scannen van de QR code is er gebruik gemaakt van de yuriy-budiyev
+library. Deze library geeft de mogelijkheid om QR codes te scannen, flits aan te
+zetten en wisselen tussen automatisch scherpstellen en handmatig scherpstellen.
+
+Voor de communicatie met de API en tussen de holder en verifier is gebruik
+gemaakt van de okhttp3 library. Deze library geeft de mogelijkheid om te
+verzenden en binnenkrijgen naar een websocket en een https server.
+
+#### 4.3.3 Web-app
 
 Met de web-app kunnen uitgevers verschillende aanvragen inzien en goed of
 afkeuren. Voor het ophalen van deze aanvragen wordt gecommuniceerd met de API.
 Omdat de API en de web-app allebei gebruik maken van typescript, konden de
 types, `VCDto` en `Aanvraag`, hergebruikt worden voor de aanvragen.
+
+Met het ophalen van data van de API wordt
+[Axios](https://axios-http.com/docs/intro) gebruikt, een universeel veel
+gebruikte HTTP client.
+
+Voor de styling van de app is de component library
+[SMUI](https://sveltematerialui.com/) (Svelte material UI) gebruikt. Met deze
+component library kon er makkelijk een knop of lijst worden toegevoegd met al
+styling toegevoegd. Op deze manier houdt de app een gezamenlijke style aan en
+ziet het er hopelijk beter uit.
+
+Bij de opzet van de app is [SvelteKit](https://kit.svelte.dev/) gebruikt. Met
+SvelteKit heb je serverside rendering, bundling en routing, wat erg handig was
+voor het ontwikkelen van de app en de performance hiervan. Ook geeft SvelteKit
+je al een standaard app opzet/structuur waar je makkelijk in verder kan werken
+en je een goede basis geeft.
 
 ## 5. Deployment View
 
@@ -676,8 +742,8 @@ voor:
 - Het draaien van de database.
 - Het proxy-en van requests naar de web-applicatie of de API
 
-Deze vier containers zitten allemaal in een zelfde privénetwerk. Alleen de proxy
-kan van buitenaf benaderd worden. De proxy zet https requests om naar http
+Deze vier containers zitten allemaal in een zelfde privé-netwerk. Alleen de
+proxy kan van buitenaf benaderd worden. De proxy zet https requests om naar http
 requests, zodat de individuele servers geen verantwoordelijkheid dragen voor
 https, dit zorgt voor veel minder complexiteit in de code. De proxy zorgt er ook
 voor dat elk request bij de juiste service aankomt. Het is alleen natuurlijk
@@ -715,7 +781,7 @@ problemen verder uitgelegd in het volgende kopje, is dit niet gelukt. De nieuw
 bedachte optie om dit te implementeren is door gebruik te maken van de API om
 beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 
-### 5.4 Deployment diagram
+### 5.3 Deployment diagram
 
 <img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/deployment.puml">
 ```
