@@ -18,8 +18,8 @@ Mees van Dijk
   - [Auteurs](#auteurs)
   - [Inleiding](#inleiding)
 - [Inhoudsopgave](#inhoudsopgave)
-  - [1.1 Doel van dit document](#11-doel-van-dit-document)
-  - [1.2 referenties](#12-referenties)
+    - [1.1 Doel van dit document](#11-doel-van-dit-document)
+    - [1.2 referenties](#12-referenties)
   - [2 Architecturale eisen](#2-architecturale-eisen)
     - [2.1 Niet-functionele eisen](#21-niet-functionele-eisen)
       - [2.1.1 Performance](#211-performance)
@@ -32,7 +32,7 @@ Mees van Dijk
       - [3.1.1 Laag-diagram](#311-laag-diagram)
     - [3.2 Deelsystemen](#32-deelsystemen)
     - [3.3 Use case realizations](#33-use-case-realizations)
-    - [3.4 Sequentiediagrammen](#34-sequentiediagrammen)
+    - [3.4 sequence diagrammen](#34-sequence-diagrammen)
     - [3.4.1 VC aanvragen](#341-vc-aanvragen)
     - [3.4.2 VC controleren](#342-vc-controleren)
   - [4 Implementation View](#4-implementation-view)
@@ -45,26 +45,20 @@ Mees van Dijk
       - [4.2.2 Service laag](#422-service-laag)
         - [4.2.2.1 API surface](#4221-api-surface)
         - [4.2.2.2 Websocket server protocol](#4222-websocket-server-protocol)
+      - [4.2.2.3 Bluetooth](#4223-bluetooth)
     - [4.2.3 Data laag](#423-data-laag)
       - [4.2.3.1 API](#4231-api)
       - [4.2.3.2 Android](#4232-android)
       - [4.2.3.3 Database diagrammen](#4233-database-diagrammen)
-        - [4.2.3.3.1 Database diagram API](#42331-database-diagram-api)
-        - [4.2.3.3.1 Database diagram user-app](#42331-database-diagram-user-app)
+          - [4.2.3.3.1 Database diagram API](#42331-database-diagram-api)
+          - [4.2.3.3.2 Database diagram user-app](#42332-database-diagram-user-app)
     - [4.3 (Her)gebruik van componenten en frameworks](#43-hergebruik-van-componenten-en-frameworks)
       - [4.3.1 API](#431-api)
       - [4.3.2 Android](#432-android)
-      - [4.3.2 Svelte](#432-svelte)
+      - [4.3.2 Web-app](#432-web-app)
   - [5. Deployment View](#5-deployment-view)
     - [5.1 Deployment en infrastructuur van API, database en web applicatie](#51-deployment-en-infrastructuur-van-api-database-en-web-applicatie)
     - [5.2 Deployment en infrastructuur voor de mobiele applicatie](#52-deployment-en-infrastructuur-voor-de-mobiele-applicatie)
-      - [5.2.1 Waarom de implementatie van bluetooth niet is gelukt](#521-waarom-de-implementatie-van-bluetooth-niet-is-gelukt)
-      - [5.2.2 Websockets als vervangende oplossing](#522-websockets-als-vervangende-oplossing)
-    - [5.3 Teststraat](#53-teststraat)
-      - [5.3.1 API](#531-api)
-      - [5.3.2 Svelte](#532-svelte)
-      - [5.3.3 Android](#533-android)
-      - [5.3.1 Websocketserver](#531-websocketserver)
     - [5.4 Deployment diagram](#54-deployment-diagram)
 
 ### 1.1 Doel van dit document
@@ -282,7 +276,7 @@ wordt is Kotlin. Kotlin wordt gebruikt omdat het een modern alternatief is op
 java. Traditioneel wordt java gebruikt voor android apps, maar Kotlin is daarop
 een modern alternatief en sinds enige tijd door google aanbevolen als taal om de
 apps in te ontwikkelen. Gezien er slechts drie schermen in onze applicatie
-zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanweig
+zitten maken wij geen gebruik van de navigatiegraph structuur zoals die aanwezig
 is in android, omdat elk scherm vanuit de onderste navigatiebalk toegankelijk
 is.
 
@@ -297,7 +291,7 @@ developers snel en gestructureerd kunnen werken. Daarom gebruiken we Svelte.
 #### 4.2.2 Service laag
 
 De servicelaag is verantwoordelijk voor het uitvoeren van de business logic. In
-dit geval zal dat zijn het aanvragen, aanmaken, ophalen, delen en verifieren van
+dit geval zal dat zijn het aanvragen, aanmaken, ophalen, delen en verifiëren van
 VC's.
 
 Voor het aanvragen en ophalen van VC's wordt https gebruikt. Een holder kan via
@@ -360,7 +354,22 @@ body ziet er uit zoals:
   "fromUser": "I am a legit user",
   "date": 10123718972391823,
   "requestText": "Some claim",
-  "attachedVCs": ["**EXPORTED VC TEXT**", "**EXPORTED VC TEXT**"]
+  "attachedVCs": [
+    {
+      "credentialText": "DRIVERS LICENSE\n\ntype: AM-B",
+      "parent": {
+        "credentialText": "ROOT",
+        "parent": null
+      }
+    },
+    {
+      "credentialText": "INCOME\n\nannual income: €200.000.000.000,00",
+      "parent": {
+        "credentialText": "IDENTITY\n\nJeff Bezos",
+        "parent": null
+      }
+    }
+  ]
 }
 ```
 
@@ -381,7 +390,7 @@ Een niet-accepted request:
 {
   "accept": false,
   // reason is optional and only applicable when "accept": false
-  "reason": "You lied about your age"
+  "denyReason": "You lied about your age"
 }
 ```
 
@@ -512,123 +521,23 @@ stuurt de server het volgende bericht terug:
 
 ```json
 {
-  "type": "erorr",
+  "type": "error",
   "payload": "unknown message type"
 }
 ```
 
-### 4.2.3 Data laag
+Wanneer iemand een kanaal joint waar je al in zit krijg je het volgende bericht:
 
-Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
-een SQL database gebruikt in de API en in de android-app.
+```json
+{
+  "type": "join",
+  "channel": "*channelID*"
+}
+```
 
-#### 4.2.3.1 API
+#### 4.2.2.3 Bluetooth
 
-De api laag is de enige die direct met deze database praat. De api laag zit
-tussen zowel de web applicatie als de mobiele applicatie. Hoewel de mobiele
-applicatie over het algemeen de api weinig nodig zal hebben. Dit is omdat de
-mobiele applicatie door verifyers en holders wordt gebruikt en deze communiceren
-altijd via een peer-to-peer connectie tussen twee mobiele apparaten.
-
-#### 4.2.3.2 Android
-
-In de user app bevind zich een SQLITE database om aangevraagde, goed- en
-afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
-
-#### 4.2.3.3 Database diagrammen
-
-De volgende diagrammen laten zien hoe de interne databasestructuur van de API en
-de android app eruit zien.
-
-###### 4.2.3.3.1 Database diagram API
-
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/databaseAPI.puml"/>
-
-###### 4.2.3.3.1 Database diagram user-app
-
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/databaseUserApp.puml"/>
-
-### 4.3 (Her)gebruik van componenten en frameworks
-
-#### 4.3.1 API
-
-Het meest algemene component is de API, deze kan via het internet door iedereen
-met de juiste toegang benaderd worden. Deze is nodig om interne applicaties
-boven op te bouwen maar ook derden zouden toegang kunnen krijgen tot deze api.
-Op deze manier kunnen derden hun eigen toepassingen bouwen die hun eigen doelen
-beter bereiken dan een algemene applicatie.
-
-Bij het bouwen van deze api wordt code geschreven die direct herbruikt kan
-worden bij de bouw van de web applicatie. Verder kan deze code gemakkelijk
-vertaald worden naar code voor de mobiele applicatie.
-
-Dit komt omdat voor zowel de API als de webapplicatie javascript wordt gebruikt.
-Boven op javascript wordt dan typescript gebruikt. Bij typescript worden
-modellen van data geschreven die overal in het systeem gebruikt moeten worden.
-
-#### 4.3.2 Android
-
-Bij de android app wordt er gebruik gemaakt van zogenoemde fragments:
-herbruikbare stukken layout die dynamisch in elk scherm vna de app kunnen worden
-gebruikt. Ook wordt er gebruik gemaakt van een zogenoemde recyclerview, dit is
-een speciale soort lijst die optimaal gebruik maakt van de resources van een
-apparaat.
-
-#### 4.3.2 Svelte
-
-Daniel?
-
-## 5. Deployment View
-
-### 5.1 Deployment en infrastructuur van API, database en web applicatie
-
-Voor de deployment is het belangrijk dat de API en de webapplicatie via een http
-proxy op hetzelfde domein draaien. Dit zorgt ervoor dat de webapplicatie veilig
-en zonder moeilijkheden met de API mag praten.
-
-Om dit te realiseren worden er een aantal docker containers gebouwd. Namelijk
-voor:
-
-- Het serveren van de webapplicatie
-- Het draaien van de API
-- Het draaien van de database.
-- Het proxy-en van requests naar de web-applicatie of de API
-
-Deze vier containers zitten allemaal in een zelfde privénetwerk. Alleen de proxy
-kan van buitenaf benaderd worden. De proxy zet https requests om naar http
-requests, zodat de individuele servers geen verantwoordelijkheid dragen voor
-https, dit zorgt voor veel minder complexiteit in de code. De proxy zorgt er ook
-voor dat elk request bij de juiste service aankomt. Het is alleen natuurlijk
-niet mogelijk direct de database te benaderen, dat kan alleen via de API.
-
-De proxy weet welk request voor welke service is aan de hand van een url.
-
-Requests met een url zoals `domein.nl/api/**/*` gaan allemaal naar de api. Alle
-andere requests worden naar de server van de webapplicatie gestuurd.
-
-Al deze infrastructuur kan, middels docker, op 1 server draaien. Omdat
-scalability niet van groot belang is in dit project is 1 cloud server voldoende
-voor het demonstreren van het proof of concept.
-
-### 5.2 Deployment en infrastructuur voor de mobiele applicatie
-
-Voor het downloaden van de mobiele applicatie wordt een continuous integration
-pipeline ingesteld die automatisch de mobiele applicatie bouwt en beschikbaar
-stelt voor downloaden. Dit wordt gerealiseerd in github actions. Binnen github
-actions worden een aantal tools gebruikt om de applicaties te bouwen. Voor
-Kotlin is dat de Kotlin compiler, voor svelte is dat de svelte compiler. Voor de
-api wordt Typescript gebruikt om de code te transpilen.
-
-Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
-bovengenoemde API, op de beschreven manier. Dit gebeurt met http(s). Naast het
-praten met de API moet de mobiele applicatie ook peer-to-peer connecties kunnen
-opzetten met andere instanties van de mobiele applicatie op andere mobiele
-apparaten. Het plan was eerst om dit te doen via Bluetooth. Maar vanwege
-problemen verder uitgelegd in het volgende kopje, is dit niet gelukt. De nieuw
-bedachte optie om dit te implementeren is door gebruik te maken van de API om
-beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
-
-#### 5.2.1 Waarom de implementatie van bluetooth niet is gelukt
+<!-- ##### Waarom de implementatie van bluetooth niet is gelukt -->
 
 Voor de bluetooth zijn meerdere implementaties uitgeprobeerd; allereerst werd er
 gebruik gemaakt van de de officiele
@@ -677,7 +586,7 @@ deprecated. Hierdoor was het een hele puzzel om uit te vinden wat er miste en
 hoe dit toch kon werken. Dit zou uiteindelijk te veel tijd kosten om werkend te
 krijgen binnen de tijd die wij nog hadden.
 
-#### 5.2.2 Websockets als vervangende oplossing
+<!-- ##### Websockets als vervangende oplossing -->
 
 Omdat Bluetooth dus niet werkend gekregen kon worden is er voor gekozen om te
 werken met WebSockets. Bij deze techniek wordt er vanuit de user app verbinding
@@ -686,23 +595,125 @@ manier kunnen twee apparaten volledig over-en-weer communiceren over één
 doorlopende TCP verbinding, in plaats van bijvoorbeeld HTTPS, dat slechts één
 bericht per keer kan versturen.
 
-### 5.3 Teststraat
+### 4.2.3 Data laag
 
-Als onderdeel van het project wordt een teststraat ingericht. Dit houdt in dat
-er van het systeem drie versies beschikbaar komen volgens het OTAP model, te
-weten Ontwikkel, Testen, Acceptatie, Productie. Hiervoor worden de api en webapp
-drievoudig gedeployed.
+Voor het opslaan van verzoeken tot VC's en de statussen van deze verzoeken wordt
+een SQL database gebruikt in de API. Voor het opslaan van VC's op de mobiele
+apparaten wordt een SQLite database gebruikt die is ingebouwd in android.
 
-#### 5.3.1 API
+#### 4.2.3.1 API
 
-#### 5.3.2 Svelte
+De api laag is de enige die direct met de centrale database praat. De api laag
+zit tussen zowel de web applicatie als de mobiele applicatie. Hoewel de mobiele
+applicatie over het algemeen de api weinig nodig zal hebben. Dit is omdat de
+mobiele applicatie door verifiers en holders wordt gebruikt en deze communiceren
+altijd via een peer-to-peer connectie tussen twee mobiele apparaten.
 
-#### 5.3.3 Android
+#### 4.2.3.2 Android
 
-De mobile applicatie krijgt drie verschillende downloads die overeenkomen met de
-drie gedeployde versies van de webapp en api.
+In de user app bevind zich een SQLite database om aangevraagde, goed en
+afgekeurde VC's op te slaan. Dit is gerealiseerd met het android ORM Room.
 
-#### 5.3.1 Websocketserver
+#### 4.2.3.3 Database diagrammen
+
+De volgende diagrammen laten zien hoe de interne databasestructuur van de API en
+de android app eruit zien.
+
+###### 4.2.3.3.1 Database diagram API
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database/central-db-puml"/>
+
+###### 4.2.3.3.2 Database diagram user-app
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/database/user-app.puml"/>
+
+### 4.3 (Her)gebruik van componenten en frameworks
+
+#### 4.3.1 API
+
+Het meest algemene component is de API, deze kan via het internet door iedereen
+met de juiste toegang benaderd worden. Deze is nodig om interne applicaties
+boven op te bouwen maar ook derden zouden toegang kunnen krijgen tot deze api.
+Op deze manier kunnen derden hun eigen toepassingen bouwen die hun eigen doelen
+beter bereiken dan een algemene applicatie.
+
+Bij het bouwen van deze api wordt code geschreven die direct herbruikt kan
+worden bij de bouw van de web applicatie. Verder kan deze code gemakkelijk
+vertaald worden naar code voor de mobiele applicatie.
+
+Dit komt omdat voor zowel de API als de webapplicatie javascript wordt gebruikt.
+Boven op javascript wordt dan typescript gebruikt. Bij typescript worden
+modellen van data geschreven die overal in het systeem gebruikt moeten worden.
+
+#### 4.3.2 Android
+
+Bij de android app wordt er gebruik gemaakt van zogenoemde fragments:
+herbruikbare stukken layout die dynamisch in elk scherm van de app kunnen worden
+gebruikt. Verder is een groot deel van de code voor certificaten geporteerd
+vanaf de api naar Kotlin. Dit is wel andere code maar kon gemakkelijk
+overgeschreven worden naar een andere taal.
+
+#### 4.3.2 Web-app
+
+Met de web-app kunnen uitgevers verschillende aanvragen inzien en goed of
+afkeuren. Voor het ophalen van deze aanvragen wordt gecommuniceerd met de API.
+Omdat de API en de web-app allebei gebruik maken van typescript, konden de
+types, `VCDto` en `Aanvraag`, hergebruikt worden voor de aanvragen.
+
+## 5. Deployment View
+
+### 5.1 Deployment en infrastructuur van API, database en web applicatie
+
+Voor de deployment is het belangrijk dat de API en de webapplicatie via een http
+proxy op hetzelfde domein draaien. Dit zorgt ervoor dat de webapplicatie veilig
+en zonder moeilijkheden met de API mag praten.
+
+Om dit te realiseren worden er een aantal docker containers gebouwd. Namelijk
+voor:
+
+- Het serveren van de webapplicatie
+- Het draaien van de API
+- Het draaien van de database.
+- Het proxy-en van requests naar de web-applicatie of de API
+
+Deze vier containers zitten allemaal in een zelfde privénetwerk. Alleen de proxy
+kan van buitenaf benaderd worden. De proxy zet https requests om naar http
+requests, zodat de individuele servers geen verantwoordelijkheid dragen voor
+https, dit zorgt voor veel minder complexiteit in de code. De proxy zorgt er ook
+voor dat elk request bij de juiste service aankomt. Het is alleen natuurlijk
+niet mogelijk direct de database te benaderen, dat kan alleen via de API.
+
+De proxy weet welk request voor welke service is aan de hand van een url.
+
+Requests met een url zoals `domein.nl/api/**/*` gaan allemaal naar de api. Alle
+andere requests worden naar de server van de webapplicatie gestuurd.
+
+Al deze infrastructuur kan, middels docker, op 1 server draaien. Omdat
+scalability niet van groot belang is in dit project is 1 cloud server voldoende
+voor het demonstreren van het proof of concept.
+
+Om deze deployment te realiseren zijn Github Actions workflows ingericht die
+automatisch, bij elke verandering, een nieuwe versie van de deelsystemen bouwen
+en deze starten. Deze workflows zijn gespecificeerd in alle relevante
+Repositories in de `.github/workflows/` map.
+
+### 5.2 Deployment en infrastructuur voor de mobiele applicatie
+
+Voor het downloaden van de mobiele applicatie wordt een continuous integration
+pipeline ingesteld die automatisch de mobiele applicatie bouwt en beschikbaar
+stelt voor downloaden. Dit wordt gerealiseerd in github actions. Binnen github
+actions worden een aantal tools gebruikt om de applicaties te bouwen. Voor
+Kotlin is dat de Kotlin compiler, voor svelte is dat de svelte compiler. Voor de
+api wordt Typescript gebruikt om de code te transpilen.
+
+Tijdens het gebruik van de mobiele applicatie praat de applicatie met de
+bovengenoemde API, op de beschreven manier. Dit gebeurt met http(s). Naast het
+praten met de API moet de mobiele applicatie ook peer-to-peer connecties kunnen
+opzetten met andere instanties van de mobiele applicatie op andere mobiele
+apparaten. Het plan was eerst om dit te doen via Bluetooth. Maar vanwege
+problemen verder uitgelegd in het volgende kopje, is dit niet gelukt. De nieuw
+bedachte optie om dit te implementeren is door gebruik te maken van de API om
+beide personen aan elkaar te verbinden. Hier wordt dieper op ingegaan in 5.2.2
 
 ### 5.4 Deployment diagram
 

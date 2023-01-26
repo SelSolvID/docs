@@ -1,0 +1,26 @@
+@startuml central database DiagramBorderColor
+
+
+entity "User" {
+  *id : number <generated>
+  --
+  *password : string
+  *private_key : byteArray
+  *name : string
+  *identity : byteArray
+}
+
+entity vcrequest {
+  *id : number <generated>
+  --
+  *vc : byteArray
+  *created_at : string
+  *for_user_id : number
+  *accepted : boolean?
+  *deny_reason : string?
+  *retrieval_id : string
+  *attached_vcs : string (binary data)
+}
+
+User ||--o{vcrequest
+@enduml

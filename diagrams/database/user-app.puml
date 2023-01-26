@@ -1,0 +1,17 @@
+@startuml mobile app database
+entity verified_credentials {
+  *vc_id : number <generated>
+  --
+  vc_data : String
+  request_id : String
+  vc_text : String
+}
+
+
+entity dbKeyPair {
+  *id : number <generated>
+  --
+  *public_key : Binary data
+  *private_key : Binary data
+}
+@enduml
