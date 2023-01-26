@@ -11,15 +11,15 @@ package "service layer" as sl {
 
 package "data layer" as dl {
   database "central database" as cdb
-  database "database_selsovid" as ldb
+  database "mobile database" as ldb
 }
 
 map -> mab : method calls
+mab -> mab : Websockets
 
-map --> api: https
 wap --> api : https
 
 api --> cdb : postgres protocol
 mab --> api : https
-mab --> ldb : ROOM ORM
+mab --> ldb : Room ORM
 @enduml

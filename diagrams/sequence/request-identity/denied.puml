@@ -1,6 +1,32 @@
 @startuml identity denied
 
-!include base.puml
+!startsub participants
+actor Holder
+participant MobileApp
+participant Api
+participant IssuerApp
+actor Issuer
+!endsub
+
+Holder -> MobileApp : Open mobile app
+Holder -> MobileApp : Add VC button
+Holder -> MobileApp : Fill title 'IDENTITY'
+Holder -> MobileApp : Fill body 'Peter Pannekoek'
+Holder -> MobileApp : Click Send
+MobileApp -> Api : Send VC request to API
+Api -> MobileApp : VC added
+MobileApp -> Holder : VC added to list
+== Continues at some later point in time ==
+Issuer -> IssuerApp : Open issuer app
+Issuer -> IssuerApp : login
+Issuer -> IssuerApp : Navigate to requests page
+IssuerApp -> Api : Get VC requests
+Api -> IssuerApp : VC requests
+IssuerApp -> Issuer : Show VC requests
+Issuer -> IssuerApp : Click on VC request IDENTITY
+IssuerApp -> Api : Get VC request
+Api -> IssuerApp : VC request
+IssuerApp -> Issuer : Show VC request
 
 Issuer -> IssuerApp : Click deny button
 IssuerApp -> Api : Deny VC request

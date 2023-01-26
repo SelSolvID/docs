@@ -12,13 +12,14 @@ Mees van Dijk
 ## Inleiding
 
 # Inhoudsopgave
+
 - [Software architecture document](#software-architecture-document)
   - [Self-sovereign Identity](#self-sovereign-identity)
   - [Auteurs](#auteurs)
   - [Inleiding](#inleiding)
 - [Inhoudsopgave](#inhoudsopgave)
-    - [1.1 Doel van dit document](#11-doel-van-dit-document)
-    - [1.2 referenties](#12-referenties)
+  - [1.1 Doel van dit document](#11-doel-van-dit-document)
+  - [1.2 referenties](#12-referenties)
   - [2 Architecturale eisen](#2-architecturale-eisen)
     - [2.1 Niet-functionele eisen](#21-niet-functionele-eisen)
       - [2.1.1 Performance](#211-performance)
@@ -48,8 +49,8 @@ Mees van Dijk
       - [4.2.3.1 API](#4231-api)
       - [4.2.3.2 Android](#4232-android)
       - [4.2.3.3 Database diagrammen](#4233-database-diagrammen)
-          - [4.2.3.3.1 Database diagram API](#42331-database-diagram-api)
-          - [4.2.3.3.1 Database diagram user-app](#42331-database-diagram-user-app)
+        - [4.2.3.3.1 Database diagram API](#42331-database-diagram-api)
+        - [4.2.3.3.1 Database diagram user-app](#42331-database-diagram-user-app)
     - [4.3 (Her)gebruik van componenten en frameworks](#43-hergebruik-van-componenten-en-frameworks)
       - [4.3.1 API](#431-api)
       - [4.3.2 Android](#432-android)
@@ -66,12 +67,11 @@ Mees van Dijk
       - [5.3.1 Websocketserver](#531-websocketserver)
     - [5.4 Deployment diagram](#54-deployment-diagram)
 
-
 ### 1.1 Doel van dit document
 
 Het software architectuur document bevat een uitgebreide architecturale kijk op
-het systeem SSI middels het 4+1 view model op software architectuur:
-Logical, Implementational, Process, Deployment + Use Case
+het systeem SSI middels het 4+1 view model op software architectuur: Logical,
+Implementational, Process, Deployment + Use Case
 <img src="images/4plus_1_views.jpg"/>
 
 Het 4+1 model stelt de verschillende belanghebbenden in staat vanuit hun eigen
@@ -129,15 +129,16 @@ bieden.
 De use cases van het project worden in meer detail beschreven in het use-case
 document. De volgende use-cases zijn geïdentificeerd:
 
-- Een issuer wilt requests goedkeuren en of afkeuren
-- Een gebruiker wilt alcohol kopen, benodigd is de leeftijd
+- Een issuer wil requests goedkeuren en of afkeuren
+- Een gebruiker wil alcohol kopen, benodigd is de leeftijd
 - Afsluiten van een dienst met voorwaarden
-- Een gebruiker wilt solliciteren, daar zijn een ID en de diplomas van de
+- Een gebruiker wil solliciteren, daar zijn een ID en de diplomas van de
   middelbare school en de HBO instelling voor nodig
 - Huren van goederen
 - Het afsluiten en het checken van een verzekering.
 
-De usecases zijn opgenomen in een [apart use cases bestand](Usecasedocument.md).
+De use-cases zijn opgenomen in een
+[apart use cases bestand](Usecasedocument.md).
 
 ## 3 Logical view
 
@@ -162,36 +163,75 @@ verwijderd worden uit deze data laag.
 
 ### 3.2 Deelsystemen
 
-Onze Proof of Concept (POC) vereist een aantal deelsystemen. Het bestaat uit een android app, een webapp en een API.
+Onze Proof of Concept (POC) vereist een aantal deelsystemen. Het bestaat uit een
+android app, een web app, een API, een proxy, een web-socket server en een host
+voor het root certificaat.
 
-De app is bedoeld voor de gebruikers die verifiable credentials (VC's) willen verifyen en holden. 
+De android app is bedoeld voor de gebruikers die verifiable credentials (VC's)
+willen verifien en holden.
 
-De webapp is bedoeld voor issuers, die VC's willen goedkeuren en uitgeven aan individuen of rechtspersonen.
+De web app is bedoeld voor issuers, die VC's willen goedkeuren of afkeuren en
+uitgeven.
 
-De api is voor de webapp en de app, via de api krijgen de apps hun nieuwe VC's
+De API is een backend voor alle applicaties. De API handelt de requests van de
+issuer web app af en zorgt dat deze acties worden opgeslagen in een database. De
+API ontvangt ook de verzoeken van holders voor nieuwe VC's en slaat deze op in
+de database.
+
+De web-socket server faciliteert een verbinding tussen twee mobiele devices. De
+devices verbinden beide met een kanaal op de web-socket server en kunnen dan met
+elkaar praten.
+
+De proxy zorgt er in productie voor dat alle requests naar hetzelfde domein
+kunnen, en dat ze achter de schermen naar het juiste deelsysteem worden
+gestuurd. Dit doet hij op basis van het http pad van het request.
+
+De host voor het root certificaat is een simpele, static file server die een
+enkel bestand, het root certificaat, host op een bekende plek. Dit zodat alle
+gebruikers van het systeem deze kunnen gebruiken. Op het moment wordt dit ook
+gedaan door de proxy server, met wat extra configuratie.
 
 ### 3.3 Use case realizations
 
 Alle use cases zullen gebouwd worden op een zelfde techniek. Bij het verifiëren
 van een VC wordt een peer-to-peer connectie opgezet tussen twee mobiele
-telefoons middels WebSockets. De holder stuurt dan de relevante VC naar de verifier. 
-De verifier kan, omdat deze de benodigde root certificaten al bezit, verifiëren dat de VC geldig is.
+telefoons middels WebSockets. De holder stuurt dan de relevante VC naar de
+verifier. De verifier kan, omdat deze de benodigde root certificaten al bezit,
+verifiëren dat de VC geldig is.
 
 Om de peer-to-peer connectie op te zetten wordt wordt er gebruik gemaakt van de
-API om de beide users te verbinden aan elkaar, om zo data te wisselen met
+API om de beide users te verbinden aan elkaar, om zo data uit te wisselen met
 elkaar. Hier wordt verder op ingegaan in Hoofdstuk 5. Verder wordt er gebruik
 gemaakt van bekende cryptografie libraries om de certificaten aan te maken en te
 verifiëren.
 
-### 3.4 Sequentiediagrammen
-Dit zijn de verschillende sequentiediagrammen die uitleggen wat er precies gedaan worden in een applicatie en  wie welke acties uitvoert.
+### 3.4 sequence diagrammen
+
+Dit zijn de verschillende sequence diagrammen die uitleggen wat er precies
+gedaan worden in een applicatie en wie welke acties uitvoert.
 
 ### 3.4.1 VC aanvragen
 
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/sequencediagramaanvragenVC.puml"/>
+Een diagram waarbij de aanvraag wordt goedgekeurd
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/request-identity/accept.puml"/>
+
+Een diagram waarbij de aanvraag nog niet beantwoord is:
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/request-identity/not-answered.puml"/>
+
+Een diagram waarbij de aanvraag wordt afgekeurd:
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/request-identity/denied.puml"/>
+
+Een diagram waarbij andere VC's worden aangeleverd als bewijs voor een nieuwe
+aanvraag:
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/request-drivers-license.puml"/>
 
 ### 3.4.2 VC controleren
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/softwarearchitecture/sequencediagrams/controlerenvc.puml"/>
+
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/SelSolvID/docs/master/diagrams/sequence/show-identity.puml"/>
 
 ## 4 Implementation View
 
@@ -217,8 +257,8 @@ Voor het realiseren van een user interface op android wordt gebruik gemaakt van
 de standaard android libraries. Kotlin kan hiervan, net zoals java, gebruik
 maken om gemakkelijk een user interface te bouwen.
 
-De webapplicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte
-is een framework om responsive user interfaces te bouwen. Bovenop svelte gaan we
+De webapplicatie gaat gebruik maken van [Svelte](https://svelte.dev/). Svelte is
+een framework om responsive user interfaces te bouwen. Bovenop svelte gaan we
 [Svelte material UI](https://sveltematerialui.com/) gebruiken. Dit is een set
 componenten die makkelijk kunnen worden gebruikt in het bouwen van een ui.
 
@@ -248,10 +288,11 @@ is.
 
 ##### 4.2.1.2 Websites
 
-Voor de website wordt het web framework Svelte gebruikt. Dit is een webframework dat zich focust op de presentatielaag van websites. Dit framework
-maakt het gemakkelijker om interactieve web applicaties te bouwen. Svelte is een
-relatief nieuw web framework dat erg positief is ontvangen. Het zorgt er voor
-dat developers snel en gestructureerd kunnen werken. Daarom gebruiken we Svelte.
+Voor de website wordt het web framework Svelte gebruikt. Dit is een webframework
+dat zich focust op de presentatielaag van websites. Dit framework maakt het
+gemakkelijker om interactieve web applicaties te bouwen. Svelte is een relatief
+nieuw web framework dat erg positief is ontvangen. Het zorgt er voor dat
+developers snel en gestructureerd kunnen werken. Daarom gebruiken we Svelte.
 
 #### 4.2.2 Service laag
 
@@ -534,6 +575,7 @@ een speciale soort lijst die optimaal gebruik maakt van de resources van een
 apparaat.
 
 #### 4.3.2 Svelte
+
 Daniel?
 
 ## 5. Deployment View
@@ -552,8 +594,8 @@ voor:
 - Het draaien van de database.
 - Het proxy-en van requests naar de web-applicatie of de API
 
-Deze vier containers zitten allemaal in een zelfde privénetwerk. Alleen de
-proxy kan van buitenaf benaderd worden. De proxy zet https requests om naar http
+Deze vier containers zitten allemaal in een zelfde privénetwerk. Alleen de proxy
+kan van buitenaf benaderd worden. De proxy zet https requests om naar http
 requests, zodat de individuele servers geen verantwoordelijkheid dragen voor
 https, dit zorgt voor veel minder complexiteit in de code. De proxy zorgt er ook
 voor dat elk request bij de juiste service aankomt. Het is alleen natuurlijk
