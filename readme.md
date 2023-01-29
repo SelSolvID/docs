@@ -7,6 +7,6 @@ TOC:
 - [Risicodocument](Risicodocument.md)
 - [Samenwerkingsdocument](Samenwerkingsdocument.md)
 - [Software Architecture](Software%20Architecture.md)
-- [Technische Keuzes](Technische%20Keuzes.md)
+- [Technische Keuzes](technischekeuzes.md)
 - [Usecasedocument](Usecasedocument.md)
 - [Visiedocument](Visiedocument.md)
